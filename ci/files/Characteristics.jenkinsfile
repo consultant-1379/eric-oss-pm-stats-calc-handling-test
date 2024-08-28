@@ -1,0 +1,162 @@
+#!/usr/bin/env groovy
+package pipeline
+
+pipeline {
+    agent {
+        label "common_agents"
+    }
+    options {
+        timestamps()
+        buildDiscarder(logRotator(numToKeepStr: "20", artifactNumToKeepStr: "20"))
+    }
+    stages {
+        stage("Prepare") {
+            steps {
+                withCredentials([file(credentialsId: env.KUBE_CREDENTIALS, variable: "KUBECONFIG")]) {
+                    sh "chmod +x -R ${env.WORKSPACE}"
+                }
+            }
+        }
+        stage("K6 testing process with resource measurement") {
+            parallel {
+                stage("Start resource measurement") {
+                    steps {
+                        withCredentials([file(credentialsId: env.KUBE_CREDENTIALS, variable: "KUBECONFIG"),
+                                        usernamePassword(credentialsId: "bragi_functional_user", passwordVariable: "FUNCTIONAL_USER_PASSWORD", usernameVariable: "FUNCTIONAL_USER_USERNAME")]) {
+                            // sh "./ci/scripts/collect_resource_usage_data.sh ${env.NAMESPACE} 5 >> resource_usage.log &"
+                            // script {
+                            //    def RESOURCE_USAGE
+                            //    File reslog = new File("resource_usage.log")
+                            //    while (true) {
+                            //        RESOURCE_USAGE = sh(script: "date +%F-%T;echo -e '\n';kubectl top pods --no-headers -n ${env.NAMESPACE};", returnStdout: true)
+                            //        echo "${RESOURCE_USAGE}"
+                            //        reslog.append("\n${RESOURCE_USAGE}\n\n")
+                            //        Thread.sleep(60000)
+                            //    }
+                            // }
+                        }
+                    }
+                }
+                stage("K6 testing process") {
+                    stages {
+                        stage("K6 Testing") {
+                            steps {
+                                withCredentials([file(credentialsId: env.KUBE_CREDENTIALS, variable: "KUBECONFIG"),
+                                                usernamePassword(credentialsId: "bragi_functional_user", passwordVariable: "FUNCTIONAL_USER_PASSWORD", usernameVariable: "FUNCTIONAL_USER_USERNAME")]) {
+                                    echo "Build URL: ${env.BUILD_URL}"
+                                    sh "./ci/scripts/install_testsuite.sh"
+                                }
+                            }
+                        }
+                        stage("Deploy Data Generator") {
+                            steps {
+                                withCredentials([file(credentialsId: env.KUBE_CREDENTIALS, variable: "KUBECONFIG"),
+                                                usernamePassword(credentialsId: "bragi_functional_user", passwordVariable: "FUNCTIONAL_USER_PASSWORD", usernameVariable: "FUNCTIONAL_USER_USERNAME")]) {
+                                    echo "Target kubernetes system: ${env.CLUSTER}"
+                                    echo "Target kubernetes namespace: ${env.NAMESPACE}"
+                                    sh "./ci/scripts/install_data_loader_characteristics.sh"
+                                }
+                            }
+                        }
+                        stage("Copy Report") {
+                            steps {
+                                 script {
+                                    withCredentials([file(credentialsId: env.KUBE_CREDENTIALS, variable: "KUBECONFIG")]) {
+                                        echo "Copy Report"
+                                        sh "./ci/scripts/copy_report.sh . ${env.NAMESPACE}"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    post {
+        always {
+            withCredentials([file(credentialsId: env.KUBE_CREDENTIALS, variable: "KUBECONFIG")]) {
+                script {
+                    env.RPT_API_URL = sh(script: "kubectl get secrets/testware-resources-secret --template={{.data.api_url}} -n ${env.NAMESPACE} | base64 -d", returnStdout: true)
+                    env.RPT_GUI_URL = sh(script: "kubectl get secrets/testware-resources-secret --template={{.data.gui_url}} -n ${env.NAMESPACE} | base64 -d", returnStdout: true)
+                }
+                sh "./ci/scripts/save_logs.sh . ${env.NAMESPACE}"
+                sh "./ci/scripts/generate_status_report.sh"
+                getBuildStatus()
+                addTestsSummary()
+                archiveArtifacts artifacts: "artifact.properties, execution-status.properties", allowEmptyArchive: true
+                archiveArtifacts "eric-oss-pm-stats-calc-handling-test.log"
+                archiveArtifacts "eric-oss-data-loader.log"
+                archiveArtifacts "eric-oss-pm-stats-exporter.log"
+                archiveArtifacts "eric-oss-pm-stats-calculator.log"
+                archiveArtifacts "eric-log-transformer.log"
+                archiveArtifacts "eric-oss-pm-stats-query-service.log"
+                archiveArtifacts "describe-pods.log"
+                archiveArtifacts "containers.log"
+                archiveArtifacts "events.log"
+                archiveArtifacts "summary.json"
+                archiveArtifacts "resource_usage.log"
+                sh "./ci/scripts/clean_up.sh"
+                sh "./ci/scripts/check_database.sh"
+                sh "./ci/scripts/clear_database_characteristics.sh"
+                sh "./ci/scripts/check_database.sh"
+                verifyResult()
+            }
+        }
+    }
+}
+
+def getBuildStatus() {
+    if ( !fileExists("execution-status.properties") ) {
+        echo "execution-status.properties file not found"
+    }
+    def props = readProperties(file: "execution-status.properties")
+    def data = "status=${props["status"]}\ntestwareVersion=${props["testwareVersion"]}\njobDetailsUrl=${props["reportLink"]}"
+    writeFile(file: "artifact.properties", text: data)
+}
+
+def verifyResult() {
+    if ( !fileExists("execution-status.properties") ) {
+        echo "execution-status.properties file not found"
+    }
+    def props = readProperties(file: "execution-status.properties")
+    if (props["status"] == "SUCCESSFUL") {
+        echo "Test Execution is successful: " + props["status"]
+    } else {
+        error "Testware Failed: " + props["status"]
+    }
+}
+
+def getStatusColorSpan(status) {
+    return status.trim().equals('SUCCESSFUL') ? '<span style="color:green">' : '<span style="color:red">'
+}
+
+def addTestsSummary() {
+    def summary = manager.createSummary("warning.gif");
+    summary.appendText("<h2>Tests Status</h2>", false);
+    jsonOutput = readJSON file: 'execution-status.json'
+    echo "Status Response:\n$jsonOutput"
+
+    if (jsonOutput) {
+        summary.appendText("<span style=\"color:blue\"><b>Testware job results:</b></span><br>"
+                + "&emsp;> Status: ${getStatusColorSpan(jsonOutput.status)}$jsonOutput.status</span>"
+                + "&emsp;<a href=\"${jsonOutput.jobDetailsUrl}\">Job Report Link</a><br>")
+        if (jsonOutput.executions.size() > 0) {
+            jsonOutput.executions.each{ e ->
+                summary.appendText("<span style=\"color:blue\"><b>${e.testware.replace('main_', '').replace('_', ' ').toUpperCase()}</b></span><br>"
+                    + "&emsp;> Status: ${getStatusColorSpan(e.status)}$e.status</span>"
+                    + "&emsp;<a href=\"${e.url}\">Execution Report Link</a><br>")
+
+                echo "Execution details link: ${e.url}"
+            }
+        } else {
+            message = 'There are no registered executions with the job'
+            summary.appendText("<h3>$message</h3>")
+            echo message
+        }
+    } else {
+        message = 'Status file not found'
+        summary.appendText("<h3>$message</h3>", false);
+        echo message
+    }
+}

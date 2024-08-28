@@ -1,0 +1,19 @@
+{{- if .Values.networkPolicy.enabled }}
+kind: NetworkPolicy
+apiVersion: networking.k8s.io/v1
+metadata:
+  name: network-policy-data-loader-schema-registry-allow
+spec:
+  podSelector:
+    matchLabels:
+      app.kubernetes.io/name: eric-schema-registry-sr
+  policyTypes:
+    - Ingress
+  ingress:
+    - from:
+      - podSelector:
+          matchLabels:
+            app.kubernetes.io/name: eric-oss-data-loader        
+      ports:
+        - port: 8081
+{{- end }}

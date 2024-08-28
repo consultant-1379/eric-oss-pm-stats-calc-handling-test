@@ -1,0 +1,23 @@
+{
+  "scheduled_simple": {
+    "kpi_output_tables": [
+      {
+        "aggregation_period": 15,
+        "alias": "mo_simple_for_bur",
+        "aggregation_elements": [
+          "ManagedObject1.nodeFDN",
+          "ManagedObject1.moFdn"
+        ],
+        "inp_data_identifier": "dataSpace|dataCategory|ManagedObject1",
+        "kpi_definitions": [
+          {
+            "name": "mo_sum_15_simple_for_bur",
+            "expression": "ManagedObject1.pmCounters.pmCounter1.counterValue",
+            "object_type": "INTEGER",
+            "aggregation_type": "SUM"
+          }
+        ]
+      }
+    ]
+  }
+}

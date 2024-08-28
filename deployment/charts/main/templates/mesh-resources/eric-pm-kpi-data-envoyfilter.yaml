@@ -1,0 +1,71 @@
+{{- $serviceMesh := include "eric-oss-pm-stats-calc-handling-test.service-mesh-enabled" . | trim -}}
+{{- $tls := include "eric-oss-pm-stats-calc-handling-test.global-security-tls-enabled" . | trim -}}
+{{- $namespace := printf "%s" .Release.Namespace -}}
+{{- if and (eq $serviceMesh "true") (eq $tls "true") -}}
+
+apiVersion: networking.istio.io/v1alpha3
+kind: EnvoyFilter
+metadata:
+  name: {{ template "eric-oss-pm-stats-calc-handling-test.name" . }}-eric-pm-kpi-data-envoyfilter
+spec:
+  workloadSelector:
+   labels:
+     app.kubernetes.io/name: {{ template "eric-oss-pm-stats-calc-handling-test.name" . }}
+  configPatches:
+  - applyTo: NETWORK_FILTER
+    match:
+      context: SIDECAR_OUTBOUND # will match outbound listeners in all sidecars
+      listener:
+        portNumber: 5432 #typically postgres port is 5432
+        filterChain:
+          filter:
+            name: "envoy.filters.network.tcp_proxy"
+    patch:
+      operation: INSERT_BEFORE
+      value:
+        name: "envoy.filters.network.postgres_proxy"
+        typed_config:
+          "@type": type.googleapis.com/envoy.extensions.filters.network.postgres_proxy.v3alpha.PostgresProxy
+          stat_prefix: postgres
+          upstream_ssl: REQUIRE
+  - applyTo: CLUSTER
+    match:
+      cluster:
+        portNumber: 5432 #typically postgres port is 5432
+        service: eric-pm-kpi-data.{{ $namespace }}.svc.cluster.local
+      context: SIDECAR_OUTBOUND
+    patch:
+      operation: MERGE
+      value:
+        transport_socket:
+          name: envoy.transport_sockets.starttls
+          typed_config:
+            '@type': type.googleapis.com/envoy.extensions.transport_sockets.starttls.v3.UpstreamStartTlsConfig
+            tls_socket_config:
+              allow_renegotiation: true
+              common_tls_context:
+                tls_certificate_sds_secret_configs:
+                - name: 'file-cert:/etc/istio/tls/eric-pm-kpi-data/cert.pem~/etc/istio/tls/eric-pm-kpi-data/key.pem'
+                  sds_config:
+                    api_config_source:
+                      api_type: GRPC
+                      transport_api_version: V3
+                      grpc_services:
+                      - envoy_grpc:
+                          cluster_name: sds-grpc
+                      set_node_on_first_message_only: true
+                    resource_api_version: V3
+                combined_validation_context:
+                  default_validation_context: {}
+                  validation_context_sds_secret_config:
+                    name: 'file-root:/etc/istio/tls-ca/cacertbundle.pem'
+                    sds_config:
+                      api_config_source:
+                        api_type: GRPC
+                        transport_api_version: V3
+                        grpc_services:
+                        - envoy_grpc:
+                            cluster_name: sds-grpc
+                        set_node_on_first_message_only: true
+                      resource_api_version: V3
+{{- end }}

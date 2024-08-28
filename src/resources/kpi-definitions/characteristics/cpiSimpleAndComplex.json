@@ -1,0 +1,795 @@
+{
+  "scheduled_simple": {
+    "kpi_output_tables": [
+      {
+        "aggregation_period": 60,
+        "alias": "cell",
+        "aggregation_elements": [
+          "EUtranCellFDD_1.nodeFDN",
+          "EUtranCellFDD_1.moFdn"
+        ],
+        "inp_data_identifier": "4G|PM_COUNTERS|EUtranCellFDD_1",
+        "kpi_definitions": [
+          {
+            "name": "pm_radio_thp_vol_dl_hourly_TDD",
+            "inp_data_identifier": "4G|PM_COUNTERS|EUtranCellTDD_1",
+            "aggregation_elements": [
+              "EUtranCellTDD_1.nodeFDN",
+              "EUtranCellTDD_1.moFdn"
+            ],
+            "expression": "SUM(EUtranCellTDD_1.pmCounters.pmRadioThpVolDl.counterValue)",
+            "object_type": "INTEGER",
+            "aggregation_type": "SUM",
+            "exportable": true
+          },
+          {
+            "name": "pm_sched_activity_cell_dl_hourly_TDD",
+            "inp_data_identifier": "4G|PM_COUNTERS|EUtranCellTDD_1",
+            "aggregation_elements": [
+              "EUtranCellTDD_1.nodeFDN",
+              "EUtranCellTDD_1.moFdn"
+            ],
+            "expression": "SUM(EUtranCellTDD_1.pmCounters.pmSchedActivityCellDl.counterValue)",
+            "object_type": "INTEGER",
+            "aggregation_type": "SUM",
+            "exportable": true
+          },
+          {
+            "name": "pm_radio_thp_vol_dl_hourly_FDD",
+            "expression": "SUM(EUtranCellFDD_1.pmCounters.pmRadioThpVolDl.counterValue)",
+            "object_type": "INTEGER",
+            "aggregation_type": "SUM"
+          },
+          {
+            "name": "pm_sched_activity_cell_dl_hourly_FDD",
+            "expression": "SUM(EUtranCellFDD_1.pmCounters.pmSchedActivityCellDl.counterValue)",
+            "object_type": "INTEGER",
+            "aggregation_type": "SUM",
+            "exportable": true
+          },
+          {
+            "name": "pm_radio_thp_vol_ul_hourly_TDD",
+            "inp_data_identifier": "4G|PM_COUNTERS|EUtranCellTDD_1",
+            "aggregation_elements": [
+              "EUtranCellTDD_1.nodeFDN",
+              "EUtranCellTDD_1.moFdn"
+            ],
+            "expression": "SUM(EUtranCellTDD_1.pmCounters.pmRadioThpVolUl.counterValue)",
+            "object_type": "INTEGER",
+            "aggregation_type": "SUM",
+            "exportable": true
+          },
+          {
+            "name": "pm_sched_activity_cell_ul_hourly_TDD",
+            "inp_data_identifier": "4G|PM_COUNTERS|EUtranCellTDD_1",
+            "aggregation_elements": [
+              "EUtranCellTDD_1.nodeFDN",
+              "EUtranCellTDD_1.moFdn"
+            ],
+            "expression": "SUM(EUtranCellTDD_1.pmCounters.pmSchedActivityCellUl.counterValue)",
+            "object_type": "INTEGER",
+            "aggregation_type": "SUM"
+          },
+          {
+            "name": "pm_radio_thp_vol_ul_hourly_FDD",
+            "expression": "SUM(EUtranCellFDD_1.pmCounters.pmRadioThpVolUl.counterValue)",
+            "object_type": "INTEGER",
+            "aggregation_type": "SUM",
+            "exportable": true
+          },
+          {
+            "name": "pm_sched_activity_cell_ul_hourly_FDD",
+            "expression": "SUM(EUtranCellFDD_1.pmCounters.pmSchedActivityCellUl.counterValue)",
+            "object_type": "INTEGER",
+            "aggregation_type": "SUM"
+          },
+          {
+            "name": "pm_cell_downtime_auto_hourly_TDD",
+            "inp_data_identifier": "4G|PM_COUNTERS|EUtranCellTDD_1",
+            "aggregation_elements": [
+              "EUtranCellTDD_1.nodeFDN",
+              "EUtranCellTDD_1.moFdn"
+            ],
+            "expression": "SUM(EUtranCellTDD_1.pmCounters.pmCellDowntimeAuto.counterValue)",
+            "object_type": "INTEGER",
+            "aggregation_type": "SUM",
+            "exportable": true
+          },
+          {
+            "name": "pm_cell_downtime_man_hourly_TDD",
+            "inp_data_identifier": "4G|PM_COUNTERS|EUtranCellTDD_1",
+            "aggregation_elements": [
+              "EUtranCellTDD_1.nodeFDN",
+              "EUtranCellTDD_1.moFdn"
+            ],
+            "expression": "SUM(EUtranCellTDD_1.pmCounters.pmCellDowntimeMan.counterValue)",
+            "object_type": "INTEGER",
+            "aggregation_type": "SUM"
+          },
+          {
+            "name": "pm_cell_downtime_auto_hourly_FDD",
+            "expression": "SUM(EUtranCellFDD_1.pmCounters.pmCellDowntimeAuto.counterValue)",
+            "object_type": "INTEGER",
+            "aggregation_type": "SUM",
+            "exportable": true
+          },
+          {
+            "name": "pm_cell_downtime_man_hourly_FDD",
+            "expression": "SUM(EUtranCellFDD_1.pmCounters.pmCellDowntimeMan.counterValue)",
+            "object_type": "INTEGER",
+            "aggregation_type": "SUM"
+          },
+          {
+            "name": "pm_erab_estab_succ_init_hourly_FDD",
+            "expression": "SUM(EUtranCellFDD_1.pmCounters.pmErabEstabSuccInit.counterValue)",
+            "object_type": "INTEGER",
+            "aggregation_type": "SUM",
+            "exportable": true
+          },
+          {
+            "name": "pm_erab_estab_att_init_hourly_FDD",
+            "expression": "SUM(EUtranCellFDD_1.pmCounters.pmErabEstabAttInit.counterValue)",
+            "object_type": "INTEGER",
+            "aggregation_type": "SUM"
+          },
+          {
+            "name": "pm_erab_estab_succ_init_hourly_TDD",
+            "inp_data_identifier": "4G|PM_COUNTERS|EUtranCellTDD_1",
+            "aggregation_elements": [
+              "EUtranCellTDD_1.nodeFDN",
+              "EUtranCellTDD_1.moFdn"
+            ],
+            "expression": "SUM(EUtranCellTDD_1.pmCounters.pmErabEstabSuccInit.counterValue)",
+            "object_type": "INTEGER",
+            "aggregation_type": "SUM",
+            "exportable": true
+          },
+          {
+            "name": "pm_erab_estab_att_init_hourly_TDD",
+            "inp_data_identifier": "4G|PM_COUNTERS|EUtranCellTDD_1",
+            "aggregation_elements": [
+              "EUtranCellTDD_1.nodeFDN",
+              "EUtranCellTDD_1.moFdn"
+            ],
+            "expression": "SUM(EUtranCellTDD_1.pmCounters.pmErabEstabAttInit.counterValue)",
+            "object_type": "INTEGER",
+            "aggregation_type": "SUM"
+          },
+          {
+            "name": "pm_s1_sig_conn_estab_succ_hourly_FDD",
+            "expression": "SUM(EUtranCellFDD_1.pmCounters.pmS1SigConnEstabSucc.counterValue)",
+            "object_type": "INTEGER",
+            "aggregation_type": "SUM",
+            "exportable": true
+          },
+          {
+            "name": "s1_sig_conn_estab_att_fail_mme_hourly_FDD",
+            "expression": "SUM(EUtranCellFDD_1.pmCounters.pmS1SigConnEstabAtt.counterValue - EUtranCellFDD_1.pmCounters.pmS1SigConnEstabFailMmeOvlMos.counterValue)",
+            "object_type": "INTEGER",
+            "aggregation_type": "SUM"
+          },
+          {
+            "name": "pm_s1_sig_conn_estab_succ_hourly_TDD",
+            "inp_data_identifier": "4G|PM_COUNTERS|EUtranCellTDD_1",
+            "aggregation_elements": [
+              "EUtranCellTDD_1.nodeFDN",
+              "EUtranCellTDD_1.moFdn"
+            ],
+            "expression": "SUM(EUtranCellTDD_1.pmCounters.pmS1SigConnEstabSucc.counterValue)",
+            "object_type": "INTEGER",
+            "aggregation_type": "SUM",
+            "exportable": true
+          },
+          {
+            "name": "s1_sig_conn_estab_att_fail_mme_hourly_TDD",
+            "inp_data_identifier": "4G|PM_COUNTERS|EUtranCellTDD_1",
+            "aggregation_elements": [
+              "EUtranCellTDD_1.nodeFDN",
+              "EUtranCellTDD_1.moFdn"
+            ],
+            "expression": "SUM(EUtranCellTDD_1.pmCounters.pmS1SigConnEstabAtt.counterValue - EUtranCellTDD_1.pmCounters.pmS1SigConnEstabFailMmeOvlMos.counterValue)",
+            "object_type": "INTEGER",
+            "aggregation_type": "SUM",
+            "exportable": true
+          },
+          {
+            "name": "pm_rrc_conn_estab_succ_hourly_FDD",
+            "expression": "SUM(EUtranCellFDD_1.pmCounters.pmRrcConnEstabSucc.counterValue)",
+            "object_type": "INTEGER",
+            "aggregation_type": "SUM",
+            "exportable": true
+          },
+          {
+            "name": "rrc_estab_hourly_FDD",
+            "expression": "SUM(EUtranCellFDD_1.pmCounters.pmRrcConnEstabAtt.counterValue - EUtranCellFDD_1.pmCounters.pmRrcConnEstabAttReatt.counterValue - EUtranCellFDD_1.pmCounters.pmRrcConnEstabFailMmeOvlMos.counterValue - EUtranCellFDD_1.pmCounters.pmRrcConnEstabFailMmeOvlMod.counterValue)",
+            "object_type": "INTEGER",
+            "aggregation_type": "SUM"
+          },
+          {
+            "name": "pm_rrc_conn_estab_succ_hourly_TDD",
+            "inp_data_identifier": "4G|PM_COUNTERS|EUtranCellTDD_1",
+            "aggregation_elements": [
+              "EUtranCellTDD_1.nodeFDN",
+              "EUtranCellTDD_1.moFdn"
+            ],
+            "expression": "SUM(EUtranCellTDD_1.pmCounters.pmRrcConnEstabSucc.counterValue)",
+            "object_type": "INTEGER",
+            "aggregation_type": "SUM"
+          },
+          {
+            "name": "rrc_estab_hourly_TDD",
+            "inp_data_identifier": "4G|PM_COUNTERS|EUtranCellTDD_1",
+            "aggregation_elements": [
+              "EUtranCellTDD_1.nodeFDN",
+              "EUtranCellTDD_1.moFdn"
+            ],
+            "expression": "SUM(EUtranCellTDD_1.pmCounters.pmRrcConnEstabAtt.counterValue - EUtranCellTDD_1.pmCounters.pmRrcConnEstabAttReatt.counterValue - EUtranCellTDD_1.pmCounters.pmRrcConnEstabFailMmeOvlMos.counterValue - EUtranCellTDD_1.pmCounters.pmRrcConnEstabFailMmeOvlMod.counterValue)",
+            "object_type": "INTEGER",
+            "aggregation_type": "SUM",
+            "exportable": true
+          },
+          {
+            "name": "e_rab_rel_abnormal_hourly_FDD",
+            "expression": "SUM(EUtranCellFDD_1.pmCounters.pmErabRelAbnormalEnbAct.counterValue) + SUM(EUtranCellFDD_1.pmCounters.pmErabRelAbnormalMmeAct.counterValue)",
+            "object_type": "INTEGER",
+            "aggregation_type": "SUM"
+          },
+          {
+            "name": "e_rab_rel_abnormal_hourly_TDD",
+            "inp_data_identifier": "4G|PM_COUNTERS|EUtranCellTDD_1",
+            "aggregation_elements": [
+              "EUtranCellTDD_1.nodeFDN",
+              "EUtranCellTDD_1.moFdn"
+            ],
+            "expression": "SUM(EUtranCellTDD_1.pmCounters.pmErabRelAbnormalEnbAct.counterValue) + SUM(EUtranCellTDD_1.pmCounters.pmErabRelAbnormalMmeAct.counterValue)",
+            "object_type": "INTEGER",
+            "aggregation_type": "SUM",
+            "exportable": true
+          },
+          {
+            "name": "e_rab_rel_abnormal_normal_hourly_FDD",
+            "expression": "SUM(EUtranCellFDD_1.pmCounters.pmErabRelAbnormalEnb.counterValue) + SUM(EUtranCellFDD_1.pmCounters.pmErabRelNormalEnb.counterValue) + SUM(EUtranCellFDD_1.pmCounters.pmErabRelMme.counterValue)",
+            "object_type": "INTEGER",
+            "aggregation_type": "SUM"
+          },
+          {
+            "name": "e_rab_rel_abnormal_normal_hourly_TDD",
+            "inp_data_identifier": "4G|PM_COUNTERS|EUtranCellTDD_1",
+            "aggregation_elements": [
+              "EUtranCellTDD_1.nodeFDN",
+              "EUtranCellTDD_1.moFdn"
+            ],
+            "expression": "SUM(EUtranCellTDD_1.pmCounters.pmErabRelAbnormalEnb.counterValue) + SUM(EUtranCellTDD_1.pmCounters.pmErabRelNormalEnb.counterValue) + SUM(EUtranCellTDD_1.pmCounters.pmErabRelMme.counterValue)",
+            "object_type": "INTEGER",
+            "aggregation_type": "SUM",
+            "exportable": true
+          }
+        ]
+      },
+      {
+        "aggregation_period": 15,
+        "alias": "cell",
+        "aggregation_elements": [
+          "EUtranCellFDD_1.nodeFDN",
+          "EUtranCellFDD_1.moFdn"
+        ],
+        "inp_data_identifier": "4G|PM_COUNTERS|EUtranCellFDD_1",
+        "kpi_definitions": [
+          {
+            "name": "pm_erab_estab_succ_added_FDD",
+            "expression": "SUM(EUtranCellFDD_1.pmCounters.pmErabEstabSuccAdded.counterValue)",
+            "object_type": "INTEGER",
+            "aggregation_type": "SUM",
+            "exportable": true
+          },
+          {
+            "name": "pm_erab_estab_succ_added_TDD",
+            "inp_data_identifier": "4G|PM_COUNTERS|EUtranCellTDD_1",
+            "aggregation_elements": [
+              "EUtranCellTDD_1.nodeFDN",
+              "EUtranCellTDD_1.moFdn"
+            ],
+            "expression": "SUM(EUtranCellTDD_1.pmCounters.pmErabEstabSuccAdded.counterValue)",
+            "object_type": "INTEGER",
+            "aggregation_type": "SUM",
+            "exportable": true
+          },
+          {
+            "name": "pm_erab_estab_FDD",
+            "expression": "SUM(EUtranCellFDD_1.pmCounters.pmErabEstabAttAdded.counterValue) - SUM(EUtranCellFDD_1.pmCounters.pmErabEstabFailAddedOngoingProc.counterValue) - SUM(EUtranCellFDD_1.pmCounters.pmErabEstabAttAddedCsfb.counterValue) - SUM(EUtranCellFDD_1.pmCounters.pmErabEstabFailAddedErabIdInUse.counterValue)",
+            "object_type": "INTEGER",
+            "aggregation_type": "SUM",
+            "exportable": true
+          },
+          {
+            "name": "pm_erab_estab_TDD",
+            "inp_data_identifier": "4G|PM_COUNTERS|EUtranCellTDD_1",
+            "aggregation_elements": [
+              "EUtranCellTDD_1.nodeFDN",
+              "EUtranCellTDD_1.moFdn"
+            ],
+            "expression": "SUM(EUtranCellTDD_1.pmCounters.pmErabEstabAttAdded.counterValue) - SUM(EUtranCellTDD_1.pmCounters.pmErabEstabFailAddedOngoingProc.counterValue) - SUM(EUtranCellTDD_1.pmCounters.pmErabEstabAttAddedCsfb.counterValue) - SUM(EUtranCellTDD_1.pmCounters.pmErabEstabFailAddedErabIdInUse.counterValue)",
+            "object_type": "INTEGER",
+            "aggregation_type": "SUM",
+            "exportable": true
+          },
+          {
+            "name": "pm_ra_succ_cbra_FDD",
+            "expression": "SUM(EUtranCellFDD_1.pmCounters.pmRaSuccCbra.counterValue)",
+            "object_type": "INTEGER",
+            "aggregation_type": "SUM",
+            "exportable": true
+          },
+          {
+            "name": "pm_ra_succ_cbra_TDD",
+            "inp_data_identifier": "4G|PM_COUNTERS|EUtranCellTDD_1",
+            "aggregation_elements": [
+              "EUtranCellTDD_1.nodeFDN",
+              "EUtranCellTDD_1.moFdn"
+            ],
+            "expression": "SUM(EUtranCellTDD_1.pmCounters.pmRaSuccCbra.counterValue)",
+            "object_type": "INTEGER",
+            "aggregation_type": "SUM",
+            "exportable": true
+          },
+          {
+            "name": "pm_ra_msg_2_att_cbra_FDD",
+            "expression": "SUM(EUtranCellFDD_1.pmCounters.pmRaMsg2AttCbra.counterValue)",
+            "object_type": "INTEGER",
+            "aggregation_type": "SUM",
+            "exportable": true
+          },
+          {
+            "name": "pm_ra_msg_2_att_cbra_TDD",
+            "inp_data_identifier": "4G|PM_COUNTERS|EUtranCellTDD_1",
+            "aggregation_elements": [
+              "EUtranCellTDD_1.nodeFDN",
+              "EUtranCellTDD_1.moFdn"
+            ],
+            "expression": "SUM(EUtranCellTDD_1.pmCounters.pmRaMsg2AttCbra.counterValue)",
+            "object_type": "INTEGER",
+            "aggregation_type": "SUM",
+            "exportable": true
+          },
+          {
+            "name": "pm_pdcp_vol_dl_drb_FDD",
+            "expression": "SUM(EUtranCellFDD_1.pmCounters.pmPdcpVolDlDrb.counterValue) - SUM(EUtranCellFDD_1.pmCounters.pmPdcpVolDlDrbLastTTI.counterValue)",
+            "object_type": "INTEGER",
+            "aggregation_type": "SUM",
+            "exportable": true
+          },
+          {
+            "name": "pm_pdcp_vol_dl_drb_TDD",
+            "inp_data_identifier": "4G|PM_COUNTERS|EUtranCellTDD_1",
+            "aggregation_elements": [
+              "EUtranCellTDD_1.nodeFDN",
+              "EUtranCellTDD_1.moFdn"
+            ],
+            "expression": "SUM(EUtranCellTDD_1.pmCounters.pmPdcpVolDlDrb.counterValue) - SUM(EUtranCellTDD_1.pmCounters.pmPdcpVolDlDrbLastTTI.counterValue)",
+            "object_type": "INTEGER",
+            "aggregation_type": "SUM",
+            "exportable": true
+          },
+          {
+            "name": "pm_ue_thp_time_dl_FDD",
+            "expression": "SUM(EUtranCellFDD_1.pmCounters.pmUeThpTimeDl.counterValue)",
+            "object_type": "INTEGER",
+            "aggregation_type": "SUM",
+            "exportable": true
+          },
+          {
+            "name": "pm_ue_thp_time_dl_TDD",
+            "inp_data_identifier": "4G|PM_COUNTERS|EUtranCellTDD_1",
+            "aggregation_elements": [
+              "EUtranCellTDD_1.nodeFDN",
+              "EUtranCellTDD_1.moFdn"
+            ],
+            "expression": "SUM(EUtranCellTDD_1.pmCounters.pmUeThpTimeDl.counterValue)",
+            "object_type": "INTEGER",
+            "aggregation_type": "SUM",
+            "exportable": true
+          },
+          {
+            "name": "pm_ue_thp_vol_ul_FDD",
+            "expression": "SUM(EUtranCellFDD_1.pmCounters.pmUeThpVolUl.counterValue)",
+            "object_type": "INTEGER",
+            "aggregation_type": "SUM",
+            "exportable": true
+          },
+          {
+            "name": "pm_ue_thp_vol_ul_TDD",
+            "inp_data_identifier": "4G|PM_COUNTERS|EUtranCellTDD_1",
+            "aggregation_elements": [
+              "EUtranCellTDD_1.nodeFDN",
+              "EUtranCellTDD_1.moFdn"
+            ],
+            "expression": "SUM(EUtranCellTDD_1.pmCounters.pmUeThpVolUl.counterValue)",
+            "object_type": "INTEGER",
+            "aggregation_type": "SUM",
+            "exportable": true
+          },
+          {
+            "name": "pm_ue_thp_time_ul_FDD",
+            "expression": "SUM(EUtranCellFDD_1.pmCounters.pmUeThpTimeUl.counterValue)",
+            "object_type": "INTEGER",
+            "aggregation_type": "SUM",
+            "exportable": true
+          },
+          {
+            "name": "pm_ue_thp_time_ul_TDD",
+            "inp_data_identifier": "4G|PM_COUNTERS|EUtranCellTDD_1",
+            "aggregation_elements": [
+              "EUtranCellTDD_1.nodeFDN",
+              "EUtranCellTDD_1.moFdn"
+            ],
+            "expression": "SUM(EUtranCellTDD_1.pmCounters.pmUeThpTimeUl.counterValue)",
+            "object_type": "INTEGER",
+            "aggregation_type": "SUM",
+            "exportable": true
+          },
+          {
+            "name": "pm_cell_ho_prep_FDD",
+            "expression": "SUM(EUtranCellFDD_1.pmCounters.pmCellHoPrepSuccLteIntraF.counterValue) / SUM(EUtranCellFDD_1.pmCounters.pmCellHoPrepAttLteIntraF.counterValue)",
+            "object_type": "FLOAT",
+            "aggregation_type": "SUM",
+            "exportable": true
+          },
+          {
+            "name": "pm_cell_ho_prep_TDD",
+            "inp_data_identifier": "4G|PM_COUNTERS|EUtranCellTDD_1",
+            "aggregation_elements": [
+              "EUtranCellTDD_1.nodeFDN",
+              "EUtranCellTDD_1.moFdn"
+            ],
+            "expression": "SUM(EUtranCellTDD_1.pmCounters.pmCellHoPrepSuccLteIntraF.counterValue) / SUM(EUtranCellTDD_1.pmCounters.pmCellHoPrepAttLteIntraF.counterValue)",
+            "object_type": "FLOAT",
+            "aggregation_type": "SUM",
+            "exportable": true
+          },
+          {
+            "name": "pm_cell_ho_exe_FDD",
+            "expression": "SUM(EUtranCellFDD_1.pmCounters.pmCellHoExeSuccLteIntraF.counterValue) / SUM(EUtranCellFDD_1.pmCounters.pmCellHoExeAttLteIntraF.counterValue)",
+            "object_type": "FLOAT",
+            "aggregation_type": "SUM",
+            "exportable": true
+          },
+          {
+            "name": "pm_cell_ho_exe_TDD",
+            "inp_data_identifier": "4G|PM_COUNTERS|EUtranCellTDD_1",
+            "aggregation_elements": [
+              "EUtranCellTDD_1.nodeFDN",
+              "EUtranCellTDD_1.moFdn"
+            ],
+            "expression": "SUM(EUtranCellTDD_1.pmCounters.pmCellHoExeSuccLteIntraF.counterValue) / SUM(EUtranCellTDD_1.pmCounters.pmCellHoExeAttLteIntraF.counterValue)",
+            "object_type": "FLOAT",
+            "aggregation_type": "SUM",
+            "exportable": true
+          }
+        ]
+      }
+    ]
+  },
+  "scheduled_complex": {
+    "kpi_output_tables": [
+      {
+        "alias": "cell_complex",
+        "aggregation_period": 60,
+        "data_reliability_offset": -15,
+        "aggregation_elements": [
+          "kpi_cell_60.nodeFDN",
+          "kpi_cell_60.moFdn"
+        ],
+        "kpi_definitions": [
+          {
+            "name": "avg_dl_mac_cell_throughtput_hourly_TDD",
+            "expression": "FIRST(kpi_cell_60.pm_radio_thp_vol_dl_hourly_TDD, true) / (FIRST(kpi_cell_60.pm_sched_activity_cell_dl_hourly_TDD, true) / 1000) FROM kpi_db://kpi_cell_60",
+            "object_type": "FLOAT",
+            "aggregation_type": "FIRST",
+            "execution_group": "group1"
+          },
+          {
+            "name": "avg_dl_mac_cell_throughtput_hourly_FDD",
+            "expression": "FIRST(kpi_cell_60.pm_radio_thp_vol_dl_hourly_FDD, true) / (FIRST(kpi_cell_60.pm_sched_activity_cell_dl_hourly_FDD, true) / 1000) FROM kpi_db://kpi_cell_60",
+            "object_type": "FLOAT",
+            "aggregation_type": "FIRST",
+            "execution_group": "group1"
+          },
+          {
+            "name": "final_avg_dl_mac_cell_throughtput_hourly",
+            "aggregation_elements": [
+              "cell_complex.nodeFDN",
+              "cell_complex.moFdn"
+            ],
+            "expression": "FIRST(CASE WHEN cell_complex.avg_dl_mac_cell_throughtput_hourly_TDD IS NULL THEN cell_complex.avg_dl_mac_cell_throughtput_hourly_FDD ELSE cell_complex.avg_dl_mac_cell_throughtput_hourly_TDD END) FROM kpi_inmemory://cell_complex",
+            "object_type": "FLOAT",
+            "aggregation_type": "FIRST",
+            "execution_group": "group1",
+            "exportable": true
+          },
+          {
+            "name": "avg_ul_mac_cell_throughtput_hourly_TDD",
+            "expression": "FIRST(kpi_cell_60.pm_radio_thp_vol_ul_hourly_TDD, true) / (FIRST(kpi_cell_60.pm_sched_activity_cell_ul_hourly_TDD, true) / 1000) FROM kpi_db://kpi_cell_60",
+            "object_type": "FLOAT",
+            "aggregation_type": "FIRST",
+            "execution_group": "group1"
+          },
+          {
+            "name": "avg_ul_mac_cell_throughtput_hourly_FDD",
+            "expression": "FIRST(kpi_cell_60.pm_radio_thp_vol_ul_hourly_FDD, true) / (FIRST(kpi_cell_60.pm_sched_activity_cell_ul_hourly_FDD, true) / 1000) FROM kpi_db://kpi_cell_60",
+            "object_type": "FLOAT",
+            "aggregation_type": "FIRST",
+            "execution_group": "group1"
+          },
+          {
+            "name": "final_avg_ul_mac_cell_throughtput_hourly",
+            "aggregation_elements": [
+              "cell_complex.nodeFDN",
+              "cell_complex.moFdn"
+            ],
+            "expression": "FIRST(CASE WHEN cell_complex.avg_ul_mac_cell_throughtput_hourly_TDD IS NULL THEN cell_complex.avg_ul_mac_cell_throughtput_hourly_FDD ELSE cell_complex.avg_ul_mac_cell_throughtput_hourly_TDD END) FROM kpi_inmemory://cell_complex",
+            "object_type": "FLOAT",
+            "aggregation_type": "FIRST",
+            "execution_group": "group1",
+            "exportable": true
+          },
+          {
+            "name": "cell_availability_hourly_FDD",
+            "expression": "100 * (4 * 1 * 900 - FIRST( kpi_cell_60.pm_cell_downtime_auto_hourly_FDD, true ) - FIRST( kpi_cell_60.pm_cell_downtime_man_hourly_FDD, true )) / (4 * 1 * 900) FROM kpi_db://kpi_cell_60",
+            "object_type": "FLOAT",
+            "aggregation_type": "FIRST",
+            "execution_group": "group1"
+          },
+          {
+            "name": "cell_availability_hourly_TDD",
+            "expression": "100 * (4 * 1 * 900 - FIRST( kpi_cell_60.pm_cell_downtime_auto_hourly_TDD, true ) - FIRST( kpi_cell_60.pm_cell_downtime_man_hourly_TDD, true )) / (4 * 1 * 900) FROM kpi_db://kpi_cell_60",
+            "object_type": "FLOAT",
+            "aggregation_type": "FIRST",
+            "execution_group": "group1"
+          },
+          {
+            "name": "final_cell_availability_hourly",
+            "aggregation_elements": [
+              "cell_complex.nodeFDN",
+              "cell_complex.moFdn"
+            ],
+            "expression": "FIRST(CASE WHEN cell_complex.cell_availability_hourly_FDD IS NULL THEN cell_complex.cell_availability_hourly_TDD ELSE cell_complex.cell_availability_hourly_FDD END) FROM kpi_inmemory://cell_complex",
+            "object_type": "FLOAT",
+            "aggregation_type": "FIRST",
+            "execution_group": "group1",
+            "exportable": true
+          },
+          {
+            "name": "init_erab_estab_succ_rate_hourly_FDD",
+            "expression": "100 * FIRST(kpi_cell_60.pm_erab_estab_succ_init_hourly_FDD) / FIRST(kpi_cell_60.pm_erab_estab_att_init_hourly_FDD) * FIRST(kpi_cell_60.pm_s1_sig_conn_estab_succ_hourly_FDD) / FIRST(kpi_cell_60.s1_sig_conn_estab_att_fail_mme_hourly_FDD) * FIRST(kpi_cell_60.pm_rrc_conn_estab_succ_hourly_FDD) / FIRST(kpi_cell_60.rrc_estab_hourly_FDD) FROM kpi_db://kpi_cell_60",
+            "object_type": "FLOAT",
+            "aggregation_type": "FIRST",
+            "execution_group": "group1"
+          },
+          {
+            "name": "init_erab_estab_succ_rate_hourly_TDD",
+            "expression": "100 * FIRST(kpi_cell_60.pm_erab_estab_succ_init_hourly_TDD) / FIRST(kpi_cell_60.pm_erab_estab_att_init_hourly_TDD) * FIRST(kpi_cell_60.pm_s1_sig_conn_estab_succ_hourly_TDD) / FIRST(kpi_cell_60.s1_sig_conn_estab_att_fail_mme_hourly_TDD) * FIRST(kpi_cell_60.pm_rrc_conn_estab_succ_hourly_TDD) / FIRST(kpi_cell_60.rrc_estab_hourly_TDD) FROM kpi_db://kpi_cell_60",
+            "object_type": "FLOAT",
+            "aggregation_type": "FIRST",
+            "execution_group": "group1"
+          },
+          {
+            "name": "final_init_erab_estab_succ_rate_hourly",
+            "aggregation_elements": [
+              "cell_complex.nodeFDN",
+              "cell_complex.moFdn"
+            ],
+            "expression": "FIRST(CASE WHEN cell_complex.init_erab_estab_succ_rate_hourly_FDD IS NULL THEN cell_complex.init_erab_estab_succ_rate_hourly_TDD ELSE cell_complex.init_erab_estab_succ_rate_hourly_FDD END) FROM kpi_inmemory://cell_complex",
+            "object_type": "FLOAT",
+            "aggregation_type": "FIRST",
+            "execution_group": "group1",
+            "exportable": true
+          },
+          {
+            "name": "e_rab_retainability_percentage_lost_hourly_FDD",
+            "expression": "100 * FIRST(kpi_cell_60.e_rab_rel_abnormal_hourly_FDD) / FIRST(kpi_cell_60.e_rab_rel_abnormal_normal_hourly_FDD) FROM kpi_db://kpi_cell_60",
+            "object_type": "FLOAT",
+            "aggregation_type": "FIRST",
+            "execution_group": "group1"
+          },
+          {
+            "name": "e_rab_retainability_percentage_lost_hourly_TDD",
+            "expression": "100 * FIRST(kpi_cell_60.e_rab_rel_abnormal_hourly_TDD) / FIRST(kpi_cell_60.e_rab_rel_abnormal_normal_hourly_TDD) FROM kpi_db://kpi_cell_60",
+            "object_type": "FLOAT",
+            "aggregation_type": "FIRST",
+            "execution_group": "group1"
+          },
+          {
+            "name": "final_e_rab_retainability_percentage_lost_hourly",
+            "aggregation_elements": [
+              "cell_complex.nodeFDN",
+              "cell_complex.moFdn"
+            ],
+            "expression": "FIRST(CASE WHEN cell_complex.e_rab_retainability_percentage_lost_hourly_FDD IS NULL THEN cell_complex.e_rab_retainability_percentage_lost_hourly_TDD ELSE cell_complex.e_rab_retainability_percentage_lost_hourly_FDD END) FROM kpi_inmemory://cell_complex",
+            "object_type": "FLOAT",
+            "aggregation_type": "FIRST",
+            "execution_group": "group1",
+            "exportable": true
+          }
+        ]
+      },
+      {
+        "alias": "cell_complex",
+        "aggregation_period": 1440,
+        "data_reliability_offset": -15,
+        "aggregation_elements": [
+          "kpi_cell_60.nodeFDN",
+          "kpi_cell_60.moFdn"
+        ],
+        "kpi_definitions": [
+          {
+            "name": "avg_dl_mac_cell_throughtput_daily_TDD",
+            "expression": "SUM(kpi_cell_60.pm_radio_thp_vol_dl_hourly_TDD) / (SUM(kpi_cell_60.pm_sched_activity_cell_dl_hourly_TDD) / 1000) FROM kpi_db://kpi_cell_60",
+            "object_type": "FLOAT",
+            "aggregation_type": "FIRST",
+            "execution_group": "group2"
+          },
+          {
+            "name": "avg_dl_mac_cell_throughtput_daily_FDD",
+            "expression": "SUM(kpi_cell_60.pm_radio_thp_vol_dl_hourly_FDD) / (SUM(kpi_cell_60.pm_sched_activity_cell_dl_hourly_FDD) / 1000) FROM kpi_db://kpi_cell_60",
+            "object_type": "FLOAT",
+            "aggregation_type": "FIRST",
+            "execution_group": "group2"
+          },
+          {
+            "name": "final_avg_dl_mac_cell_throughtput_daily",
+            "aggregation_elements": [
+              "cell_complex.nodeFDN",
+              "cell_complex.moFdn"
+            ],
+            "expression": "FIRST(CASE WHEN cell_complex.avg_dl_mac_cell_throughtput_daily_TDD IS NULL THEN cell_complex.avg_dl_mac_cell_throughtput_daily_FDD ELSE cell_complex.avg_dl_mac_cell_throughtput_daily_TDD END) FROM kpi_inmemory://cell_complex",
+            "object_type": "FLOAT",
+            "aggregation_type": "FIRST",
+            "execution_group": "group2",
+            "exportable": true
+          }
+        ]
+      },
+      {
+        "alias": "cell_complex",
+        "aggregation_period": 15,
+        "data_reliability_offset": -15,
+        "aggregation_elements": [
+          "kpi_cell_15.nodeFDN",
+          "kpi_cell_15.moFdn"
+        ],
+        "kpi_definitions": [
+          {
+            "name": "added_erab_estab_succ_rate_FDD",
+            "expression": "100 * FIRST(kpi_cell_15.pm_erab_estab_succ_added_FDD) / FIRST(kpi_cell_15.pm_erab_estab_FDD) FROM kpi_db://kpi_cell_15",
+            "object_type": "FLOAT",
+            "aggregation_type": "FIRST",
+            "execution_group": "group3"
+          },
+          {
+            "name": "added_erab_estab_succ_rate_TDD",
+            "expression": "100 * FIRST(kpi_cell_15.pm_erab_estab_succ_added_TDD) / FIRST(kpi_cell_15.pm_erab_estab_TDD) FROM kpi_db://kpi_cell_15",
+            "object_type": "FLOAT",
+            "aggregation_type": "FIRST",
+            "execution_group": "group3"
+          },
+          {
+            "name": "final_added_erab_estab_succ_rate",
+            "aggregation_elements": [
+              "cell_complex.nodeFDN",
+              "cell_complex.moFdn"
+            ],
+            "expression": "FIRST(CASE WHEN cell_complex.added_erab_estab_succ_rate_FDD IS NULL THEN cell_complex.added_erab_estab_succ_rate_TDD ELSE cell_complex.added_erab_estab_succ_rate_FDD END) FROM kpi_inmemory://cell_complex",
+            "object_type": "FLOAT",
+            "aggregation_type": "FIRST",
+            "execution_group": "group3",
+            "exportable": true
+          },
+          {
+            "name": "rob_rand_acc_succ_rate_FDD",
+            "expression": "FIRST(kpi_cell_15.pm_ra_succ_cbra_FDD) / FIRST(kpi_cell_15.pm_ra_msg_2_att_cbra_FDD) FROM kpi_db://kpi_cell_15",
+            "object_type": "FLOAT",
+            "aggregation_type": "FIRST",
+            "execution_group": "group3"
+          },
+          {
+            "name": "rob_rand_acc_succ_rate_TDD",
+            "expression": "FIRST(kpi_cell_15.pm_ra_succ_cbra_TDD) / FIRST(kpi_cell_15.pm_ra_msg_2_att_cbra_TDD) FROM kpi_db://kpi_cell_15",
+            "object_type": "FLOAT",
+            "aggregation_type": "FIRST",
+            "execution_group": "group3"
+          },
+          {
+            "name": "final_rob_rand_acc_succ_rate",
+            "aggregation_elements": [
+              "cell_complex.nodeFDN",
+              "cell_complex.moFdn"
+            ],
+            "expression": "FIRST(CASE WHEN cell_complex.rob_rand_acc_succ_rate_FDD IS NULL THEN cell_complex.rob_rand_acc_succ_rate_TDD ELSE cell_complex.rob_rand_acc_succ_rate_FDD END) FROM kpi_inmemory://cell_complex",
+            "object_type": "FLOAT",
+            "aggregation_type": "FIRST",
+            "execution_group": "group3",
+            "exportable": true
+          },
+          {
+            "name": "average_dl_pdcp_ue_throughput_FDD",
+            "expression": "FIRST(kpi_cell_15.pm_pdcp_vol_dl_drb_FDD) / (FIRST(kpi_cell_15.pm_ue_thp_time_dl_FDD) / 1000) FROM kpi_db://kpi_cell_15",
+            "object_type": "FLOAT",
+            "aggregation_type": "FIRST",
+            "execution_group": "group3"
+          },
+          {
+            "name": "average_dl_pdcp_ue_throughput_TDD",
+            "expression": "FIRST(kpi_cell_15.pm_pdcp_vol_dl_drb_TDD) / (FIRST(kpi_cell_15.pm_ue_thp_time_dl_TDD) / 1000) FROM kpi_db://kpi_cell_15",
+            "object_type": "FLOAT",
+            "aggregation_type": "FIRST",
+            "execution_group": "group3"
+          },
+          {
+            "name": "final_average_dl_pdcp_ue_throughput",
+            "aggregation_elements": [
+              "cell_complex.nodeFDN",
+              "cell_complex.moFdn"
+            ],
+            "expression": "FIRST(CASE WHEN cell_complex.average_dl_pdcp_ue_throughput_FDD IS NULL THEN cell_complex.average_dl_pdcp_ue_throughput_TDD ELSE cell_complex.average_dl_pdcp_ue_throughput_FDD END) FROM kpi_inmemory://cell_complex",
+            "object_type": "FLOAT",
+            "aggregation_type": "FIRST",
+            "execution_group": "group3",
+            "exportable": true
+          },
+          {
+            "name": "average_ul_pdcp_ue_throughput_FDD",
+            "expression": "FIRST(kpi_cell_15.pm_ue_thp_vol_ul_FDD) / (FIRST(kpi_cell_15.pm_ue_thp_time_ul_FDD) / 1000) FROM kpi_db://kpi_cell_15",
+            "object_type": "FLOAT",
+            "aggregation_type": "FIRST",
+            "execution_group": "group3"
+          },
+          {
+            "name": "average_ul_pdcp_ue_throughput_TDD",
+            "expression": "FIRST(kpi_cell_15.pm_ue_thp_vol_ul_TDD) / (FIRST(kpi_cell_15.pm_ue_thp_time_ul_TDD) / 1000) FROM kpi_db://kpi_cell_15",
+            "object_type": "FLOAT",
+            "aggregation_type": "FIRST",
+            "execution_group": "group3"
+          },
+          {
+            "name": "final_average_ul_pdcp_ue_throughput",
+            "aggregation_elements": [
+              "cell_complex.nodeFDN",
+              "cell_complex.moFdn"
+            ],
+            "expression": "FIRST(CASE WHEN cell_complex.average_ul_pdcp_ue_throughput_FDD IS NULL THEN cell_complex.average_ul_pdcp_ue_throughput_TDD ELSE cell_complex.average_ul_pdcp_ue_throughput_FDD END) FROM kpi_inmemory://cell_complex",
+            "object_type": "FLOAT",
+            "aggregation_type": "FIRST",
+            "execution_group": "group3",
+            "exportable": true
+          },
+          {
+            "name": "intra_frequency_cell_mobility_succ_rate_FDD",
+            "expression": "100 * FIRST(kpi_cell_15.pm_cell_ho_prep_FDD) * FIRST(kpi_cell_15.pm_cell_ho_exe_FDD) FROM kpi_db://kpi_cell_15",
+            "object_type": "FLOAT",
+            "aggregation_type": "FIRST",
+            "execution_group": "group3"
+          },
+          {
+            "name": "intra_frequency_cell_mobility_succ_rate_TDD",
+            "expression": "100 * FIRST(kpi_cell_15.pm_cell_ho_prep_TDD) * FIRST(kpi_cell_15.pm_cell_ho_exe_TDD) FROM kpi_db://kpi_cell_15",
+            "object_type": "FLOAT",
+            "aggregation_type": "FIRST",
+            "execution_group": "group3"
+          },
+          {
+            "name": "final_intra_frequency_cell_mobility_succ_rate",
+            "aggregation_elements": [
+              "cell_complex.nodeFDN",
+              "cell_complex.moFdn"
+            ],
+            "expression": "FIRST(CASE WHEN cell_complex.intra_frequency_cell_mobility_succ_rate_FDD IS NULL THEN cell_complex.intra_frequency_cell_mobility_succ_rate_TDD ELSE cell_complex.intra_frequency_cell_mobility_succ_rate_FDD END) FROM kpi_inmemory://cell_complex",
+            "object_type": "FLOAT",
+            "aggregation_type": "FIRST",
+            "execution_group": "group3",
+            "exportable": true
+          }
+        ]
+      }
+    ]
+  }
+}

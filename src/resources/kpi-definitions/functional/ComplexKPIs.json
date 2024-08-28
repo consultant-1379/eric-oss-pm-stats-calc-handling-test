@@ -1,0 +1,177 @@
+{
+  "scheduled_complex": {
+    "kpi_output_tables": [
+      {
+        "alias": "mo_complex",
+        "data_reliability_offset": -15,
+        "aggregation_elements": [
+          "kpi_mo_simple_array_60.nodeFDN",
+          "kpi_mo_simple_array_60.moFdn"
+        ],
+        "kpi_definitions": [
+          {
+            "name": "sum_complex",
+            "expression": "kpi_mo_simple_array_60.simple_first_element FROM kpi_db://kpi_mo_simple_array_60",
+            "object_type": "INTEGER",
+            "aggregation_type": "SUM",
+            "execution_group": "group2"
+          }
+        ]
+      },
+      {
+        "aggregation_period": 15,
+        "alias": "mo_complex_1",
+        "aggregation_elements": [
+          "kpi_mo_simple_1_15.nodeFDN",
+          "kpi_mo_simple_1_15.moFdn"
+        ],
+        "data_reliability_offset": -15,
+        "exportable": true,
+        "reexport_late_data": true,
+        "kpi_definitions": [
+          {
+            "name": "max_15_complex",
+            "expression": "kpi_mo_simple_1_15.mo_sum_15_simple FROM kpi_db://kpi_mo_simple_1_15",
+            "object_type": "INTEGER",
+            "aggregation_type": "MAX",
+            "execution_group": "group2"
+          },
+          {
+            "name": "sum_15_complex",
+            "expression": "kpi_mo_simple_1_15.pm_counters_sum_15_simple FROM kpi_db://kpi_mo_simple_1_15",
+            "object_type": "INTEGER",
+            "aggregation_type": "SUM",
+            "execution_group": "group2"
+          },
+          {
+            "name": "float_post_aggregation_1",
+            "aggregation_elements": [
+              "mo_complex_1.nodeFDN",
+              "mo_complex_1.moFdn"
+            ],
+            "expression": "mo_complex_1.sum_15_complex * mo_complex_1.max_15_complex FROM kpi_post_agg://mo_complex_1",
+            "object_type": "FLOAT",
+            "aggregation_type": "SUM",
+            "execution_group": "group2"
+          }
+        ]
+      },
+      {
+        "aggregation_period": 60,
+        "alias": "mo_complex_4",
+        "aggregation_elements": [
+          "kpi_mo_simple_array_60.nodeFDN",
+          "kpi_mo_simple_array_60.moFdn"
+        ],
+        "data_reliability_offset": -15,
+        "exportable": true,
+        "reexport_late_data": true,
+        "kpi_definitions": [
+          {
+            "name": "complex_array",
+            "expression": "ADD_INTEGER_TO_ARRAY_WITH_LIMIT(kpi_mo_simple_array_60.simple_array_sum, 1700, 4) FROM kpi_db://kpi_mo_simple_array_60",
+            "object_type": "INTEGER[]",
+            "aggregation_type": "FIRST",
+            "exportable": false,
+            "execution_group": "group2"
+          },
+          {
+            "name": "complex_divider",
+            "expression": "kpi_mo_simple_array_60.simple_array_sum[0] + kpi_mo_simple_array_60.simple_first_element FROM kpi_db://kpi_mo_simple_array_60",
+            "object_type": "INTEGER",
+            "aggregation_type": "SUM",
+            "exportable": false,
+            "execution_group": "group2"
+          },
+          {
+            "name": "float_inmemory",
+            "aggregation_elements": [
+              "mo_complex_4.nodeFDN",
+              "mo_complex_4.moFdn"
+            ],
+            "expression": "FIRST(aggregate(mo_complex_4.complex_array, double(0), (acc, x) -> acc + x)) / FIRST(mo_complex_4.complex_divider) FROM kpi_inmemory://mo_complex_4",
+            "object_type": "FLOAT",
+            "aggregation_type": "FIRST",
+            "exportable": false,
+            "execution_group": "group2"
+          }
+        ]
+      },
+      {
+        "aggregation_period": 60,
+        "alias": "mo_complex_2_innerjoin",
+        "aggregation_elements": [
+          "kpi_mo_simple_1_15.nodeFDN"
+        ],
+        "data_reliability_offset": -15,
+        "kpi_definitions": [
+          {
+            "name": "inner_join_60_complex_1",
+            "expression": "kpi_mo_simple_1_15.mo_sum_15_simple FROM kpi_db://kpi_mo_simple_1_15 INNER JOIN kpi_db://kpi_mo_simple_array_60 ON kpi_mo_simple_1_15.nodeFDN = kpi_mo_simple_array_60.nodeFDN",
+            "object_type": "INTEGER",
+            "aggregation_type": "MAX",
+            "execution_group": "group2"
+          }
+        ]
+      },
+      {
+        "aggregation_period": 60,
+        "alias": "fdn_complex_aggr_element",
+        "aggregation_elements": [
+          "FDN_PARSE(kpi_fdn_simple_expr_60.nodeFDN,\"MeContext\") AS fdn_parse_co"
+        ],
+        "data_reliability_offset": -15,
+        "kpi_definitions": [
+          {
+            "name": "complex_ae",
+            "expression": "FIRST(kpi_fdn_simple_expr_60.simple_expression, true) FROM kpi_db://kpi_fdn_simple_expr_60",
+            "object_type": "STRING",
+            "aggregation_type": "FIRST",
+            "exportable": true,
+            "reexport_late_data": true,
+            "execution_group": "group2"
+          }
+        ]
+      },
+      {
+        "aggregation_period": 60,
+        "alias": "fdn_complex_expr",
+        "aggregation_elements": [
+          "kpi_fdn_simple_expr_60.nodeFDN"
+        ],
+        "data_reliability_offset": -15,
+        "kpi_definitions": [
+          {
+            "name": "complex_expression",
+            "expression": "FDN_PARSE(kpi_fdn_simple_expr_60.simple_expression, 'SupportUnit') FROM kpi_db://kpi_fdn_simple_expr_60",
+            "object_type": "STRING",
+            "aggregation_type": "FIRST",
+            "exportable": true,
+            "reexport_late_data": true,
+            "execution_group": "group2"
+          }
+        ]
+      },
+      {
+        "aggregation_period": 1440,
+        "alias": "mo_complex_3",
+        "aggregation_elements": [
+          "kpi_mo_simple_3_1440.nodeFDN",
+          "kpi_mo_simple_3_1440.moFdn"
+        ],
+        "data_reliability_offset": -15,
+        "exportable": true,
+        "reexport_late_data": true,
+        "kpi_definitions": [
+          {
+            "name": "sum_1440_complex",
+            "expression": "kpi_mo_simple_3_1440.mo_max_1440_simple / NULLIF(kpi_mo_simple_3_1440.mo_count_1440_simple, 0) FROM kpi_db://kpi_mo_simple_3_1440",
+            "object_type": "FLOAT",
+            "aggregation_type": "SUM",
+            "execution_group": "group2"
+          }
+        ]
+      }
+    ]
+  }
+}

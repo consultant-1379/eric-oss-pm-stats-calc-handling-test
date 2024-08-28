@@ -1,0 +1,178 @@
+{
+  "scheduled_simple": {
+    "kpi_output_tables": [
+      {
+        "alias": "mo_simple",
+        "aggregation_elements": [
+          "ManagedObject1.nodeFDN"
+        ],
+        "inp_data_identifier": "dataSpace|dataCategory|ManagedObject1",
+        "exportable": true,
+        "reexport_late_data": true,
+        "kpi_definitions": [
+          {
+            "name": "simple_sum",
+            "expression": "ManagedObject1.pmCounters.pmCounter1.counterValue",
+            "object_type": "INTEGER",
+            "aggregation_type": "SUM"
+          }
+        ]
+      },
+      {
+        "aggregation_period": 15,
+        "alias": "mo_simple_1",
+        "aggregation_elements": [
+          "ManagedObject1.nodeFDN",
+          "ManagedObject1.moFdn"
+        ],
+        "inp_data_identifier": "dataSpace|dataCategory|ManagedObject1",
+        "kpi_definitions": [
+          {
+            "name": "mo_sum_15_simple",
+            "expression": "ManagedObject1.pmCounters.pmCounter1.counterValue",
+            "object_type": "INTEGER",
+            "aggregation_type": "SUM"
+          },
+          {
+            "name": "pm_counters_sum_15_simple",
+            "expression": "ManagedObject1.pmCounters.pmCounter1.counterValue + ManagedObject1.pmCounters.pmCounter2.counterValue",
+            "object_type": "INTEGER",
+            "aggregation_type": "SUM"
+          }
+        ]
+      },
+      {
+        "aggregation_period": 60,
+        "alias": "mo_simple_array",
+        "aggregation_elements": [
+          "ManagedObject1.nodeFDN",
+          "ManagedObject1.moFdn"
+        ],
+        "inp_data_identifier": "dataSpace|dataCategory|ManagedObject1",
+        "kpi_definitions": [
+          {
+            "name": "simple_array_sum",
+            "expression": "ManagedObject1.pmCounters.pmCounter3.counterValue",
+            "object_type": "INTEGER[]",
+            "aggregation_type": "ARRAY_INDEX_SUM"
+          },
+          {
+            "name": "simple_first_element",
+            "expression": "ManagedObject1.pmCounters.pmCounter3.counterValue[0]",
+            "object_type": "INTEGER",
+            "aggregation_type": "FIRST"
+          }
+        ]
+      },
+      {
+        "aggregation_period": 60,
+        "alias": "fdn_simple_expr",
+        "aggregation_elements": [
+          "ManagedObject1.nodeFDN",
+          "ManagedObject1.moFdn"
+        ],
+        "inp_data_identifier": "dataSpace|dataCategory|ManagedObject1",
+        "exportable": true,
+        "reexport_late_data": true,
+        "kpi_definitions": [
+          {
+            "name": "simple_expression",
+            "expression": "FDN_PARSE(ManagedObject1.nodeFDN,\"SupportUnit\")",
+            "object_type": "STRING",
+            "aggregation_type": "FIRST"
+          }
+        ]
+      },
+      {
+        "aggregation_period": 60,
+        "alias": "mo_simple_2",
+        "aggregation_elements": [
+          "ManagedObject1.ossid"
+        ],
+        "inp_data_identifier": "dataSpace|dataCategory|ManagedObject1",
+        "exportable": true,
+        "reexport_late_data": true,
+        "kpi_definitions": [
+          {
+            "name": "mo_sum_60_simple",
+            "expression": "ManagedObject1.pmCounters.pmCounter2.counterValue",
+            "object_type": "INTEGER",
+            "aggregation_type": "SUM"
+          }
+        ]
+      },
+      {
+        "aggregation_period": 1440,
+        "alias": "mo_simple_3",
+        "aggregation_elements": [
+          "ManagedObject2.nodeFDN",
+          "ManagedObject2.moFdn"
+        ],
+        "inp_data_identifier": "dataSpace|dataCategory|ManagedObject2",
+        "reexport_late_data": true,
+        "exportable": true,
+        "kpi_definitions": [
+          {
+            "name": "mo_max_1440_simple",
+            "expression": "ManagedObject2.pmCounters.pmCounter1.counterValue",
+            "object_type": "INTEGER",
+            "aggregation_type": "MAX",
+            "exportable": false
+          },
+		  {
+            "name": "mo_count_1440_simple",
+            "expression": "COUNT(ManagedObject2.pmCounters.pmCounter1.counterValue)",
+            "object_type": "INTEGER",
+            "aggregation_type": "SUM",
+            "exportable": false
+          }
+        ]
+      },
+      {
+        "aggregation_period": 1440,
+        "alias": "mo_simple_4",
+        "aggregation_elements": [
+          "ManagedObject2.nodeFDN",
+          "ManagedObject2.moFdn"
+        ],
+        "inp_data_identifier": "dataSpace|dataCategory|ManagedObject2",
+        "kpi_definitions": [
+          {
+            "name": "simple_for_tabular",
+            "expression": "ManagedObject2.pmCounters.pmCounter1.counterValue",
+            "object_type": "INTEGER",
+            "aggregation_type": "SUM"
+          }
+        ]
+      },
+      {
+        "aggregation_period": 15,
+        "alias": "mo_simple_dll",
+        "aggregation_elements": [
+          "ManagedObject3.ossid"
+        ],
+        "inp_data_identifier": "dataSpace|dataCategory|ManagedObject3",
+        "kpi_definitions": [
+          {
+            "name": "mo_sum_15_simple_dll",
+            "exportable": true,
+            "reexport_late_data": true,
+            "expression": "ManagedObject3.pmCounters.pmCounter2.counterValue[2]",
+            "object_type": "INTEGER",
+            "aggregation_type": "SUM",
+            "data_lookback_limit": 30
+          },
+          {
+            "name": "mo_sum_15_simple_dll_2",
+            "exportable": true,
+            "reexport_late_data": true,
+            "expression": "ManagedObject3.pmCounters.pmCounter2.counterValue[2]",
+            "object_type": "INTEGER",
+            "aggregation_type": "SUM",
+            "data_lookback_limit": 10
+          }
+        ]
+      }
+    ]
+  }
+}

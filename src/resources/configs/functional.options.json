@@ -1,0 +1,13 @@
+{
+    "thresholds": {
+        "Calculation_Duration_For_Complex_KPIs__s": ["avg < 90"],
+        "Calculation_Duration_For_On_Demand_KPIs__s": ["avg < 160"],
+        "Calculation_Duration_For_Simple_KPIs__s": ["avg < 105"],
+        "Calculator_Submit_KPI_Definitions_Duration__ms": ["avg < 10000"],
+        "Durations_Of_Each_Query_Set__ms": ["avg < 17000"],
+        "Time_Between_First_Calculation_Starts_And_Last_Calculation_Ends__s": ["avg < 2400"],
+        "Query_Service_Response_OrderedLessThanWithCount__ms": ["p(95) < 1800"],
+        "Query_Service_Response_ContainsWithOrderBy__ms": ["p(95) < 1900"]
+    },
+    "summaryTrendStats": ["min", "avg", "max", "med", "p(90)", "p(95)", "p(99)", "count"]
+}

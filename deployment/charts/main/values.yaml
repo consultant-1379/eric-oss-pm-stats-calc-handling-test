@@ -1,0 +1,42 @@
+global:
+  security:
+    tls:
+      enabled: true
+  serviceMesh:
+    enabled: true
+
+replicaCount: 1
+
+images:
+  testwareImage: ${defaultDockerTag}
+  kafkaSidecarImage: ${defaultDockerTagKafkaSidecar}
+
+build:
+  version: ${version}
+  name: ${name}
+
+env:
+  TESTWARE_NAME: "eric-oss-pm-stats-calc-handling-test"
+  STAGING_TYPE: "APPLICATION"
+  ENVIRONMENT: "production"
+  BUILD_URL: "undefined"
+  APP_NAME: "eric-oss-pm-stats-calc-handling"
+  PRODUCT: "eric-eiae-helmfile"
+  MAIN_TEST_FILE: "/tests/main.js"
+  OPTIONS_FILE: "/resources/configs/functional.options.json"
+  SEF_STATUS: "true"
+  SEF_ADMIN_USER: ""
+  SEF_ADMIN_PASSWORD: ""
+  APIGW_USER: ""
+  APIGW_PASSWORD: ""
+  DATA_CATALOG_HOSTNAME: "http://eric-oss-data-catalog:9590"
+  SCHEMA_REGISTRY_HOSTNAME: "http://eric-schema-registry-sr:8081"
+  KPI_SET: ""
+  THRESHOLDS: "false"
+
+networkPolicy:
+  enabled: true
+
+kafka:
+  bootstrapServer: eric-oss-dmm-kf-op-sz-kafka-bootstrap:9092
+  bootstrapServerTls: eric-oss-dmm-kf-op-sz-kafka-bootstrap:9093

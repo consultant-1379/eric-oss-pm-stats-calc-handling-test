@@ -1,0 +1,1781 @@
+{
+  "scheduled_simple": {
+    "kpi_output_tables": [
+      {
+        "aggregation_period": 60,
+        "alias": "cell_guid_flm",
+        "aggregation_elements": [
+          "EUtranCellFDD_1.nodeFDN",
+          "EUtranCellFDD_1.moFdn"
+        ],
+        "inp_data_identifier": "4G|PM_COUNTERS|EUtranCellFDD_1",
+        "kpi_definitions": [
+          {
+            "name": "min_num_cqi_samples",
+            "expression": "FIRST(EUtranCellFDD_1.pmCounters.pmZtemporary4.counterValue)",
+            "object_type": "INTEGER",
+            "aggregation_type": "FIRST"
+          },
+          {
+            "name": "min_rops_for_app_cov_reliability",
+            "expression": "FIRST(EUtranCellFDD_1.pmCounters.pmZtemporary6.counterValue)",
+            "object_type": "INTEGER",
+            "aggregation_type": "FIRST"
+          },
+          {
+            "name": "target_throughput_r",
+            "expression": "FIRST(EUtranCellFDD_1.pmCounters.pmZtemporary8.counterValue)",
+            "object_type": "FLOAT",
+            "aggregation_type": "FIRST"
+          }
+        ]
+      },
+      {
+        "aggregation_period": 1440,
+        "alias": "cell_guid_flm",
+        "aggregation_elements": [
+          "EUtranCellFDD_1.nodeFDN",
+          "EUtranCellFDD_1.moFdn"
+        ],
+        "inp_data_identifier": "4G|PM_COUNTERS|EUtranCellFDD_1",
+        "kpi_definitions": [
+          {
+            "name": "min_num_samp_trans_calc",
+            "expression": "FIRST(EUtranCellFDD_1.pmCounters.pmZtemporary5.counterValue)",
+            "object_type": "FLOAT",
+            "aggregation_type": "FIRST"
+          },
+          {
+            "name": "sigma_for_transient",
+            "expression": "FIRST(EUtranCellFDD_1.pmCounters.pmZtemporary7.counterValue)",
+            "object_type": "FLOAT",
+            "aggregation_type": "FIRST"
+          }
+        ]
+      },
+      {
+        "aggregation_period": 60,
+        "alias": "cell_guid",
+        "aggregation_elements": [
+          "EUtranCellFDD_1.nodeFDN",
+          "EUtranCellFDD_1.moFdn"
+        ],
+        "inp_data_identifier": "4G|PM_COUNTERS|EUtranCellFDD_1",
+        "kpi_definitions": [
+          {
+            "name": "counter_cell_reliability_hourly",
+            "expression": "COUNT(EUtranCellFDD_1.pmCounters.pmZtemporary4.counterValue)",
+            "object_type": "INTEGER",
+            "aggregation_type": "SUM",
+            "exportable": true
+          },
+          {
+            "name": "no_of_trx_points",
+            "expression": "MAX(CASE WHEN EUtranCellFDD_1.pmCounters.pmZtemporary4.counterValue = 0 THEN 2 ELSE EUtranCellFDD_1.pmCounters.pmZtemporary4.counterValue END)",
+            "object_type": "INTEGER",
+            "aggregation_type": "MAX"
+          },
+          {
+            "name": "num_samples_ta_hourly",
+            "expression": "ARRAY_INDEX_SUM(NbIotCell_1.pmCounters.pmZTemporary219.counterValue)",
+            "object_type": "INTEGER[129]",
+            "aggregation_type": "ARRAY_INDEX_SUM",
+            "aggregation_elements": [
+              "NbIotCell_1.nodeFDN",
+              "NbIotCell_1.moFdn"
+            ],
+            "inp_data_identifier": "4G|PM_COUNTERS|NbIotCell_1"
+          },
+          {
+            "name": "num_samples_rsrp_ta_hourly",
+            "expression": "ARRAY_INDEX_SUM(NbIotCell_1.pmCounters.pmZTemporary218.counterValue)",
+            "object_type": "INTEGER[129]",
+            "aggregation_type": "ARRAY_INDEX_SUM",
+            "aggregation_elements": [
+              "NbIotCell_1.nodeFDN",
+              "NbIotCell_1.moFdn"
+            ],
+            "inp_data_identifier": "4G|PM_COUNTERS|NbIotCell_1"
+          },
+          {
+            "name": "num_samples_bad_rsrp_ta_hourly",
+            "expression": "ARRAY_INDEX_SUM(NbIotCell_1.pmCounters.pmZTemporary217.counterValue)",
+            "object_type": "INTEGER[129]",
+            "aggregation_type": "ARRAY_INDEX_SUM",
+            "aggregation_elements": [
+              "NbIotCell_1.nodeFDN",
+              "NbIotCell_1.moFdn"
+            ],
+            "inp_data_identifier": "4G|PM_COUNTERS|NbIotCell_1"
+          },
+          {
+            "name": "pdcch_cfi_mode",
+            "expression": "FIRST(CASE WHEN EUtranCellFDD_1.pmCounters.pmZtemporary3.counterValue = 0 THEN 0 WHEN EUtranCellFDD_1.pmCounters.pmZtemporary3.counterValue = 1 THEN 1 WHEN EUtranCellFDD_1.pmCounters.pmZtemporary3.counterValue = 2 THEN 2 WHEN EUtranCellFDD_1.pmCounters.pmZtemporary3.counterValue = 3 THEN 3 WHEN EUtranCellFDD_1.pmCounters.pmZtemporary3.counterValue = 4 THEN 4 WHEN EUtranCellFDD_1.pmCounters.pmZtemporary3.counterValue = 5 THEN 5 ELSE NULL END)",
+            "object_type": "INTEGER",
+            "aggregation_type": "FIRST"
+          },
+          {
+            "name": "bandwidth",
+            "expression": "FIRST(EUtranCellFDD_1.pmCounters.pmZtemporary1.counterValue)",
+            "object_type": "INTEGER",
+            "aggregation_type": "FIRST"
+          },
+          {
+            "name": "freq_band",
+            "expression": "FIRST(EUtranCellFDD_1.pmCounters.pmZtemporary2.counterValue)",
+            "object_type": "INTEGER",
+            "aggregation_type": "FIRST"
+          },
+          {
+            "name": "e_rab_retainability_percentage_lost_hourly_den",
+            "exportable": true,
+            "expression": "SUM(EUtranCellFDD_1.pmCounters.pmErabRelAbnormalEnb.counterValue + EUtranCellFDD_1.pmCounters.pmErabRelNormalEnb.counterValue + EUtranCellFDD_1.pmCounters.pmErabRelMme.counterValue) ",
+            "object_type": "INTEGER",
+            "aggregation_type": "SUM"
+          },
+          {
+            "name": "num_non_null_counters_count_pmprbavaildl",
+            "expression": "COUNT(EUtranCellFDD_1.pmCounters.pmPrbAvailDl.counterValue)",
+            "object_type": "INTEGER",
+            "aggregation_type": "SUM"
+          },
+          {
+            "name": "num_non_null_counters_count_pmpdcchcceactivity",
+            "expression": "COUNT(EUtranCellFDD_1.pmCounters.pmPdcchCceActivity.counterValue)",
+            "object_type": "INTEGER",
+            "aggregation_type": "SUM"
+          },
+          {
+            "name": "num_non_null_counters_count_pmpdcchcceutil",
+            "expression": "COUNT(EUtranCellFDD_1.pmCounters.pmPdcchCceUtil.counterValue)",
+            "object_type": "INTEGER",
+            "aggregation_type": "SUM"
+          },
+          {
+            "name": "num_non_null_counters_count_pmprbuseddldtchfirsttransqci",
+            "expression": "COUNT(EUtranCellFDD_1.pmCounters.pmPrbUsedDlDtchFirstTransQci.counterValue)",
+            "object_type": "INTEGER",
+            "aggregation_type": "SUM"
+          },
+          {
+            "name": "num_non_null_counters_count_pmprbuseddlretrans",
+            "expression": "COUNT(EUtranCellFDD_1.pmCounters.pmPrbUsedDlReTrans.counterValue)",
+            "object_type": "INTEGER",
+            "aggregation_type": "SUM"
+          },
+          {
+            "name": "num_non_null_counters_count_pmprbuseddlfirsttrans",
+            "expression": "COUNT(EUtranCellFDD_1.pmCounters.pmPrbUsedDlFirstTrans.counterValue)",
+            "object_type": "INTEGER",
+            "aggregation_type": "SUM"
+          },
+          {
+            "name": "num_non_null_counters_count_pmactiveuedlsum",
+            "expression": "COUNT(EUtranCellFDD_1.pmCounters.pmActiveUeDlSum.counterValue)",
+            "object_type": "INTEGER",
+            "aggregation_type": "SUM"
+          },
+          {
+            "name": "num_non_null_counters_count_pmradiothpvoldl",
+            "expression": "COUNT(EUtranCellFDD_1.pmCounters.pmRadioThpVolDl.counterValue)",
+            "object_type": "INTEGER",
+            "aggregation_type": "SUM"
+          },
+          {
+            "name": "num_non_null_counters_count_pmradiothpvoldlscell",
+            "expression": "COUNT(EUtranCellFDD_1.pmCounters.pmRadioThpVolDlSCell.counterValue)",
+            "object_type": "INTEGER",
+            "aggregation_type": "SUM"
+          },
+          {
+            "name": "num_non_null_counters_count_pmactiveuedlsumqci",
+            "expression": "COUNT(EUtranCellFDD_1.pmCounters.pmActiveUeDlSumQci.counterValue)",
+            "object_type": "INTEGER",
+            "aggregation_type": "SUM"
+          },
+          {
+            "name": "num_non_null_counters_count_pmradiouerepcqidistr",
+            "expression": "COUNT(EUtranCellFDD_1.pmCounters.pmRadioUeRepCqiDistr.counterValue)",
+            "object_type": "INTEGER",
+            "aggregation_type": "SUM"
+          },
+          {
+            "name": "num_non_null_counters_count_pmradiouerepcqidistr2",
+            "expression": "COUNT(EUtranCellFDD_1.pmCounters.pmRadioUeRepCqiDistr2.counterValue)",
+            "object_type": "INTEGER",
+            "aggregation_type": "SUM"
+          },
+          {
+            "name": "num_non_null_counters_count_pmradiotxrankdistr",
+            "expression": "COUNT(EUtranCellFDD_1.pmCounters.pmRadioTxRankDistr.counterValue)",
+            "object_type": "INTEGER",
+            "aggregation_type": "SUM"
+          },
+          {
+            "name": "num_non_null_counters_count_pmrrcconnlevsum",
+            "expression": "COUNT(EUtranCellFDD_1.pmCounters.pmRrcConnLevSum.counterValue)",
+            "object_type": "INTEGER",
+            "aggregation_type": "SUM"
+          },
+          {
+            "name": "num_non_null_counters_count_pmrrcconnlevsamp",
+            "expression": "COUNT(EUtranCellFDD_1.pmCounters.pmRrcConnLevSamp.counterValue)",
+            "object_type": "INTEGER",
+            "aggregation_type": "SUM"
+          },
+          {
+            "name": "pm_flex_rrc_conn_sum_spid",
+            "expression": "SUM(EUtranCellFDD_1.pmCounters.pmFlexRrcConnSum.counterValue)",
+            "object_type": "INTEGER",
+            "aggregation_type": "SUM"
+          },
+          {
+            "name": "num_calls_cell_hourly",
+            "expression": "SUM(EUtranCellFDD_1.pmCounters.pmErabEstabSuccInit.counterValue)",
+            "object_type": "INTEGER",
+            "aggregation_type": "SUM"
+          },
+          {
+            "name": "ul_pusch_sinr_hourly_numerator",
+            "expression": "SUM(EUtranCellFDD_1.pmCounters.pmSinrPuschDistr.counterValue[0] * -5) + SUM(EUtranCellFDD_1.pmCounters.pmSinrPuschDistr.counterValue[1] * 3.5) + SUM(EUtranCellFDD_1.pmCounters.pmSinrPuschDistr.counterValue[2] * 0) + SUM(EUtranCellFDD_1.pmCounters.pmSinrPuschDistr.counterValue[3] * 4) + SUM(EUtranCellFDD_1.pmCounters.pmSinrPuschDistr.counterValue[4] * 8) + SUM(EUtranCellFDD_1.pmCounters.pmSinrPuschDistr.counterValue[5] * 12) + SUM(EUtranCellFDD_1.pmCounters.pmSinrPuschDistr.counterValue[6] * 15.5) + SUM(EUtranCellFDD_1.pmCounters.pmSinrPuschDistr.counterValue[7] * 17) + SUM(EUtranCellFDD_1.pmCounters.pmSinrPuschDistr.counterValue[8] * 20)",
+            "object_type": "FLOAT",
+            "aggregation_type": "FIRST"
+          },
+          {
+            "name": "ul_pusch_sinr_hourly_denominator",
+            "expression": "SUM(EUtranCellFDD_1.pmCounters.pmSinrPuschDistr.counterValue[0]) + SUM(EUtranCellFDD_1.pmCounters.pmSinrPuschDistr.counterValue[1]) + SUM(EUtranCellFDD_1.pmCounters.pmSinrPuschDistr.counterValue[2]) + SUM(EUtranCellFDD_1.pmCounters.pmSinrPuschDistr.counterValue[3]) + SUM(EUtranCellFDD_1.pmCounters.pmSinrPuschDistr.counterValue[4]) + SUM(EUtranCellFDD_1.pmCounters.pmSinrPuschDistr.counterValue[5]) + SUM(EUtranCellFDD_1.pmCounters.pmSinrPuschDistr.counterValue[6]) + SUM(EUtranCellFDD_1.pmCounters.pmSinrPuschDistr.counterValue[7]) + SUM(EUtranCellFDD_1.pmCounters.pmSinrPuschDistr.counterValue[8])",
+            "object_type": "FLOAT",
+            "aggregation_type": "FIRST"
+          },
+          {
+            "name": "sub_ratio_denom",
+            "expression": "SUM(EUtranCellFDD_1.pmCounters.pmLbSubRatioSamp.counterValue)",
+            "object_type": "INTEGER",
+            "aggregation_type": "SUM"
+          },
+          {
+            "name": "sub_ratio_numerator",
+            "expression": "SUM(EUtranCellFDD_1.pmCounters.pmLbSubRatioSum.counterValue)",
+            "object_type": "INTEGER",
+            "aggregation_type": "SUM"
+          },
+          {
+            "name": "pm_flex_rrc_conn_sum",
+            "expression": "SUM(EUtranCellFDD_1.pmCounters.pmFlexRrcConnSum.counterValue)",
+            "object_type": "INTEGER",
+            "aggregation_type": "SUM"
+          },
+          {
+            "name": "pm_rrc_conn_samp",
+            "expression": "SUM(EUtranCellFDD_1.pmCounters.pmRrcConnSamp.counterValue)",
+            "object_type": "INTEGER",
+            "aggregation_type": "SUM"
+          },
+          {
+            "name": "pm_rrc_conn_lev_sum",
+            "expression": "SUM(EUtranCellFDD_1.pmCounters.pmRrcConnLevSum.counterValue)",
+            "object_type": "INTEGER",
+            "aggregation_type": "SUM"
+          },
+          {
+            "name": "pm_rrc_conn_lev_samp",
+            "expression": "SUM(EUtranCellFDD_1.pmCounters.pmRrcConnLevSamp.counterValue)",
+            "object_type": "INTEGER",
+            "aggregation_type": "SUM"
+          },
+          {
+            "name": "cell_prep_succ_hourly",
+            "exportable": true,
+            "expression": "SUM(EUtranCellFDD_1.pmCounters.pmCellHoPrepSuccLteIntraF.counterValue) + SUM(EUtranCellFDD_1.pmCounters.pmCellHoPrepSuccLteInterF.counterValue)",
+            "object_type": "INTEGER",
+            "aggregation_type": "SUM"
+          },
+          {
+            "name": "cell_prep_att_hourly",
+            "exportable": true,
+            "expression": "CASE WHEN SUM(EUtranCellFDD_1.pmCounters.pmHoPrepRejOutUlThres.counterValue) IS NULL THEN (SUM(EUtranCellFDD_1.pmCounters.pmCellHoPrepAttLteIntraF.counterValue) + SUM(EUtranCellFDD_1.pmCounters.pmCellHoPrepAttLteInterF.counterValue)) ELSE(SUM(EUtranCellFDD_1.pmCounters.pmCellHoPrepAttLteIntraF.counterValue) + SUM(EUtranCellFDD_1.pmCounters.pmCellHoPrepAttLteInterF.counterValue) - SUM(EUtranCellFDD_1.pmCounters.pmHoPrepRejOutUlThres.counterValue)) END",
+            "object_type": "INTEGER",
+            "aggregation_type": "SUM"
+          },
+          {
+            "name": "cell_exe_succ_hourly",
+            "exportable": true,
+            "expression": "SUM(EUtranCellFDD_1.pmCounters.pmCellHoExeSuccLteIntraF.counterValue) + SUM(EUtranCellFDD_1.pmCounters.pmCellHoExeSuccLteInterF.counterValue)",
+            "object_type": "INTEGER",
+            "aggregation_type": "SUM"
+          },
+          {
+            "name": "cell_exe_att_hourly",
+            "exportable": true,
+            "expression": "SUM(EUtranCellFDD_1.pmCounters.pmCellHoExeAttLteIntraF.counterValue) + SUM(EUtranCellFDD_1.pmCounters.pmCellHoExeAttLteInterF.counterValue)",
+            "object_type": "INTEGER",
+            "aggregation_type": "SUM"
+          },
+          {
+            "name": "dl_pdcp_ue_throughput_num_cell",
+            "exportable": true,
+            "expression": "SUM(EUtranCellFDD_1.pmCounters.pmPdcpVolDlDrb.counterValue - EUtranCellFDD_1.pmCounters.pmPdcpVolDlDrbLastTTI.counterValue)",
+            "object_type": "INTEGER",
+            "aggregation_type": "SUM"
+          },
+          {
+            "name": "dl_pdcp_ue_throughput_den_cell",
+            "exportable": true,
+            "expression": "SUM(EUtranCellFDD_1.pmCounters.pmUeThpTimeDl.counterValue)",
+            "object_type": "INTEGER",
+            "aggregation_type": "SUM"
+          },
+          {
+            "name": "erab_estab_succ_hourly",
+            "exportable": true,
+            "expression": "SUM(EUtranCellFDD_1.pmCounters.pmErabEstabSuccInit.counterValue + EUtranCellFDD_1.pmCounters.pmErabEstabSuccAdded.counterValue)",
+            "object_type": "INTEGER",
+            "aggregation_type": "SUM"
+          },
+          {
+            "name": "rrc_conn_estab_att_hourly",
+            "exportable": true,
+            "expression": "SUM(EUtranCellFDD_1.pmCounters.pmRrcConnEstabAtt.counterValue - EUtranCellFDD_1.pmCounters.pmRrcConnEstabAttReatt.counterValue - COALESCE( EUtranCellFDD_1.pmCounters.pmRrcConnEstabFailMmeOvlMos.counterValue , 0) - COALESCE( EUtranCellFDD_1.pmCounters.pmRrcConnEstabFailMmeOvlMod.counterValue , 0))",
+            "object_type": "INTEGER",
+            "aggregation_type": "SUM"
+          },
+          {
+            "name": "connected_users",
+            "expression": "SUM(EUtranCellFDD_1.pmCounters.pmRrcConnLevSum.counterValue) / SUM(EUtranCellFDD_1.pmCounters.pmRrcConnLevSamp.counterValue)",
+            "object_type": "FLOAT",
+            "aggregation_type": "SUM",
+            "exportable": true
+          },
+          {
+            "name": "pm_idle_mode_rel_distr_low_load",
+            "expression": "SUM(EUtranCellFDD_1.pmCounters.pmIdleModeRelDistrLowLoad.counterValue)",
+            "object_type": "INTEGER",
+            "aggregation_type": "SUM"
+          },
+          {
+            "name": "pm_idle_mode_rel_distr_low_medium_load",
+            "expression": "SUM(EUtranCellFDD_1.pmCounters.pmIdleModeRelDistrLowMediumLoad.counterValue)",
+            "object_type": "INTEGER",
+            "aggregation_type": "SUM"
+          },
+          {
+            "name": "pm_idle_mode_rel_distr_medium_load",
+            "expression": "SUM(EUtranCellFDD_1.pmCounters.pmIdleModeRelDistrMediumLoad.counterValue)",
+            "object_type": "INTEGER",
+            "aggregation_type": "SUM"
+          },
+          {
+            "name": "pm_idle_mode_rel_distr_medium_high_load",
+            "expression": "SUM(EUtranCellFDD_1.pmCounters.pmIdleModeRelDistrMediumHighLoad.counterValue)",
+            "object_type": "INTEGER",
+            "aggregation_type": "SUM"
+          },
+          {
+            "name": "pm_idle_mode_rel_distr_high_load",
+            "expression": "SUM(EUtranCellFDD_1.pmCounters.pmIdleModeRelDistrHighLoad.counterValue)",
+            "object_type": "INTEGER",
+            "aggregation_type": "SUM"
+          },
+          {
+            "name": "cqi2",
+            "expression": "ARRAY_INDEX_SUM(slice(EUtranCellFDD_1.pmCounters.pmRadioUeRepCqiDistr2.counterValue, 2, 15))",
+            "object_type": "INTEGER[15]",
+            "aggregation_type": "ARRAY_INDEX_SUM"
+          },
+          {
+            "name": "cqi1",
+            "expression": "ARRAY_INDEX_SUM(slice(EUtranCellFDD_1.pmCounters.pmRadioUeRepCqiDistr.counterValue, 2, 15))",
+            "object_type": "INTEGER[15]",
+            "aggregation_type": "ARRAY_INDEX_SUM"
+          },
+          {
+            "name": "radio_tx_rank_distr",
+            "expression": "ARRAY_INDEX_SUM(EUtranCellFDD_1.pmCounters.pmRadioTxRankDistr.counterValue)",
+            "object_type": "INTEGER[16]",
+            "aggregation_type": "ARRAY_INDEX_SUM"
+          },
+          {
+            "name": "pmpdcchcceactivity_sum_den",
+            "expression": "SUM(EUtranCellFDD_1.pmCounters.pmPdcchCceActivity.counterValue)",
+            "object_type": "FLOAT",
+            "aggregation_type": "SUM"
+          },
+          {
+            "name": "mac_level_data_vol_dl_rate",
+            "expression": "SUM(EUtranCellFDD_1.pmCounters.pmRadioThpVolDl.counterValue) / SUM(EUtranCellFDD_1.pmCounters.pmRadioThpVolDl.counterValue - EUtranCellFDD_1.pmCounters.pmRadioThpVolDlSCell.counterValue)",
+            "object_type": "FLOAT",
+            "aggregation_type": "FIRST"
+          },
+          {
+            "name": "volteprbsdl_numerator_transmissions",
+            "expression": "1 + SUM(EUtranCellFDD_1.pmCounters.pmPrbUsedDlReTrans.counterValue) / SUM(EUtranCellFDD_1.pmCounters.pmPrbUsedDlFirstTrans.counterValue)",
+            "object_type": "FLOAT",
+            "aggregation_type": "SUM"
+          },
+          {
+            "name": "volteprbsdl_numerator_qci",
+            "expression": "SUM(EUtranCellFDD_1.pmCounters.pmPrbUsedDlDtchFirstTransQci.counterValue[1] + EUtranCellFDD_1.pmCounters.pmPrbUsedDlDtchFirstTransQci.counterValue[2] + EUtranCellFDD_1.pmCounters.pmPrbUsedDlDtchFirstTransQci.counterValue[5])",
+            "object_type": "INTEGER",
+            "aggregation_type": "SUM"
+          },
+          {
+            "name": "prb_pairs_available",
+            "expression": "SUM(EUtranCellFDD_1.pmCounters.pmPrbAvailDl.counterValue)",
+            "object_type": "INTEGER",
+            "aggregation_type": "SUM"
+          },
+          {
+            "name": "pmpdcchcceutil_0_norm",
+            "expression": "SUM(EUtranCellFDD_1.pmCounters.pmPdcchCceActivity.counterValue - aggregate(slice(EUtranCellFDD_1.pmCounters.pmPdcchCceUtil.counterValue, 2, 19), 0, (acc, x) -> acc + x))",
+            "object_type": "INTEGER",
+            "aggregation_type": "SUM"
+          },
+          {
+            "name": "num_active_ue_dl_sum_qci",
+            "expression": "SUM(EUtranCellFDD_1.pmCounters.pmActiveUeDlSumQci.counterValue[1] + EUtranCellFDD_1.pmCounters.pmActiveUeDlSumQci.counterValue[2] + EUtranCellFDD_1.pmCounters.pmActiveUeDlSumQci.counterValue[5])",
+            "object_type": "INTEGER",
+            "aggregation_type": "SUM"
+          },
+          {
+            "name": "sum_active_ues_in_dl",
+            "expression": "SUM(EUtranCellFDD_1.pmCounters.pmActiveUeDlSum.counterValue)",
+            "object_type": "LONG",
+            "aggregation_type": "SUM"
+          },
+          {
+            "name": "pmpdcchcceutil_1_19_distribution_product",
+            "expression": "SUM(EUtranCellFDD_1.pmCounters.pmPdcchCceUtil.counterValue[1] * 0.075) + SUM(EUtranCellFDD_1.pmCounters.pmPdcchCceUtil.counterValue[2] * 0.125) + SUM(EUtranCellFDD_1.pmCounters.pmPdcchCceUtil.counterValue[3] * 0.175) + SUM(EUtranCellFDD_1.pmCounters.pmPdcchCceUtil.counterValue[4] * 0.225) + SUM(EUtranCellFDD_1.pmCounters.pmPdcchCceUtil.counterValue[5] * 0.275) + SUM(EUtranCellFDD_1.pmCounters.pmPdcchCceUtil.counterValue[6] * 0.325) + SUM(EUtranCellFDD_1.pmCounters.pmPdcchCceUtil.counterValue[7] * 0.375) + SUM(EUtranCellFDD_1.pmCounters.pmPdcchCceUtil.counterValue[8] * 0.425) + SUM(EUtranCellFDD_1.pmCounters.pmPdcchCceUtil.counterValue[9] * 0.475) + SUM(EUtranCellFDD_1.pmCounters.pmPdcchCceUtil.counterValue[10] * 0.525) + SUM(EUtranCellFDD_1.pmCounters.pmPdcchCceUtil.counterValue[11] * 0.575) + SUM(EUtranCellFDD_1.pmCounters.pmPdcchCceUtil.counterValue[12] * 0.625) + SUM(EUtranCellFDD_1.pmCounters.pmPdcchCceUtil.counterValue[13] * 0.675) + SUM(EUtranCellFDD_1.pmCounters.pmPdcchCceUtil.counterValue[14] * 0.725) + SUM(EUtranCellFDD_1.pmCounters.pmPdcchCceUtil.counterValue[15] * 0.775) + SUM(EUtranCellFDD_1.pmCounters.pmPdcchCceUtil.counterValue[16] * 0.825) + SUM(EUtranCellFDD_1.pmCounters.pmPdcchCceUtil.counterValue[17] * 0.875) + SUM(EUtranCellFDD_1.pmCounters.pmPdcchCceUtil.counterValue[18] * 0.925) + SUM(EUtranCellFDD_1.pmCounters.pmPdcchCceUtil.counterValue[19] * 0.975)",
+            "object_type": "FLOAT",
+            "aggregation_type": "SUM"
+          },
+          {
+            "name": "s1_sig_conn_estab_att_hourly",
+            "exportable": true,
+            "expression": "SUM(EUtranCellFDD_1.pmCounters.pmS1SigConnEstabAtt.counterValue - COALESCE( EUtranCellFDD_1.pmCounters.pmS1SigConnEstabFailMmeOvlMos.counterValue , 0))",
+            "object_type": "INTEGER",
+            "aggregation_type": "SUM"
+          },
+          {
+            "name": "erab_estab_att_hourly",
+            "exportable": true,
+            "expression": "SUM(EUtranCellFDD_1.pmCounters.pmErabEstabAttInit.counterValue + EUtranCellFDD_1.pmCounters.pmErabEstabAttAdded.counterValue - EUtranCellFDD_1.pmCounters.pmErabEstabAttAddedHoOngoing.counterValue)",
+            "object_type": "INTEGER",
+            "aggregation_type": "SUM"
+          },
+          {
+            "name": "pm_rrc_conn_estab_succ_hourly",
+            "exportable": true,
+            "expression": "SUM(EUtranCellFDD_1.pmCounters.pmRrcConnEstabSucc.counterValue)",
+            "object_type": "INTEGER",
+            "aggregation_type": "SUM"
+          },
+          {
+            "name": "pm_s1_sig_conn_estab_succ_hourly",
+            "exportable": true,
+            "expression": "SUM(EUtranCellFDD_1.pmCounters.pmS1SigConnEstabSucc.counterValue)",
+            "object_type": "INTEGER",
+            "aggregation_type": "SUM"
+          },
+          {
+            "name": "ul_pdcp_ue_throughput_num_cell",
+            "exportable": true,
+            "expression": "SUM(EUtranCellFDD_1.pmCounters.pmUeThpVolUl.counterValue)",
+            "object_type": "INTEGER",
+            "aggregation_type": "SUM"
+          },
+          {
+            "name": "ul_pdcp_ue_throughput_den_cell",
+            "exportable": true,
+            "expression": "SUM(EUtranCellFDD_1.pmCounters.pmUeThpTimeUl.counterValue)",
+            "object_type": "INTEGER",
+            "aggregation_type": "SUM"
+          },
+          {
+            "name": "e_rab_retainability_percentage_lost_qci1_num",
+            "exportable": true,
+            "expression": "SUM(EUtranCellFDD_1.pmCounters.pmErabRelAbnormalEnbActQci.counterValue[1] + EUtranCellFDD_1.pmCounters.pmErabRelAbnormalMmeActQci.counterValue[1])",
+            "object_type": "INTEGER",
+            "aggregation_type": "SUM"
+          },
+          {
+            "name": "e_rab_retainability_percentage_lost_qci1_den",
+            "exportable": true,
+            "expression": "SUM(EUtranCellFDD_1.pmCounters.pmErabRelAbnormalEnbQci.counterValue[1] + EUtranCellFDD_1.pmCounters.pmErabRelNormalEnbQci.counterValue[1] + EUtranCellFDD_1.pmCounters.pmErabRelMmeQci.counterValue[1])",
+            "object_type": "INTEGER",
+            "aggregation_type": "SUM"
+          },
+          {
+            "name": "rrc_conn_estab_succ_hourly",
+            "exportable": true,
+            "expression": "SUM(EUtranCellFDD_1.pmCounters.pmRrcConnEstabSuccMod.counterValue + EUtranCellFDD_1.pmCounters.pmRrcConnEstabSuccMoVoice.counterValue + EUtranCellFDD_1.pmCounters.pmRrcConnEstabSuccMta.counterValue + EUtranCellFDD_1.pmCounters.pmRrcConnEstabSuccHpa.counterValue)",
+            "object_type": "INTEGER",
+            "aggregation_type": "SUM"
+          },
+          {
+            "name": "s1_sig_conn_estab_succ_hourly",
+            "exportable": true,
+            "expression": "SUM(EUtranCellFDD_1.pmCounters.pmS1SigConnEstabSuccMod.counterValue + EUtranCellFDD_1.pmCounters.pmS1SigConnEstabSuccMoVoice.counterValue +  EUtranCellFDD_1.pmCounters.pmS1SigConnEstabSuccMta.counterValue + EUtranCellFDD_1.pmCounters.pmS1SigConnEstabSuccHpa.counterValue)",
+            "object_type": "INTEGER",
+            "aggregation_type": "SUM"
+          },
+          {
+            "name": "erab_estab_succ_qci1_hourly",
+            "exportable": true,
+            "expression": "SUM(EUtranCellFDD_1.pmCounters.pmErabEstabSuccInitQci.counterValue[1] + EUtranCellFDD_1.pmCounters.pmErabEstabSuccAddedQci.counterValue[1])",
+            "object_type": "INTEGER",
+            "aggregation_type": "SUM"
+          },
+          {
+            "name": "rrc_conn_estab_att_int_hourly",
+            "exportable": true,
+            "expression": "SUM( EUtranCellFDD_1.pmCounters.pmRrcConnEstabAttMod.counterValue + EUtranCellFDD_1.pmCounters.pmRrcConnEstabAttMoVoice.counterValue + EUtranCellFDD_1.pmCounters.pmRrcConnEstabAttMta.counterValue + EUtranCellFDD_1.pmCounters.pmRrcConnEstabAttHpa.counterValue - EUtranCellFDD_1.pmCounters.pmRrcConnEstabAttReattMod.counterValue - EUtranCellFDD_1.pmCounters.pmRrcConnEstabAttReattMoVoice.counterValue - EUtranCellFDD_1.pmCounters.pmRrcConnEstabAttReattMta.counterValue - EUtranCellFDD_1.pmCounters.pmRrcConnEstabAttReattHpa.counterValue - COALESCE( EUtranCellFDD_1.pmCounters.pmRrcConnEstabFailMmeOvlMod.counterValue , 0))",
+            "object_type": "INTEGER",
+            "aggregation_type": "SUM"
+          },
+          {
+            "name": "s1_sig_conn_estab_attm_hourly",
+            "exportable": true,
+            "expression": "SUM(EUtranCellFDD_1.pmCounters.pmS1SigConnEstabAttMod.counterValue + EUtranCellFDD_1.pmCounters.pmS1SigConnEstabAttMoVoice.counterValue +  EUtranCellFDD_1.pmCounters.pmS1SigConnEstabAttMta.counterValue + EUtranCellFDD_1.pmCounters.pmS1SigConnEstabAttHpa.counterValue)",
+            "object_type": "INTEGER",
+            "aggregation_type": "SUM"
+          },
+          {
+            "name": "erab_estab_att_qci1_hourly",
+            "exportable": true,
+            "expression": "SUM(EUtranCellFDD_1.pmCounters.pmErabEstabAttInitQci.counterValue[1] + EUtranCellFDD_1.pmCounters.pmErabEstabAttAddedQci.counterValue[1] - EUtranCellFDD_1.pmCounters.pmErabEstabAttAddedHoOngoingQci.counterValue[1])",
+            "object_type": "INTEGER",
+            "aggregation_type": "SUM"
+          },
+          {
+            "name": "e_rab_retainability_percentage_lost_hourly_num",
+            "exportable": true,
+            "expression": "SUM(EUtranCellFDD_1.pmCounters.pmErabRelAbnormalEnbAct.counterValue + EUtranCellFDD_1.pmCounters.pmErabRelAbnormalMmeAct.counterValue)",
+            "object_type": "INTEGER",
+            "aggregation_type": "SUM"
+          }
+        ]
+      },
+      {
+        "aggregation_period": 1440,
+        "alias": "cell_guid",
+        "aggregation_elements": [
+          "EUtranCellFDD_1.nodeFDN",
+          "EUtranCellFDD_1.moFdn"
+        ],
+        "inp_data_identifier": "4G|PM_COUNTERS|EUtranCellFDD_1",
+        "kpi_definitions": [
+          {
+            "name": "counter_cell_reliability_daily",
+            "expression": "COUNT(EUtranCellFDD_1.pmCounters.pmZtemporary5.counterValue)",
+            "object_type": "INTEGER",
+            "aggregation_type": "SUM",
+            "exportable": true
+          },
+          {
+            "name": "cgi",
+            "expression": "FIRST('Equipment=1,Data')",
+            "object_type": "STRING",
+            "aggregation_type": "FIRST",
+            "aggregation_elements": [
+              "NbIotCell_1.nodeFDN",
+              "NbIotCell_1.moFdn"
+            ],
+            "inp_data_identifier": "4G|PM_COUNTERS|NbIotCell_1"
+          },
+          {
+            "name": "synthetic_counter_cell_reliability_daily",
+            "expression": "COUNT(NbIotCell_1.pmCounters.pmZTemporary219.counterValue[0])",
+            "object_type": "INTEGER",
+            "aggregation_type": "SUM",
+            "exportable": true,
+            "aggregation_elements": [
+              "NbIotCell_1.nodeFDN",
+              "NbIotCell_1.moFdn"
+            ],
+            "inp_data_identifier": "4G|PM_COUNTERS|NbIotCell_1"
+          },
+          {
+            "name": "num_samples_ta",
+            "expression": "ARRAY_INDEX_SUM(NbIotCell_1.pmCounters.pmZTemporary219.counterValue)",
+            "object_type": "INTEGER[129]",
+            "aggregation_type": "ARRAY_INDEX_SUM",
+            "aggregation_elements": [
+              "NbIotCell_1.nodeFDN",
+              "NbIotCell_1.moFdn"
+            ],
+            "inp_data_identifier": "4G|PM_COUNTERS|NbIotCell_1"
+          },
+          {
+            "name": "num_samples_rsrp_ta",
+            "expression": "ARRAY_INDEX_SUM(NbIotCell_1.pmCounters.pmZTemporary218.counterValue)",
+            "object_type": "INTEGER[129]",
+            "aggregation_type": "ARRAY_INDEX_SUM",
+            "aggregation_elements": [
+              "NbIotCell_1.nodeFDN",
+              "NbIotCell_1.moFdn"
+            ],
+            "inp_data_identifier": "4G|PM_COUNTERS|NbIotCell_1"
+          },
+          {
+            "name": "num_samples_bad_rsrp_ta",
+            "expression": "ARRAY_INDEX_SUM(NbIotCell_1.pmCounters.pmZTemporary217.counterValue)",
+            "object_type": "INTEGER[129]",
+            "aggregation_type": "ARRAY_INDEX_SUM",
+            "aggregation_elements": [
+              "NbIotCell_1.nodeFDN",
+              "NbIotCell_1.moFdn"
+            ],
+            "inp_data_identifier": "4G|PM_COUNTERS|NbIotCell_1"
+          },
+          {
+            "name": "pm_s1_sig_conn_estab_fail_mme_ovl_mos",
+            "expression": "CASE WHEN SUM(EUtranCellFDD_1.pmCounters.pmS1SigConnEstabFailMmeOvlMos.counterValue) IS NULL THEN 0 ELSE SUM(EUtranCellFDD_1.pmCounters.pmS1SigConnEstabFailMmeOvlMos.counterValue) END",
+            "object_type": "INTEGER",
+            "aggregation_type": "SUM"
+          },
+          {
+            "name": "num_calls_daily",
+            "expression": "SUM(EUtranCellFDD_1.pmCounters.pmErabEstabSuccInit.counterValue)",
+            "object_type": "INTEGER",
+            "aggregation_type": "SUM"
+          },
+          {
+            "name": "pm_erab_estab_succ_added",
+            "expression": "SUM(EUtranCellFDD_1.pmCounters.pmErabEstabSuccAdded.counterValue)",
+            "object_type": "INTEGER",
+            "aggregation_type": "SUM"
+          },
+          {
+            "name": "pm_erab_estab_att_init",
+            "expression": "SUM(EUtranCellFDD_1.pmCounters.pmErabEstabAttInit.counterValue)",
+            "object_type": "INTEGER",
+            "aggregation_type": "SUM"
+          },
+          {
+            "name": "pm_erab_estab_att_added",
+            "expression": "SUM(EUtranCellFDD_1.pmCounters.pmErabEstabAttAdded.counterValue)",
+            "object_type": "INTEGER",
+            "aggregation_type": "SUM"
+          },
+          {
+            "name": "pm_erab_estab_att_added_ho_ongoing",
+            "expression": "SUM(EUtranCellFDD_1.pmCounters.pmErabEstabAttAddedHoOngoing.counterValue)",
+            "object_type": "INTEGER",
+            "aggregation_type": "SUM"
+          },
+          {
+            "name": "rrc_conn_estab_succ",
+            "expression": "SUM(EUtranCellFDD_1.pmCounters.pmRrcConnEstabSuccMod.counterValue) + SUM(EUtranCellFDD_1.pmCounters.pmRrcConnEstabSuccMoVoice.counterValue) + SUM(EUtranCellFDD_1.pmCounters.pmRrcConnEstabSuccMta.counterValue) + SUM(EUtranCellFDD_1.pmCounters.pmRrcConnEstabSuccHpa.counterValue)",
+            "object_type": "INTEGER",
+            "aggregation_type": "SUM"
+          },
+          {
+            "name": "rrc_conn_estab_att_reatt",
+            "expression": "SUM(EUtranCellFDD_1.pmCounters.pmRrcConnEstabAttReattMod.counterValue) + SUM(EUtranCellFDD_1.pmCounters.pmRrcConnEstabAttReattMoVoice.counterValue) + SUM(EUtranCellFDD_1.pmCounters.pmRrcConnEstabAttReattMta.counterValue) + SUM(EUtranCellFDD_1.pmCounters.pmRrcConnEstabAttReattHpa.counterValue)",
+            "object_type": "INTEGER",
+            "aggregation_type": "SUM"
+          },
+          {
+            "name": "rrc_conn_estab_att_int",
+            "expression": "SUM(EUtranCellFDD_1.pmCounters.pmRrcConnEstabAttMod.counterValue + EUtranCellFDD_1.pmCounters.pmRrcConnEstabAttMoVoice.counterValue + EUtranCellFDD_1.pmCounters.pmRrcConnEstabAttMta.counterValue + EUtranCellFDD_1.pmCounters.pmRrcConnEstabAttHpa.counterValue - COALESCE(EUtranCellFDD_1.pmCounters.pmRrcConnEstabFailMmeOvlMod.counterValue , 0))",
+            "object_type": "INTEGER",
+            "aggregation_type": "SUM"
+          },
+          {
+            "name": "s1_sig_conn_estab_succ",
+            "expression": "SUM(EUtranCellFDD_1.pmCounters.pmS1SigConnEstabSuccMod.counterValue) + SUM(EUtranCellFDD_1.pmCounters.pmS1SigConnEstabSuccMoVoice.counterValue) +  SUM(EUtranCellFDD_1.pmCounters.pmS1SigConnEstabSuccMta.counterValue) + SUM(EUtranCellFDD_1.pmCounters.pmS1SigConnEstabSuccHpa.counterValue)",
+            "object_type": "INTEGER",
+            "aggregation_type": "SUM"
+          },
+          {
+            "name": "s1_sig_conn_estab_att",
+            "expression": "SUM(EUtranCellFDD_1.pmCounters.pmS1SigConnEstabAttMod.counterValue) + SUM(EUtranCellFDD_1.pmCounters.pmS1SigConnEstabAttMoVoice.counterValue) +  SUM(EUtranCellFDD_1.pmCounters.pmS1SigConnEstabAttMta.counterValue) + SUM(EUtranCellFDD_1.pmCounters.pmS1SigConnEstabAttHpa.counterValue)",
+            "object_type": "INTEGER",
+            "aggregation_type": "SUM"
+          },
+          {
+            "name": "pm_erab_estab_succ_init_qci1",
+            "expression": "SUM(EUtranCellFDD_1.pmCounters.pmErabEstabSuccInitQci.counterValue[1])",
+            "object_type": "INTEGER",
+            "aggregation_type": "SUM"
+          },
+          {
+            "name": "pm_erab_estab_succ_added_qci1",
+            "expression": "SUM(EUtranCellFDD_1.pmCounters.pmErabEstabSuccAddedQci.counterValue[1])",
+            "object_type": "INTEGER",
+            "aggregation_type": "SUM"
+          },
+          {
+            "name": "pm_erab_estab_att_init_qci1",
+            "expression": "SUM(EUtranCellFDD_1.pmCounters.pmErabEstabAttInitQci.counterValue[1])",
+            "object_type": "INTEGER",
+            "aggregation_type": "SUM"
+          },
+          {
+            "name": "pm_erab_estab_att_added_qci1",
+            "expression": "SUM(EUtranCellFDD_1.pmCounters.pmErabEstabAttAddedQci.counterValue[1])",
+            "object_type": "INTEGER",
+            "aggregation_type": "SUM"
+          },
+          {
+            "name": "pm_erab_estab_att_added_ho_ongoing_qci1",
+            "expression": "SUM(EUtranCellFDD_1.pmCounters.pmErabEstabAttAddedHoOngoingQci.counterValue[1])",
+            "object_type": "INTEGER",
+            "aggregation_type": "SUM"
+          },
+          {
+            "name": "cell_prep_succ",
+            "expression": "SUM(EUtranCellFDD_1.pmCounters.pmCellHoPrepSuccLteIntraF.counterValue) + SUM(EUtranCellFDD_1.pmCounters.pmCellHoPrepSuccLteInterF.counterValue)",
+            "object_type": "INTEGER",
+            "aggregation_type": "SUM"
+          },
+          {
+            "name": "cell_prep_att",
+            "expression": "CASE WHEN SUM(EUtranCellFDD_1.pmCounters.pmHoPrepRejOutUlThres.counterValue) IS NULL THEN (SUM(EUtranCellFDD_1.pmCounters.pmCellHoPrepAttLteIntraF.counterValue) + SUM(EUtranCellFDD_1.pmCounters.pmCellHoPrepAttLteInterF.counterValue)) ELSE(SUM(EUtranCellFDD_1.pmCounters.pmCellHoPrepAttLteIntraF.counterValue) + SUM(EUtranCellFDD_1.pmCounters.pmCellHoPrepAttLteInterF.counterValue) - SUM(EUtranCellFDD_1.pmCounters.pmHoPrepRejOutUlThres.counterValue)) END",
+            "object_type": "INTEGER",
+            "aggregation_type": "SUM"
+          },
+          {
+            "name": "cell_exe_succ",
+            "expression": "SUM(EUtranCellFDD_1.pmCounters.pmCellHoExeSuccLteIntraF.counterValue) + SUM(EUtranCellFDD_1.pmCounters.pmCellHoExeSuccLteInterF.counterValue)",
+            "object_type": "INTEGER",
+            "aggregation_type": "SUM"
+          },
+          {
+            "name": "cell_exe_att",
+            "expression": "SUM(EUtranCellFDD_1.pmCounters.pmCellHoExeAttLteIntraF.counterValue) + SUM(EUtranCellFDD_1.pmCounters.pmCellHoExeAttLteInterF.counterValue)",
+            "object_type": "INTEGER",
+            "aggregation_type": "SUM"
+          },
+          {
+            "name": "pm_rrc_conn_estab_fail_mme_ovl_mod",
+            "expression": "CASE WHEN SUM(EUtranCellFDD_1.pmCounters.pmRrcConnEstabFailMmeOvlMod.counterValue) IS NULL THEN 0 ELSE SUM(EUtranCellFDD_1.pmCounters.pmRrcConnEstabFailMmeOvlMod.counterValue) END",
+            "object_type": "INTEGER",
+            "aggregation_type": "SUM"
+          },
+          {
+            "name": "pm_rrc_conn_estab_fail_mme_ovl_mos",
+            "expression": "CASE WHEN SUM(EUtranCellFDD_1.pmCounters.pmRrcConnEstabFailMmeOvlMos.counterValue) IS NULL THEN 0 ELSE SUM(EUtranCellFDD_1.pmCounters.pmRrcConnEstabFailMmeOvlMos.counterValue) END",
+            "object_type": "INTEGER",
+            "aggregation_type": "SUM"
+          },
+          {
+            "name": "pm_rrc_conn_estab_att_reatt",
+            "expression": "SUM(EUtranCellFDD_1.pmCounters.pmRrcConnEstabAttReatt.counterValue)",
+            "object_type": "INTEGER",
+            "aggregation_type": "SUM"
+          },
+          {
+            "name": "pm_rrc_conn_estab_att",
+            "expression": "SUM(EUtranCellFDD_1.pmCounters.pmRrcConnEstabAtt.counterValue)",
+            "object_type": "INTEGER",
+            "aggregation_type": "SUM"
+          },
+          {
+            "name": "pm_s1_sig_conn_estab_succ",
+            "expression": "SUM(EUtranCellFDD_1.pmCounters.pmS1SigConnEstabSucc.counterValue)",
+            "object_type": "INTEGER",
+            "aggregation_type": "SUM"
+          },
+          {
+            "name": "pm_rrc_conn_estab_succ",
+            "expression": "SUM(EUtranCellFDD_1.pmCounters.pmRrcConnEstabSucc.counterValue)",
+            "object_type": "INTEGER",
+            "aggregation_type": "SUM"
+          },
+          {
+            "name": "pm_erab_rel_mme",
+            "expression": "SUM(EUtranCellFDD_1.pmCounters.pmErabRelMme.counterValue)",
+            "object_type": "INTEGER",
+            "aggregation_type": "SUM"
+          },
+          {
+            "name": "pm_erab_rel_normal_enb",
+            "expression": "SUM(EUtranCellFDD_1.pmCounters.pmErabRelNormalEnb.counterValue)",
+            "object_type": "INTEGER",
+            "aggregation_type": "SUM"
+          },
+          {
+            "name": "pm_erab_rel_abnormal_enb",
+            "expression": "SUM(EUtranCellFDD_1.pmCounters.pmErabRelAbnormalEnb.counterValue)",
+            "object_type": "INTEGER",
+            "aggregation_type": "SUM"
+          },
+          {
+            "name": "pm_erab_rel_abnormal_mme_act",
+            "expression": "SUM(EUtranCellFDD_1.pmCounters.pmErabRelAbnormalMmeAct.counterValue)",
+            "object_type": "INTEGER",
+            "aggregation_type": "SUM"
+          },
+          {
+            "name": "pm_erab_rel_abnormal_enb_act",
+            "expression": "SUM(EUtranCellFDD_1.pmCounters.pmErabRelAbnormalEnbAct.counterValue)",
+            "object_type": "INTEGER",
+            "aggregation_type": "SUM"
+          },
+          {
+            "name": "pm_erab_rel_mme_qci1",
+            "expression": "SUM(EUtranCellFDD_1.pmCounters.pmErabRelMmeQci.counterValue[1])",
+            "object_type": "INTEGER",
+            "aggregation_type": "SUM"
+          },
+          {
+            "name": "pm_erab_rel_normal_enb_qci1",
+            "expression": "SUM(EUtranCellFDD_1.pmCounters.pmErabRelNormalEnbQci.counterValue[1])",
+            "object_type": "INTEGER",
+            "aggregation_type": "SUM"
+          },
+          {
+            "name": "pm_erab_rel_abnormal_enb_qci1",
+            "expression": "SUM(EUtranCellFDD_1.pmCounters.pmErabRelAbnormalEnbQci.counterValue[1])",
+            "object_type": "INTEGER",
+            "aggregation_type": "SUM"
+          },
+          {
+            "name": "pm_erab_rel_abnormal_mme_act_qci1",
+            "expression": "SUM(EUtranCellFDD_1.pmCounters.pmErabRelAbnormalMmeActQci.counterValue[1])",
+            "object_type": "INTEGER",
+            "aggregation_type": "SUM"
+          },
+          {
+            "name": "pm_erab_rel_abnormal_enb_act_qci1",
+            "expression": "SUM(EUtranCellFDD_1.pmCounters.pmErabRelAbnormalEnbActQci.counterValue[1])",
+            "object_type": "INTEGER",
+            "aggregation_type": "SUM"
+          },
+          {
+            "name": "pm_cell_downtime_auto_daily",
+            "expression": "SUM(EUtranCellFDD_1.pmCounters.pmCellDowntimeAuto.counterValue)",
+            "object_type": "INTEGER",
+            "aggregation_type": "SUM"
+          },
+          {
+            "name": "pm_cell_downtime_man_daily",
+            "expression": "SUM(EUtranCellFDD_1.pmCounters.pmCellDowntimeMan.counterValue)",
+            "object_type": "INTEGER",
+            "aggregation_type": "SUM"
+          },
+          {
+            "name": "pm_s1_sig_conn_estab_att",
+            "expression": "SUM(EUtranCellFDD_1.pmCounters.pmS1SigConnEstabAtt.counterValue)",
+            "object_type": "INTEGER",
+            "aggregation_type": "SUM"
+          }
+        ]
+      },
+      {
+        "aggregation_period": 1440,
+        "alias": "relation_guid_source_guid_target_guid",
+        "aggregation_elements": [
+          "EUtranCellRelation_1.nodeFDN",
+          "EUtranCellRelation_1.moFdn"
+        ],
+        "inp_data_identifier": "4G|PM_COUNTERS|EUtranCellRelation_1",
+        "kpi_definitions": [
+          {
+            "name": "source_cell_cgi_daily",
+            "expression": "FIRST('Equipment=1')",
+            "object_type": "STRING",
+            "aggregation_type": "FIRST"
+          },
+          {
+            "name": "intra_site",
+            "expression": "FIRST(CASE WHEN EUtranCellRelation_1.pmCounters.pmZtemporary72.counterValue = 1 THEN true ELSE false END, true)",
+            "object_type": "BOOLEAN",
+            "aggregation_type": "FIRST"
+          },
+          {
+            "name": "out_succ_ho_intraf",
+            "expression": "SUM(EUtranCellRelation_1.pmCounters.pmHoExeSuccLteIntraF.counterValue)",
+            "object_type": "INTEGER",
+            "aggregation_type": "SUM"
+          },
+          {
+            "name": "out_succ_ho_interf",
+            "expression": "SUM(EUtranCellRelation_1.pmCounters.pmHoExeSuccLteInterF.counterValue)",
+            "object_type": "INTEGER",
+            "aggregation_type": "SUM"
+          }
+        ]
+      },
+      {
+        "aggregation_period": 60,
+        "alias": "cell_sector",
+        "aggregation_elements": [
+          "EUtranCellFDD_1.nodeFDN",
+          "EUtranCellFDD_1.moFdn"
+        ],
+        "inp_data_identifier": "4G|PM_COUNTERS|EUtranCellFDD_1",
+        "exportable": true,
+        "kpi_definitions": [
+          {
+            "name": "pm_ue_throughput_vol_ul",
+            "expression": "SUM(EUtranCellFDD_1.pmCounters.pmZtemporary110.counterValue)",
+            "object_type": "LONG",
+            "aggregation_type": "SUM"
+          },
+          {
+            "name": "pm_ue_throughput_time_ul",
+            "expression": "SUM(EUtranCellFDD_1.pmCounters.pmZtemporary111.counterValue)",
+            "object_type": "LONG",
+            "aggregation_type": "SUM"
+          },
+          {
+            "name": "pm_ue_throughput_vol_minus_lasttti_dl",
+            "expression": "SUM(EUtranCellFDD_1.pmCounters.pmZtemporary112.counterValue - EUtranCellFDD_1.pmCounters.pmZtemporary113.counterValue)",
+            "object_type": "LONG",
+            "aggregation_type": "SUM"
+          },
+          {
+            "name": "pm_ue_throughput_time_dl",
+            "expression": "SUM(EUtranCellFDD_1.pmCounters.pmZtemporary114.counterValue)",
+            "object_type": "LONG",
+            "aggregation_type": "SUM"
+          }
+        ]
+      }
+    ]
+  },
+  "scheduled_complex": {
+    "kpi_output_tables": [
+      {
+        "alias": "cell_guid",
+        "aggregation_period": 60,
+        "data_reliability_offset": -15,
+        "aggregation_elements": [
+          "kpi_cell_guid_60.nodeFDN",
+          "kpi_cell_guid_60.moFdn"
+        ],
+        "kpi_definitions": [
+          {
+            "name": "distance_q1",
+            "aggregation_elements": [
+              "cell_guid.nodeFDN",
+              "cell_guid.moFdn"
+            ],
+            "expression": "FIRST(cell_guid.distance_q4, true) * 0.25 FROM kpi_inmemory://cell_guid",
+            "object_type": "FLOAT",
+            "aggregation_type": "FIRST",
+            "exportable": true,
+            "execution_group": "group1"
+          },
+          {
+            "name": "distance_q2",
+            "aggregation_elements": [
+              "cell_guid.nodeFDN",
+              "cell_guid.moFdn"
+            ],
+            "expression": "FIRST(cell_guid.distance_q4, true) * 0.5 FROM kpi_inmemory://cell_guid",
+            "object_type": "FLOAT",
+            "aggregation_type": "FIRST",
+            "exportable": true,
+            "execution_group": "group1"
+          },
+          {
+            "name": "distance_q3",
+            "aggregation_elements": [
+              "cell_guid.nodeFDN",
+              "cell_guid.moFdn"
+            ],
+            "expression": "FIRST(cell_guid.distance_q4, true) * 0.75 FROM kpi_inmemory://cell_guid",
+            "object_type": "FLOAT",
+            "aggregation_type": "FIRST",
+            "exportable": true,
+            "execution_group": "group1"
+          },
+          {
+            "name": "distance_q4",
+            "expression": "ARRAY_SIZE(FIRST(kpi_cell_guid_60.num_samples_ta_hourly, true)) FROM kpi_db://kpi_cell_guid_60",
+            "object_type": "FLOAT",
+            "aggregation_type": "FIRST",
+            "exportable": true,
+            "execution_group": "group1"
+          },
+          {
+            "name": "bin_q1",
+            "aggregation_elements": [
+              "cell_guid.nodeFDN",
+              "cell_guid.moFdn"
+            ],
+            "expression": "FIRST(cell_guid.distance_q4, true) * 0.25 FROM kpi_inmemory://cell_guid",
+            "object_type": "FLOAT",
+            "aggregation_type": "FIRST",
+            "execution_group": "group1"
+          },
+          {
+            "name": "bin_q2",
+            "aggregation_elements": [
+              "cell_guid.nodeFDN",
+              "cell_guid.moFdn"
+            ],
+            "expression": "FIRST(cell_guid.distance_q4, true) * 0.5 FROM kpi_inmemory://cell_guid",
+            "object_type": "FLOAT",
+            "aggregation_type": "FIRST",
+            "execution_group": "group1"
+          },
+          {
+            "name": "bin_q3",
+            "aggregation_elements": [
+              "cell_guid.nodeFDN",
+              "cell_guid.moFdn"
+            ],
+            "expression": "FIRST(cell_guid.distance_q4, true) * 0.75 FROM kpi_inmemory://cell_guid",
+            "object_type": "FLOAT",
+            "aggregation_type": "FIRST",
+            "execution_group": "group1"
+          },
+          {
+            "name": "bin_q4",
+            "aggregation_elements": [
+              "cell_guid.nodeFDN",
+              "cell_guid.moFdn"
+            ],
+            "expression": "FIRST(cell_guid.distance_q4, true) FROM kpi_inmemory://cell_guid",
+            "object_type": "FLOAT",
+            "aggregation_type": "FIRST",
+            "execution_group": "group1"
+          },
+          {
+            "name": "pmpdcchcceutil_0_19_distribution_product",
+            "expression": "SUM(kpi_cell_guid_60.pmpdcchcceutil_0_norm * 0.025) + SUM(kpi_cell_guid_60.pmpdcchcceutil_1_19_distribution_product) FROM kpi_db://kpi_cell_guid_60",
+            "object_type": "FLOAT",
+            "aggregation_type": "SUM",
+            "execution_group": "group1"
+          },
+          {
+            "name": "ca_adjustment_factor",
+            "expression": "FIRST(CASE WHEN kpi_cell_guid_60.mac_level_data_vol_dl_rate IS NOT NULL THEN LEAST(5, kpi_cell_guid_60.mac_level_data_vol_dl_rate) ELSE NULL END) FROM kpi_db://kpi_cell_guid_60",
+            "object_type": "FLOAT",
+            "aggregation_type": "FIRST",
+            "execution_group": "group1"
+          },
+          {
+            "name": "qci_samples_per_rop",
+            "expression": "FIRST(kpi_cell_guid_60.counter_cell_reliability_hourly * 9053) FROM kpi_db://kpi_cell_guid_60",
+            "object_type": "INTEGER",
+            "aggregation_type": "FIRST",
+            "execution_group": "group1"
+          },
+          {
+            "name": "cce_per_subframe",
+            "expression": "FIRST(kpi_cell_guid_60.no_of_trx_points, true) + FIRST(kpi_cell_guid_60.bandwidth, true) + FIRST(kpi_cell_guid_60.pdcch_cfi_mode, true) FROM kpi_db://kpi_cell_guid_60",
+            "object_type": "FLOAT",
+            "aggregation_type": "FIRST",
+            "execution_group": "group1"
+          },
+          {
+            "name": "tti_per_rop",
+            "aggregation_elements": [
+              "kpi_cell_guid_60.nodeFDN",
+              "kpi_cell_guid_60.moFdn"
+            ],
+            "expression": "FIRST(kpi_cell_guid_60.counter_cell_reliability_hourly * 900000) FROM kpi_db://kpi_cell_guid_60",
+            "object_type": "INTEGER",
+            "aggregation_type": "FIRST",
+            "execution_group": "group1"
+          },
+          {
+            "name": "cell_handover_success_rate_hourly",
+            "expression": "100 * (FIRST(kpi_cell_guid_60.cell_prep_succ_hourly) * FIRST(kpi_cell_guid_60.cell_exe_succ_hourly)) / ( FIRST(kpi_cell_guid_60.cell_prep_att_hourly) * FIRST(kpi_cell_guid_60.cell_exe_att_hourly)) FROM kpi_db://kpi_cell_guid_60",
+            "object_type": "FLOAT",
+            "aggregation_type": "FIRST",
+            "execution_group": "group1",
+            "exportable": true
+          },
+          {
+            "name": "initial_and_added_e_rab_establishment_sr_hourly",
+            "expression": "(100 * FIRST(kpi_cell_guid_60.pm_rrc_conn_estab_succ_hourly, true) * FIRST(kpi_cell_guid_60.pm_s1_sig_conn_estab_succ_hourly, true) * FIRST(kpi_cell_guid_60.erab_estab_succ_hourly, true)) / (FIRST(kpi_cell_guid_60.rrc_conn_estab_att_hourly, true) * FIRST(kpi_cell_guid_60.s1_sig_conn_estab_att_hourly, true) * FIRST(kpi_cell_guid_60.erab_estab_att_hourly, true)) FROM kpi_db://kpi_cell_guid_60",
+            "object_type": "FLOAT",
+            "aggregation_type": "FIRST",
+            "execution_group": "group1",
+            "exportable": true
+          },
+          {
+            "name": "e_rab_retainability_percentage_lost_qci1_hourly",
+            "expression": "100 * (FIRST(kpi_cell_guid_60.e_rab_retainability_percentage_lost_qci1_num, true)) / (FIRST(kpi_cell_guid_60.e_rab_retainability_percentage_lost_qci1_den, true)) FROM kpi_db://kpi_cell_guid_60",
+            "object_type": "FLOAT",
+            "aggregation_type": "FIRST",
+            "execution_group": "group1",
+            "exportable": true
+          },
+          {
+            "name": "double_count_factor_radio_tx_rank_distr",
+            "expression": "(FIRST(kpi_cell_guid_60.radio_tx_rank_distr[2]) + FIRST(kpi_cell_guid_60.radio_tx_rank_distr[4])) / (FIRST(kpi_cell_guid_60.radio_tx_rank_distr[2]) + FIRST(2 * kpi_cell_guid_60.radio_tx_rank_distr[4])) FROM kpi_db://kpi_cell_guid_60",
+            "object_type": "FLOAT",
+            "aggregation_type": "FIRST",
+            "execution_group": "group1"
+          },
+          {
+            "name": "subscription_ratio",
+            "expression": "0.001 * FIRST(kpi_cell_guid_60.sub_ratio_numerator) / FIRST(kpi_cell_guid_60.sub_ratio_denom) FROM kpi_db://kpi_cell_guid_60",
+            "object_type": "FLOAT",
+            "aggregation_type": "SUM",
+            "execution_group": "group1",
+            "exportable": true
+          },
+          {
+            "name": "connected_endc_users_hourly",
+            "expression": "FIRST(kpi_cell_guid_60.pm_flex_rrc_conn_sum) / FIRST(kpi_cell_guid_60.pm_rrc_conn_samp) FROM kpi_db://kpi_cell_guid_60",
+            "object_type": "FLOAT",
+            "aggregation_type": "FIRST",
+            "execution_group": "group1",
+            "exportable": true
+          },
+          {
+            "name": "connected_users_hourly",
+            "expression": "FIRST(kpi_cell_guid_60.pm_rrc_conn_lev_sum) / FIRST(kpi_cell_guid_60.pm_rrc_conn_lev_samp) FROM kpi_db://kpi_cell_guid_60",
+            "object_type": "FLOAT",
+            "aggregation_type": "FIRST",
+            "execution_group": "group1"
+          },
+          {
+            "name": "initial_and_added_e_rab_establishment_sr_for_qci1_hourly",
+            "expression": "100 * (FIRST(kpi_cell_guid_60.rrc_conn_estab_succ_hourly) * FIRST(kpi_cell_guid_60.s1_sig_conn_estab_succ_hourly) * FIRST(kpi_cell_guid_60.erab_estab_succ_qci1_hourly)) / (FIRST(kpi_cell_guid_60.rrc_conn_estab_att_int_hourly) * FIRST(kpi_cell_guid_60.s1_sig_conn_estab_attm_hourly) * FIRST(kpi_cell_guid_60.erab_estab_att_qci1_hourly)) FROM kpi_db://kpi_cell_guid_60",
+            "object_type": "FLOAT",
+            "aggregation_type": "FIRST",
+            "exportable": true,
+            "execution_group": "group1"
+          },
+          {
+            "name": "e_rab_retainability_percentage_lost_hourly",
+            "expression": "100 * FIRST(kpi_cell_guid_60.e_rab_retainability_percentage_lost_hourly_num, true) / FIRST(kpi_cell_guid_60.e_rab_retainability_percentage_lost_hourly_den, true)  FROM kpi_db://kpi_cell_guid_60",
+            "object_type": "FLOAT",
+            "aggregation_type": "FIRST",
+            "exportable": true,
+            "execution_group": "group1"
+          },
+          {
+            "name": "num_non_null_counters_count_app_coverage",
+            "expression": "SUM(kpi_cell_guid_60.num_non_null_counters_count_pmprbavaildl + kpi_cell_guid_60.num_non_null_counters_count_pmpdcchcceactivity + kpi_cell_guid_60.num_non_null_counters_count_pmpdcchcceutil + kpi_cell_guid_60.num_non_null_counters_count_pmprbuseddldtchfirsttransqci + kpi_cell_guid_60.num_non_null_counters_count_pmprbuseddlretrans + kpi_cell_guid_60.num_non_null_counters_count_pmprbuseddlfirsttrans + kpi_cell_guid_60.num_non_null_counters_count_pmactiveuedlsum + kpi_cell_guid_60.num_non_null_counters_count_pmradiothpvoldl + kpi_cell_guid_60.num_non_null_counters_count_pmradiothpvoldlscell + kpi_cell_guid_60.num_non_null_counters_count_pmactiveuedlsumqci + kpi_cell_guid_60.num_non_null_counters_count_pmradiouerepcqidistr + kpi_cell_guid_60.num_non_null_counters_count_pmradiouerepcqidistr2 + kpi_cell_guid_60.num_non_null_counters_count_pmradiotxrankdistr + kpi_cell_guid_60.num_non_null_counters_count_pmrrcconnlevsum + kpi_cell_guid_60.num_non_null_counters_count_pmrrcconnlevsamp) FROM kpi_db://kpi_cell_guid_60",
+            "object_type": "INTEGER",
+            "aggregation_type": "SUM",
+            "exportable": true,
+            "execution_group": "group1"
+          },
+          {
+            "name": "num_bad_samples_rsrp_ta_q4",
+            "expression": "ARRAY_SIZE(FIRST(kpi_cell_guid_60.num_samples_bad_rsrp_ta_hourly, true)) + CAST(CEIL(FIRST(kpi_cell_guid_60.bin_q3, true)) as int) + CAST(CEIL(FIRST(kpi_cell_guid_60.bin_q4, true)) as int) + FIRST(4) FROM kpi_db://kpi_cell_guid_60",
+            "object_type": "INTEGER",
+            "aggregation_type": "FIRST",
+            "exportable": true,
+            "execution_group": "group4"
+          },
+          {
+            "name": "num_bad_samples_rsrp_ta_q3",
+            "expression": "ARRAY_SIZE(FIRST(kpi_cell_guid_60.num_samples_bad_rsrp_ta_hourly, true)) + CAST(CEIL(FIRST(kpi_cell_guid_60.bin_q2, true)) as int) + CAST(CEIL(FIRST(kpi_cell_guid_60.bin_q3, true)) as int) + FIRST(3) FROM kpi_db://kpi_cell_guid_60",
+            "object_type": "INTEGER",
+            "aggregation_type": "FIRST",
+            "exportable": true,
+            "execution_group": "group4"
+          },
+          {
+            "name": "num_bad_samples_rsrp_ta_q2",
+            "expression": "ARRAY_SIZE(FIRST(kpi_cell_guid_60.num_samples_bad_rsrp_ta_hourly, true)) + CAST(CEIL(FIRST(kpi_cell_guid_60.bin_q1, true)) as int) + CAST(CEIL(FIRST(kpi_cell_guid_60.bin_q2, true)) as int) + FIRST(2) FROM kpi_db://kpi_cell_guid_60",
+            "object_type": "INTEGER",
+            "aggregation_type": "FIRST",
+            "exportable": true,
+            "execution_group": "group4"
+          },
+          {
+            "name": "num_bad_samples_rsrp_ta_q1",
+            "expression": "ARRAY_SIZE(FIRST(kpi_cell_guid_60.num_samples_bad_rsrp_ta_hourly, true)) + FIRST(0) + CAST(CEIL(FIRST(kpi_cell_guid_60.bin_q1, true)) as int) + FIRST(1) FROM kpi_db://kpi_cell_guid_60",
+            "object_type": "INTEGER",
+            "aggregation_type": "FIRST",
+            "exportable": true,
+            "execution_group": "group4"
+          },
+          {
+            "name": "num_samples_rsrp_ta_q4",
+            "expression": "ARRAY_SIZE(FIRST(kpi_cell_guid_60.num_samples_rsrp_ta_hourly, true)) + CAST(CEIL(FIRST(kpi_cell_guid_60.bin_q3, true)) as int) + CAST(CEIL(FIRST(kpi_cell_guid_60.bin_q4, true)) as int) + FIRST(4) FROM kpi_db://kpi_cell_guid_60",
+            "object_type": "INTEGER",
+            "aggregation_type": "FIRST",
+            "exportable": true,
+            "execution_group": "group4"
+          },
+          {
+            "name": "num_samples_rsrp_ta_q3",
+            "expression": "ARRAY_SIZE(FIRST(kpi_cell_guid_60.num_samples_rsrp_ta_hourly, true)) + CAST(CEIL(FIRST(kpi_cell_guid_60.bin_q2, true)) as int) + CAST(CEIL(FIRST(kpi_cell_guid_60.bin_q3, true)) as int) + FIRST(3) FROM kpi_db://kpi_cell_guid_60",
+            "object_type": "INTEGER",
+            "aggregation_type": "FIRST",
+            "exportable": true,
+            "execution_group": "group4"
+          },
+          {
+            "name": "num_samples_rsrp_ta_q2",
+            "expression": "ARRAY_SIZE(FIRST(kpi_cell_guid_60.num_samples_rsrp_ta_hourly, true)) + CAST(CEIL(FIRST(kpi_cell_guid_60.bin_q1, true)) as int) + CAST(CEIL(FIRST(kpi_cell_guid_60.bin_q2, true)) as int) + FIRST(2) FROM kpi_db://kpi_cell_guid_60",
+            "object_type": "INTEGER",
+            "aggregation_type": "FIRST",
+            "exportable": true,
+            "execution_group": "group4"
+          },
+          {
+            "name": "num_samples_rsrp_ta_q1",
+            "expression": "ARRAY_SIZE(FIRST(kpi_cell_guid_60.num_samples_rsrp_ta_hourly, true)) + FIRST(0) + CAST(CEIL(FIRST(kpi_cell_guid_60.bin_q1, true)) as int) + FIRST(1) FROM kpi_db://kpi_cell_guid_60",
+            "object_type": "INTEGER",
+            "aggregation_type": "FIRST",
+            "exportable": true,
+            "execution_group": "group4"
+          },
+          {
+            "name": "ul_pusch_sinr_hourly_interim",
+            "expression": "FIRST(kpi_cell_guid_60.ul_pusch_sinr_hourly_numerator) / FIRST(kpi_cell_guid_60.ul_pusch_sinr_hourly_denominator) FROM kpi_db://kpi_cell_guid_60",
+            "object_type": "FLOAT",
+            "aggregation_type": "FIRST",
+            "execution_group": "group1"
+          },
+          {
+            "name": "avg_dl_pdcp_throughput_cell",
+            "expression": "FIRST(kpi_cell_guid_60.dl_pdcp_ue_throughput_num_cell) * 1000 / FIRST(kpi_cell_guid_60.dl_pdcp_ue_throughput_den_cell) FROM kpi_db://kpi_cell_guid_60",
+            "object_type": "FLOAT",
+            "aggregation_type": "FIRST",
+            "exportable": true,
+            "execution_group": "group1"
+          },
+          {
+            "name": "avg_ul_pdcp_ue_throughput_cell",
+            "expression": "1000 * FIRST(kpi_cell_guid_60.ul_pdcp_ue_throughput_num_cell) / FIRST(kpi_cell_guid_60.ul_pdcp_ue_throughput_den_cell) FROM kpi_db://kpi_cell_guid_60",
+            "object_type": "FLOAT",
+            "aggregation_type": "FIRST",
+            "exportable": true,
+            "execution_group": "group1"
+          },
+          {
+            "name": "endc_spid115_ues",
+            "expression": "FIRST(kpi_cell_guid_60.pm_flex_rrc_conn_sum_spid) / FIRST(kpi_cell_guid_60.pm_rrc_conn_samp) FROM kpi_db://kpi_cell_guid_60",
+            "object_type": "FLOAT",
+            "aggregation_type": "FIRST",
+            "exportable": true,
+            "execution_group": "group1"
+          },
+          {
+            "name": "pdcchcceutil",
+            "expression": "FIRST(kpi_cell_guid_60.pmpdcchcceutil_0_19_distribution_product) / FIRST(kpi_cell_guid_60.pmpdcchcceactivity_sum_den) FROM kpi_db://kpi_cell_guid_60",
+            "object_type": "FLOAT",
+            "aggregation_type": "FIRST",
+            "execution_group": "group2"
+          },
+          {
+            "name": "available_prbs",
+            "expression": "FIRST(kpi_cell_guid_60.dlprbstot) - FIRST(kpi_cell_guid_60.volteprbsdl) FROM kpi_db://kpi_cell_guid_60",
+            "object_type": "FLOAT",
+            "aggregation_type": "FIRST",
+            "execution_group": "group4"
+          },
+          {
+            "name": "active_ues_mbb",
+            "expression": "FIRST(CASE WHEN (kpi_cell_guid_60.active_ues_dl) < (kpi_cell_guid_60.active_ues_volte_dl) THEN (kpi_cell_guid_60.active_ues_dl) ELSE (kpi_cell_guid_60.active_ues_dl) - (kpi_cell_guid_60.active_ues_volte_dl) END) FROM kpi_db://kpi_cell_guid_60",
+            "object_type": "FLOAT",
+            "aggregation_type": "FIRST",
+            "execution_group": "group4"
+          },
+          {
+            "name": "sum_active_ues_in_dl_per_no_of_rops",
+            "expression": "FIRST(kpi_cell_guid_60.sum_active_ues_in_dl) / FIRST(kpi_cell_guid_60.tti_per_rop) FROM kpi_db://kpi_cell_guid_60",
+            "object_type": "FLOAT",
+            "aggregation_type": "FIRST",
+            "execution_group": "group2"
+          },
+          {
+            "name": "volteprbsdl",
+            "expression": "FIRST(kpi_cell_guid_60.volteprbsdl_numerator_qci) * FIRST(kpi_cell_guid_60.volteprbsdl_numerator_transmissions) / FIRST(kpi_cell_guid_60.tti_per_rop) FROM kpi_db://kpi_cell_guid_60",
+            "object_type": "FLOAT",
+            "aggregation_type": "FIRST",
+            "execution_group": "group2"
+          },
+          {
+            "name": "active_ues_volte_dl",
+            "expression": "FIRST(kpi_cell_guid_60.num_active_ue_dl_sum_qci) / FIRST(kpi_cell_guid_60.qci_samples_per_rop) FROM kpi_db://kpi_cell_guid_60",
+            "object_type": "FLOAT",
+            "aggregation_type": "FIRST",
+            "execution_group": "group2"
+          },
+          {
+            "name": "dlprbstot",
+            "expression": "FIRST(kpi_cell_guid_60.prb_pairs_available) / FIRST(kpi_cell_guid_60.tti_per_rop) FROM kpi_db://kpi_cell_guid_60",
+            "object_type": "FLOAT",
+            "aggregation_type": "FIRST",
+            "execution_group": "group2"
+          },
+          {
+            "name": "num_ue_samples_q1",
+            "aggregation_elements": [
+              "kpi_cell_guid_60.nodeFDN",
+              "kpi_cell_guid_60.moFdn"
+            ],
+            "expression": "ARRAY_SIZE(FIRST(kpi_cell_guid_60.num_samples_ta_hourly, true)) + FIRST(0) + CEIL(FIRST(kpi_cell_guid_60.bin_q1, true)) + FIRST(1) FROM kpi_db://kpi_cell_guid_60",
+            "object_type": "INTEGER",
+            "aggregation_type": "FIRST",
+            "exportable": true,
+            "execution_group": "group2"
+          },
+          {
+            "name": "num_ue_samples_q2",
+            "aggregation_elements": [
+              "kpi_cell_guid_60.nodeFDN",
+              "kpi_cell_guid_60.moFdn"
+            ],
+            "expression": "ARRAY_SIZE(FIRST(kpi_cell_guid_60.num_samples_ta_hourly, true)) + CEIL(FIRST(kpi_cell_guid_60.bin_q1, true)) + CEIL(FIRST(kpi_cell_guid_60.bin_q2, true)) + FIRST(2) FROM kpi_db://kpi_cell_guid_60",
+            "object_type": "INTEGER",
+            "aggregation_type": "FIRST",
+            "exportable": true,
+            "execution_group": "group2"
+          },
+          {
+            "name": "num_ue_samples_q3",
+            "aggregation_elements": [
+              "kpi_cell_guid_60.nodeFDN",
+              "kpi_cell_guid_60.moFdn"
+            ],
+            "expression": "ARRAY_SIZE(FIRST(kpi_cell_guid_60.num_samples_ta_hourly, true)) + CEIL(FIRST(kpi_cell_guid_60.bin_q2, true)) + CEIL(FIRST(kpi_cell_guid_60.bin_q3, true)) + FIRST(3) FROM kpi_db://kpi_cell_guid_60",
+            "object_type": "INTEGER",
+            "aggregation_type": "FIRST",
+            "exportable": true,
+            "execution_group": "group2"
+          },
+          {
+            "name": "num_ue_samples_q4",
+            "aggregation_elements": [
+              "kpi_cell_guid_60.nodeFDN",
+              "kpi_cell_guid_60.moFdn"
+            ],
+            "expression": "ARRAY_SIZE(FIRST(kpi_cell_guid_60.num_samples_ta_hourly, true)) + CEIL(FIRST(kpi_cell_guid_60.bin_q3, true)) + CEIL(FIRST(kpi_cell_guid_60.bin_q4, true)) + FIRST(4) FROM kpi_db://kpi_cell_guid_60",
+            "object_type": "INTEGER",
+            "aggregation_type": "FIRST",
+            "exportable": true,
+            "execution_group": "group2"
+          },
+          {
+            "name": "ue_total_samples_denominator",
+            "aggregation_elements": [
+              "cell_guid.nodeFDN",
+              "cell_guid.moFdn"
+            ],
+            "expression": "FIRST(cell_guid.num_ue_samples_q1, true) + FIRST(cell_guid.num_ue_samples_q2, true) + FIRST(cell_guid.num_ue_samples_q3, true) + FIRST(cell_guid.num_ue_samples_q4, true) FROM kpi_inmemory://cell_guid",
+            "object_type": "INTEGER",
+            "aggregation_type": "FIRST",
+            "execution_group": "group2"
+          },
+          {
+            "name": "ue_percentage_q1",
+            "aggregation_elements": [
+              "cell_guid.nodeFDN",
+              "cell_guid.moFdn"
+            ],
+            "expression": "FIRST(100) * FIRST(cell_guid.num_ue_samples_q1, true) / FIRST(cell_guid.ue_total_samples_denominator, true) FROM kpi_post_agg://cell_guid",
+            "object_type": "FLOAT",
+            "aggregation_type": "FIRST",
+            "exportable": true,
+            "execution_group": "group2"
+          },
+          {
+            "name": "ue_percentage_q2",
+            "aggregation_elements": [
+              "cell_guid.nodeFDN",
+              "cell_guid.moFdn"
+            ],
+            "expression": "FIRST(100) * FIRST(cell_guid.num_ue_samples_q2, true) / FIRST(cell_guid.ue_total_samples_denominator, true) FROM kpi_post_agg://cell_guid",
+            "object_type": "FLOAT",
+            "aggregation_type": "FIRST",
+            "exportable": true,
+            "execution_group": "group2"
+          },
+          {
+            "name": "ue_percentage_q3",
+            "aggregation_elements": [
+              "cell_guid.nodeFDN",
+              "cell_guid.moFdn"
+            ],
+            "expression": "FIRST(100) * FIRST(cell_guid.num_ue_samples_q3, true) / FIRST(cell_guid.ue_total_samples_denominator, true) FROM kpi_post_agg://cell_guid",
+            "object_type": "FLOAT",
+            "aggregation_type": "FIRST",
+            "exportable": true,
+            "execution_group": "group2"
+          },
+          {
+            "name": "ue_percentage_q4",
+            "aggregation_elements": [
+              "cell_guid.nodeFDN",
+              "cell_guid.moFdn"
+            ],
+            "expression": "FIRST(100) * FIRST(cell_guid.num_ue_samples_q4, true) / FIRST(cell_guid.ue_total_samples_denominator, true) FROM kpi_post_agg://cell_guid",
+            "object_type": "FLOAT",
+            "aggregation_type": "FIRST",
+            "exportable": true,
+            "execution_group": "group2"
+          },
+          {
+            "name": "bad_rsrp_percentage_q4",
+            "aggregation_elements": [
+              "cell_guid.nodeFDN",
+              "cell_guid.moFdn"
+            ],
+            "expression": "FIRST(100) * FIRST(cell_guid.num_bad_samples_rsrp_ta_q4, true) / FIRST(cell_guid.num_samples_rsrp_ta_q4, true) FROM kpi_inmemory://cell_guid",
+            "object_type": "FLOAT",
+            "aggregation_type": "FIRST",
+            "exportable": true,
+            "execution_group": "group4"
+          },
+          {
+            "name": "bad_rsrp_percentage_q3",
+            "aggregation_elements": [
+              "cell_guid.nodeFDN",
+              "cell_guid.moFdn"
+            ],
+            "expression": "FIRST(100) * FIRST(cell_guid.num_bad_samples_rsrp_ta_q3, true) / FIRST(cell_guid.num_samples_rsrp_ta_q3, true) FROM kpi_inmemory://cell_guid",
+            "object_type": "FLOAT",
+            "aggregation_type": "FIRST",
+            "exportable": true,
+            "execution_group": "group4"
+          },
+          {
+            "name": "bad_rsrp_percentage_q2",
+            "aggregation_elements": [
+              "cell_guid.nodeFDN",
+              "cell_guid.moFdn"
+            ],
+            "expression": "FIRST(100) * FIRST(cell_guid.num_bad_samples_rsrp_ta_q2, true) / FIRST(cell_guid.num_samples_rsrp_ta_q2, true) FROM kpi_inmemory://cell_guid",
+            "object_type": "FLOAT",
+            "aggregation_type": "FIRST",
+            "exportable": true,
+            "execution_group": "group4"
+          },
+          {
+            "name": "bad_rsrp_percentage_q1",
+            "aggregation_elements": [
+              "cell_guid.nodeFDN",
+              "cell_guid.moFdn"
+            ],
+            "expression": "FIRST(100) * FIRST(cell_guid.num_bad_samples_rsrp_ta_q1, true) / FIRST(cell_guid.num_samples_rsrp_ta_q1, true) FROM kpi_inmemory://cell_guid",
+            "object_type": "FLOAT",
+            "aggregation_type": "FIRST",
+            "exportable": true,
+            "execution_group": "group4"
+          },
+          {
+            "name": "ul_pusch_sinr_hourly",
+            "expression": "CAST(CEIL(FIRST(kpi_cell_guid_60.ul_pusch_sinr_hourly_interim)) as int) FROM kpi_db://kpi_cell_guid_60",
+            "object_type": "INTEGER",
+            "aggregation_type": "FIRST",
+            "exportable": true,
+            "execution_group": "group2"
+          },
+          {
+            "name": "per_endc_den",
+            "expression": "FIRST(kpi_cell_guid_60.connected_users_hourly) * FIRST(kpi_cell_guid_60.pm_rrc_conn_samp) FROM kpi_db://kpi_cell_guid_60",
+            "object_type": "FLOAT",
+            "aggregation_type": "FIRST",
+            "exportable": true,
+            "execution_group": "group2"
+          },
+          {
+            "name": "resource_elements_per_prb_interim_mode_4_5_num_den",
+            "expression": "36 * FIRST(kpi_cell_guid_60.pdcchcceutil) * FIRST(kpi_cell_guid_60.cce_per_subframe) / FIRST(kpi_cell_guid_60.dlprbstot) FROM kpi_db://kpi_cell_guid_60",
+            "object_type": "FLOAT",
+            "aggregation_type": "FIRST",
+            "execution_group": "group3"
+          },
+          {
+            "name": "available_prbs_per_user",
+            "aggregation_elements": [
+              "cell_guid.nodeFDN",
+              "cell_guid.moFdn"
+            ],
+            "expression": "FIRST(cell_guid.available_prbs) / (1 + FIRST(cell_guid.active_ues_mbb)) FROM kpi_inmemory://cell_guid",
+            "object_type": "FLOAT",
+            "aggregation_type": "FIRST",
+            "execution_group": "group4"
+          },
+          {
+            "name": "cqi",
+            "expression": "FIRST(CASE WHEN kpi_cell_guid_60.double_count_factor_radio_tx_rank_distr IS NULL THEN NULL ELSE CONCAT(ZIP_WITH( kpi_cell_guid_60.cqi1, TRANSFORM( kpi_cell_guid_60.cqi2, x -> x * kpi_cell_guid_60.double_count_factor_radio_tx_rank_distr), (cqi1Value,cCqi2Value) -> if (cqi1Value-cCqi2Value < 0, 0, cqi1Value-cCqi2Value)), TRANSFORM( kpi_cell_guid_60.cqi2, x -> x * kpi_cell_guid_60.double_count_factor_radio_tx_rank_distr) ) END) FROM kpi_db://kpi_cell_guid_60",
+            "object_type": "FLOAT[30]",
+            "aggregation_type": "FIRST",
+            "execution_group": "group2"
+          },
+          {
+            "name": "percentage_endc_users",
+            "expression": "100 * FIRST(kpi_cell_guid_60.connected_endc_users_hourly) / FIRST(kpi_cell_guid_60.connected_users_hourly) FROM kpi_db://kpi_cell_guid_60",
+            "object_type": "FLOAT",
+            "aggregation_type": "FIRST",
+            "execution_group": "group2",
+            "exportable": true
+          },
+          {
+            "name": "resource_elements_per_prb_interim_mode_4_5",
+            "expression": "149.7 - FIRST(kpi_cell_guid_60.resource_elements_per_prb_interim_mode_4_5_num_den) FROM kpi_db://kpi_cell_guid_60",
+            "object_type": "FLOAT",
+            "aggregation_type": "FIRST",
+            "execution_group": "group4"
+          },
+          {
+            "name": "cqi_sum",
+            "expression": "FIRST(aggregate(kpi_cell_guid_60.cqi, double(0), (acc, x) -> acc + x)) FROM kpi_db://kpi_cell_guid_60",
+            "object_type": "FLOAT",
+            "aggregation_type": "FIRST",
+            "execution_group": "group3"
+          },
+          {
+            "name": "active_ues_dl",
+            "expression": "FIRST(kpi_cell_guid_60.ca_adjustment_factor) * FIRST(kpi_cell_guid_60.sum_active_ues_in_dl_per_no_of_rops) FROM kpi_db://kpi_cell_guid_60",
+            "object_type": "FLOAT",
+            "aggregation_type": "FIRST",
+            "execution_group": "group3"
+          },
+          {
+            "name": "resource_elements_per_prb_mode_4",
+            "aggregation_elements": [
+              "cell_guid.nodeFDN",
+              "cell_guid.moFdn"
+            ],
+            "expression": "FIRST(CASE WHEN cell_guid.resource_elements_per_prb_interim_mode_4_5 IS NOT NULL THEN GREATEST(LEAST(141.8, cell_guid.resource_elements_per_prb_interim_mode_4_5), 129.8) ELSE NULL END) FROM kpi_inmemory://cell_guid",
+            "object_type": "FLOAT",
+            "aggregation_type": "FIRST",
+            "execution_group": "group4"
+          },
+          {
+            "name": "resource_elements_per_prb_mode_5",
+            "aggregation_elements": [
+              "cell_guid.nodeFDN",
+              "cell_guid.moFdn"
+            ],
+            "expression": "FIRST(CASE WHEN cell_guid.resource_elements_per_prb_interim_mode_4_5 IS NOT NULL THEN GREATEST(LEAST(141.8, cell_guid.resource_elements_per_prb_interim_mode_4_5), 117.8) ELSE NULL END) FROM kpi_inmemory://cell_guid",
+            "object_type": "FLOAT",
+            "aggregation_type": "FIRST",
+            "execution_group": "group4"
+          },
+          {
+            "name": "resource_elements_per_prb",
+            "aggregation_elements": [
+              "kpi_cell_guid_60.nodeFDN",
+              "kpi_cell_guid_60.moFdn"
+            ],
+            "expression": "FIRST(CASE WHEN kpi_cell_guid_60.pdcch_cfi_mode = 0 AND kpi_cell_guid_60.bandwidth > 10000 THEN 141.8 WHEN kpi_cell_guid_60.pdcch_cfi_mode = 0 AND kpi_cell_guid_60.bandwidth <= 10000 THEN 129.8 WHEN kpi_cell_guid_60.pdcch_cfi_mode = 1 THEN 141.8 WHEN kpi_cell_guid_60.pdcch_cfi_mode = 2 THEN 129.8 WHEN kpi_cell_guid_60.pdcch_cfi_mode = 3 THEN 117.8 WHEN kpi_cell_guid_60.pdcch_cfi_mode = 4 THEN kpi_cell_guid_60.resource_elements_per_prb_mode_4  WHEN kpi_cell_guid_60.pdcch_cfi_mode = 5 THEN kpi_cell_guid_60.resource_elements_per_prb_mode_5 END) FROM kpi_db://kpi_cell_guid_60",
+            "object_type": "FLOAT",
+            "aggregation_type": "FIRST",
+            "execution_group": "group4"
+          },
+          {
+            "name": "interim_kpi_prbs_and_elements_per_user",
+            "aggregation_elements": [
+              "cell_guid.nodeFDN",
+              "cell_guid.moFdn"
+            ],
+            "expression": "(1 * 0.9 * FIRST(cell_guid.available_prbs_per_user) * FIRST(cell_guid.resource_elements_per_prb)) / 1000 FROM kpi_inmemory://cell_guid",
+            "object_type": "FLOAT",
+            "aggregation_type": "FIRST",
+            "execution_group": "group4"
+          },
+          {
+            "name": "achievable_throughput_dist",
+            "aggregation_elements": [
+              "cell_guid.nodeFDN",
+              "cell_guid.moFdn"
+            ],
+            "expression": "FIRST(CASE WHEN cell_guid.interim_kpi_prbs_and_elements_per_user IS NULL THEN NULL ELSE TRANSFORM(array(0.152, 0.234, 0.377, 0.602, 0.877, 1.176, 1.477, 1.914, 2.406, 2.730, 3.322, 3.902, 4.523, 5.115, 5.555, 0.305, 0.469, 0.754, 1.203, 1.754, 2.352, 2.953, 3.828, 4.812, 5.461, 6.645, 7.805, 9.047, 10.230, 11.109), x -> x * cell_guid.interim_kpi_prbs_and_elements_per_user) END) FROM kpi_inmemory://cell_guid",
+            "object_type": "FLOAT[30]",
+            "aggregation_type": "FIRST",
+            "execution_group": "group4"
+          }
+        ]
+      },
+      {
+        "alias": "cell_sector",
+        "aggregation_period": 60,
+        "data_reliability_offset": -15,
+        "aggregation_elements": [
+          "kpi_cell_guid_60.nodeFDN",
+          "kpi_cell_guid_60.moFdn"
+        ],
+        "kpi_definitions": [
+          {
+            "name": "num_calls_cell_sector_hourly",
+            "expression": "SUM(kpi_cell_guid_60.num_calls_cell_hourly) FROM kpi_db://kpi_cell_guid_60  INNER JOIN kpi_db://kpi_cell_sector_60 ON kpi_cell_guid_60.nodeFDN = kpi_cell_sector_60.nodeFDN AND kpi_cell_guid_60.moFdn = kpi_cell_sector_60.moFdn",
+            "object_type": "INTEGER",
+            "aggregation_type": "SUM",
+            "execution_group": "group3"
+          }
+        ]
+      },
+      {
+        "alias": "sector",
+        "aggregation_period": 60,
+        "data_reliability_offset": -15,
+        "aggregation_elements": [
+          "kpi_sector_60.nodeFDN",
+          "kpi_sector_60.moFdn"
+        ],
+        "kpi_definitions": [
+          {
+            "name": "num_calls_sector_hourly",
+            "aggregation_elements": [
+              "cell_sector.nodeFDN"
+            ],
+            "expression": "SUM(cell_sector.num_calls_cell_sector_hourly) FROM kpi_inmemory://cell_sector",
+            "object_type": "INTEGER",
+            "aggregation_type": "SUM",
+            "exportable": true,
+            "execution_group": "group3"
+          },
+          {
+            "name": "ul_pdcp_ue_throughput_num_sector",
+            "aggregation_elements": [
+              "kpi_cell_sector_60.nodeFDN"
+            ],
+            "expression": "SUM(kpi_cell_sector_60.pm_ue_throughput_vol_ul) FROM kpi_db://kpi_cell_sector_60",
+            "object_type": "LONG",
+            "aggregation_type": "SUM",
+            "exportable": true,
+            "execution_group": "group3"
+          },
+          {
+            "name": "ul_pdcp_ue_throughput_den_sector",
+            "aggregation_elements": [
+              "kpi_cell_sector_60.nodeFDN"
+            ],
+            "expression": "SUM(kpi_cell_sector_60.pm_ue_throughput_time_ul) FROM kpi_db://kpi_cell_sector_60",
+            "object_type": "LONG",
+            "aggregation_type": "SUM",
+            "exportable": true,
+            "execution_group": "group3"
+          },
+          {
+            "name": "avg_ul_pdcp_throughput_sector",
+            "aggregation_elements": [
+              "sector.nodeFDN"
+            ],
+            "expression": "FIRST(sector.ul_pdcp_ue_throughput_num_sector) * 1000 / FIRST(sector.ul_pdcp_ue_throughput_den_sector) FROM kpi_inmemory://sector",
+            "object_type": "FLOAT",
+            "aggregation_type": "FIRST",
+            "exportable": true,
+            "execution_group": "group3"
+          },
+          {
+            "name": "dl_pdcp_ue_throughput_num_sector",
+            "aggregation_elements": [
+              "kpi_cell_sector_60.nodeFDN"
+            ],
+            "expression": "SUM(kpi_cell_sector_60.pm_ue_throughput_vol_minus_lasttti_dl) FROM kpi_db://kpi_cell_sector_60",
+            "object_type": "LONG",
+            "aggregation_type": "SUM",
+            "exportable": true,
+            "execution_group": "group3"
+          },
+          {
+            "name": "dl_pdcp_ue_throughput_den_sector",
+            "aggregation_elements": [
+              "kpi_cell_sector_60.nodeFDN"
+            ],
+            "expression": "SUM(kpi_cell_sector_60.pm_ue_throughput_time_dl) FROM kpi_db://kpi_cell_sector_60",
+            "object_type": "LONG",
+            "aggregation_type": "SUM",
+            "exportable": true,
+            "execution_group": "group3"
+          },
+          {
+            "name": "avg_dl_pdcp_throughput_sector",
+            "aggregation_elements": [
+              "sector.nodeFDN"
+            ],
+            "expression": "FIRST(sector.dl_pdcp_ue_throughput_num_sector) * 1000 / FIRST(sector.dl_pdcp_ue_throughput_den_sector) FROM kpi_inmemory://sector",
+            "object_type": "FLOAT",
+            "aggregation_type": "FIRST",
+            "exportable": true,
+            "execution_group": "group3"
+          }
+        ]
+      },
+      {
+        "alias": "cell_guid",
+        "aggregation_period": 1440,
+        "data_reliability_offset": -15,
+        "aggregation_elements": [
+          "kpi_cell_guid_1440.nodeFDN",
+          "kpi_cell_guid_1440.moFdn"
+        ],
+        "kpi_definitions": [
+          {
+            "name": "rrc_conn_estab_att",
+            "expression": "SUM(kpi_cell_guid_1440.rrc_conn_estab_att_int) - SUM(kpi_cell_guid_1440.rrc_conn_estab_att_reatt) FROM kpi_db://kpi_cell_guid_1440",
+            "object_type": "FLOAT",
+            "aggregation_type": "SUM",
+            "execution_group": "group1"
+          },
+          {
+            "name": "contiguity",
+            "aggregation_elements": [
+              "kpi_relation_guid_source_guid_target_guid_1440.nodeFDN",
+              "kpi_relation_guid_source_guid_target_guid_1440.moFdn"
+            ],
+            "expression": "100 * (SUM(kpi_relation_guid_source_guid_target_guid_1440.out_succ_ho_intraf)) / (SUM(kpi_relation_guid_source_guid_target_guid_1440.out_succ_ho_intraf) + SUM(kpi_relation_guid_source_guid_target_guid_1440.out_succ_ho_interf)) FROM kpi_db://kpi_relation_guid_source_guid_target_guid_1440 WHERE kpi_relation_guid_source_guid_target_guid_1440.intra_site = true OR kpi_relation_guid_source_guid_target_guid_1440.intra_site IS NULL",
+            "object_type": "FLOAT",
+            "aggregation_type": "FIRST",
+            "exportable": true,
+            "execution_group": "group1"
+          },
+          {
+            "name": "initial_and_added_e_rab_establishment_sr",
+            "expression": "100 * ((FIRST( kpi_cell_guid_1440.pm_rrc_conn_estab_succ, true ) * 0.01) * (FIRST( kpi_cell_guid_1440.pm_s1_sig_conn_estab_succ, true) * 0.01) * ((FIRST( kpi_cell_guid_1440.num_calls_daily, true ) * 0.01) + (FIRST(kpi_cell_guid_1440.pm_erab_estab_succ_added, true ) * 0.01))) / (((FIRST(kpi_cell_guid_1440.pm_rrc_conn_estab_att, true ) * 0.01) - (FIRST(kpi_cell_guid_1440.pm_rrc_conn_estab_att_reatt, true) * 0.01) - (FIRST( kpi_cell_guid_1440.pm_rrc_conn_estab_fail_mme_ovl_mos, true ) * 0.01) - (FIRST( kpi_cell_guid_1440.pm_rrc_conn_estab_fail_mme_ovl_mod, true ) * 0.01)) * ((FIRST( kpi_cell_guid_1440.pm_s1_sig_conn_estab_att, true ) * 0.01) - (FIRST( kpi_cell_guid_1440.pm_s1_sig_conn_estab_fail_mme_ovl_mos, true ) * 0.01)) * ((FIRST( kpi_cell_guid_1440.pm_erab_estab_att_init, true ) * 0.01) + (FIRST( kpi_cell_guid_1440.pm_erab_estab_att_added, true ) * 0.01) - (FIRST( kpi_cell_guid_1440.pm_erab_estab_att_added_ho_ongoing, true ) * 0.01))) FROM kpi_db://kpi_cell_guid_1440",
+            "object_type": "REAL",
+            "aggregation_type": "FIRST",
+            "exportable": true,
+            "execution_group": "group1"
+          },
+          {
+            "name": "e_rab_retainability_percentage_lost_qci1",
+            "expression": "100 * ( FIRST(kpi_cell_guid_1440.pm_erab_rel_abnormal_enb_act_qci1, true) + FIRST(kpi_cell_guid_1440.pm_erab_rel_abnormal_mme_act_qci1, true) ) / ( FIRST(kpi_cell_guid_1440.pm_erab_rel_abnormal_enb_qci1, true) + FIRST(kpi_cell_guid_1440.pm_erab_rel_normal_enb_qci1, true) + FIRST(kpi_cell_guid_1440.pm_erab_rel_mme_qci1, true) )  FROM kpi_db://kpi_cell_guid_1440",
+            "object_type": "FLOAT",
+            "aggregation_type": "FIRST",
+            "exportable": true,
+            "execution_group": "group1"
+          },
+          {
+            "name": "initial_and_added_e_rab_establishment_sr_for_qci1",
+            "expression": "100 * ((FIRST(kpi_cell_guid_1440.rrc_conn_estab_succ) * 0.01) * (FIRST(kpi_cell_guid_1440.s1_sig_conn_estab_succ) * 0.01) * ((FIRST(kpi_cell_guid_1440.pm_erab_estab_succ_init_qci1) * 0.01) + (FIRST(kpi_cell_guid_1440.pm_erab_estab_succ_added_qci1) * 0.01))) / ( (FIRST(kpi_cell_guid_1440.rrc_conn_estab_att) * 0.01) * (FIRST(kpi_cell_guid_1440.s1_sig_conn_estab_att) * 0.01) * ((FIRST(kpi_cell_guid_1440.pm_erab_estab_att_init_qci1) * 0.01) + (FIRST(kpi_cell_guid_1440.pm_erab_estab_att_added_qci1) * 0.01) - (FIRST(kpi_cell_guid_1440.pm_erab_estab_att_added_ho_ongoing_qci1) * 0.01))) FROM kpi_db://kpi_cell_guid_1440",
+            "object_type": "REAL",
+            "aggregation_type": "FIRST",
+            "exportable": true,
+            "execution_group": "group2"
+          },
+          {
+            "name": "e_rab_retainability_percentage_lost",
+            "expression": "100 * (FIRST(kpi_cell_guid_1440.pm_erab_rel_abnormal_enb_act) + FIRST(kpi_cell_guid_1440.pm_erab_rel_abnormal_mme_act) ) / ( FIRST(kpi_cell_guid_1440.pm_erab_rel_abnormal_enb) + FIRST(kpi_cell_guid_1440.pm_erab_rel_normal_enb) + FIRST(kpi_cell_guid_1440.pm_erab_rel_mme)) FROM kpi_db://kpi_cell_guid_1440",
+            "object_type": "FLOAT",
+            "aggregation_type": "FIRST",
+            "exportable": true,
+            "execution_group": "group1"
+          },
+          {
+            "name": "cell_handover_success_rate",
+            "expression": "100 * (FIRST(kpi_cell_guid_1440.cell_prep_succ) * FIRST(kpi_cell_guid_1440.cell_exe_succ)) / ( FIRST(kpi_cell_guid_1440.cell_prep_att) * FIRST(kpi_cell_guid_1440.cell_exe_att)) FROM kpi_db://kpi_cell_guid_1440",
+            "object_type": "FLOAT",
+            "aggregation_type": "FIRST",
+            "exportable": true,
+            "execution_group": "group1"
+          }
+        ]
+      },
+      {
+        "alias": "relation_guid_source_guid_target_guid",
+        "aggregation_period": 1440,
+        "data_reliability_offset": -15,
+        "aggregation_elements": [
+          "kpi_cell_guid_1440.nodeFDN",
+          "kpi_cell_guid_1440.moFdn"
+        ],
+        "kpi_definitions": [
+          {
+            "name": "source_fdn",
+            "expression": "kpi_cell_guid_1440.nodeFDN FROM kpi_db://kpi_relation_guid_source_guid_target_guid_1440 LEFT JOIN kpi_db://kpi_cell_guid_1440 ON kpi_relation_guid_source_guid_target_guid_1440.source_cell_cgi_daily = kpi_cell_guid_1440.cgi",
+            "object_type": "TEXT",
+            "aggregation_type": "FIRST",
+            "aggregation_elements": [
+              "kpi_relation_guid_source_guid_target_guid_1440.moFdn",
+              "kpi_relation_guid_source_guid_target_guid_1440.nodeFDN"
+            ],
+            "execution_group": "group3"
+          }
+        ]
+      }
+    ]
+  }
+}

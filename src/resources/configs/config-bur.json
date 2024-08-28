@@ -1,0 +1,1142 @@
+{
+  "dataloader": {
+    "schedule": {
+      "enabled": true,
+      "dynamicDelay": 300000,
+      "delayChange": "CONSTANT",
+      "startDate": null,
+      "startHour": null,
+      "startMinute": null,
+      "maxMessages": null,
+      "lifespan": null
+    },
+    "firstRopStartDate": null,
+    "firstRopStartTime": "22:45:00",
+    "ropConfigurations": [
+      {
+        "lengthInMinutes": 15,
+        "numberOfRecords": 80,
+        "recordsConfiguration": [
+          {
+            "schemaName": "ManagedObject1",
+            "records": 30
+          },
+          {
+            "schemaName": "ManagedObject2",
+            "records": 30
+          },
+          {
+            "schemaName": "ManagedObject3",
+            "records": 20
+          }
+        ]
+      },
+      {
+        "lengthInMinutes": 15,
+        "numberOfRecords": 80,
+        "recordsConfiguration": [
+          {
+            "schemaName": "ManagedObject1",
+            "records": 30
+          },
+          {
+            "schemaName": "ManagedObject2",
+            "records": 30
+          },
+          {
+            "schemaName": "ManagedObject3",
+            "records": 20
+          }
+        ]
+      },
+      {
+        "lengthInMinutes": 15,
+        "numberOfRecords": 80,
+        "recordsConfiguration": [
+          {
+            "schemaName": "ManagedObject1",
+            "records": 30
+          },
+          {
+            "schemaName": "ManagedObject2",
+            "records": 30
+          },
+          {
+            "schemaName": "ManagedObject3",
+            "records": 20
+          }
+        ]
+      },
+      {
+        "lengthInMinutes": 15,
+        "numberOfRecords": 80,
+        "recordsConfiguration": [
+          {
+            "schemaName": "ManagedObject1",
+            "records": 30
+          },
+          {
+            "schemaName": "ManagedObject2",
+            "records": 30
+          },
+          {
+            "schemaName": "ManagedObject3",
+            "records": 20
+          }
+        ]
+      },
+      {
+        "lengthInMinutes": 15,
+        "numberOfRecords": 80,
+        "recordsConfiguration": [
+          {
+            "schemaName": "ManagedObject1",
+            "records": 30
+          },
+          {
+            "schemaName": "ManagedObject2",
+            "records": 30
+          },
+          {
+            "schemaName": "ManagedObject3",
+            "records": 20
+          }
+        ]
+      }
+    ],
+    "batchConfigurations": [
+      {
+        "numberOfRecords": 80
+      },
+      {
+        "numberOfRecords": 80
+      },
+      {
+        "numberOfRecords": 80
+      },
+      {
+        "numberOfRecords": 80
+      },
+      {
+        "numberOfRecords": 80
+      }
+    ],
+    "kafkaTopics": [
+      {
+        "name": "topic",
+        "partitions": 3,
+        "replicationFactor": 2
+      }
+    ],
+    "schemaInstances": [
+      {
+        "schema": "ManagedObject1",
+        "messageHeaders": {
+          "recordName": "ManagedObject1"
+        },
+        "placeholder": {
+          "numberOfPlaceholder": 0,
+          "ratioOfNullPlaceholder": 0,
+          "constantForOthers": 0
+        },
+        "usedTopicName": "topic",
+        "dataSpace": "dataSpace",
+        "dataSpaceId": 1,
+        "dataCategory": "dataCategory",
+        "dataCategoryId": 1,
+        "messageKey": {
+          "messageKeyType": "link",
+          "messageKeyLinkField": "nodeFDN",
+          "messageKeyConfiguration": {
+            "fieldName": "nodeFDN",
+            "fieldType": "string",
+            "generationAlgorithm": {
+              "type": "template",
+              "configuration": {
+                "templateMap": [
+                  {
+                    "value": 1,
+                    "name": "ManagedElement",
+                    "valuePrefix": "NodeFDNManagedElement",
+                    "valueFormat": "0",
+                    "counterLimit": 1,
+                    "visible": false
+                  },
+                  {
+                    "value": 1,
+                    "name": "ManagedElement",
+                    "valuePrefix": "NodeFDNManagedElement",
+                    "valueFormat": "0",
+                    "counterLimit": 1,
+                    "visible": true
+                  },
+                  {
+                    "value": 1,
+                    "name": "Equipment",
+                    "valuePrefix": "",
+                    "valueFormat": "0",
+                    "counterLimit": 1,
+                    "visible": true
+                  },
+                  {
+                    "value": 1,
+                    "name": "SupportUnit",
+                    "valuePrefix": "",
+                    "valueFormat": "0",
+                    "counterLimit": 1,
+                    "visible": true
+                  },
+                  {
+                    "value": 1,
+                    "name": "MeContext",
+                    "valuePrefix": "Node",
+                    "valueFormat": "00000",
+                    "counterLimit": 30000,
+                    "visible": true
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "fields": [
+          {
+            "fieldName": "ossid",
+            "fieldType": "string",
+            "generationAlgorithm": {
+              "type": "constant",
+              "configuration": {
+                "value": "ENM_Athlone_1"
+              }
+            }
+          },
+          {
+            "fieldName": "nodeFDN",
+            "fieldType": "string",
+            "generationAlgorithm": {
+              "type": "template",
+              "configuration": {
+                "templateMap": [
+                  {
+                    "value": 1,
+                    "name": "ManagedElement",
+                    "valuePrefix": "NodeFDNManagedElement",
+                    "valueFormat": "0",
+                    "counterLimit": 1,
+                    "visible": false
+                  },
+                  {
+                    "value": 1,
+                    "name": "ManagedElement",
+                    "valuePrefix": "NodeFDNManagedElement",
+                    "valueFormat": "0",
+                    "counterLimit": 1,
+                    "visible": true
+                  },
+                  {
+                    "value": 1,
+                    "name": "Equipment",
+                    "valuePrefix": "",
+                    "valueFormat": "0",
+                    "counterLimit": 1,
+                    "visible": true
+                  },
+                  {
+                    "value": 0,
+                    "name": "SupportUnit",
+                    "valuePrefix": "",
+                    "valueFormat": "0",
+                    "counterLimit": 1,
+                    "visible": true
+                  },
+                  {
+                    "value": 1,
+                    "name": "MeContext",
+                    "valuePrefix": "Node",
+                    "valueFormat": "00000",
+                    "counterLimit": 30000,
+                    "visible": true
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "fieldName": "elementType",
+            "fieldType": "string",
+            "generationAlgorithm": {
+              "type": "constant",
+              "configuration": {
+                "value": "constantElementType"
+              }
+            }
+          },
+          {
+            "fieldName": "ropBeginTime",
+            "fieldType": "string",
+            "generationAlgorithm": {
+              "type": "constant",
+              "configuration": {
+                "value": ""
+              }
+            }
+          },
+          {
+            "fieldName": "ropEndTime",
+            "fieldType": "string",
+            "generationAlgorithm": {
+              "type": "constant",
+              "configuration": {
+                "value": ""
+              }
+            }
+          },
+          {
+            "fieldName": "moFdn",
+            "fieldType": "string",
+            "generationAlgorithm": {
+              "type": "template",
+              "configuration": {
+                "templateMap": [
+                  {
+                    "value": 1,
+                    "name": "ManagedElement",
+                    "valuePrefix": "MoFDNManagedElement",
+                    "valueFormat": "0",
+                    "counterLimit": 1,
+                    "visible": false
+                  },
+                  {
+                    "value": 1,
+                    "name": "ManagedElement",
+                    "valuePrefix": "MoFDNManagedElement",
+                    "valueFormat": "0",
+                    "counterLimit": 1,
+                    "visible": true
+                  },
+                  {
+                    "value": 1,
+                    "name": "Equipment",
+                    "valuePrefix": "",
+                    "valueFormat": "0",
+                    "counterLimit": 1,
+                    "visible": true
+                  },
+                  {
+                    "value": 1,
+                    "name": "SupportUnit",
+                    "valuePrefix": "",
+                    "valueFormat": "0",
+                    "counterLimit": 1,
+                    "visible": true
+                  },
+                  {
+                    "value": 1,
+                    "name": "ManagedObject1",
+                    "valuePrefix": "",
+                    "valueFormat": "0",
+                    "counterLimit": 1,
+                    "visible": true
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "fieldName": "pmCounters",
+            "fieldType": "record",
+            "fields": [
+              {
+                "fieldName": "pmCounter1",
+                "fieldType": "record",
+                "fields": [
+                  {
+                    "fieldName": "counterType",
+                    "fieldType": "string",
+                    "generationAlgorithm": {
+                      "type": "constant",
+                      "configuration": {
+                        "value": "pdf"
+                      }
+                    }
+                  },
+                  {
+                    "fieldName": "counterValue",
+                    "fieldType": "integer",
+                    "generationAlgorithm": {
+                      "type": "constant",
+                      "configuration": {
+                        "value": 3000
+                      }
+                    }
+                  },
+                  {
+                    "fieldName": "isValuePresent",
+                    "fieldType": "boolean",
+                    "generationAlgorithm": {
+                      "type": "constant",
+                      "configuration": {
+                        "value": "true"
+                      }
+                    }
+                  }
+                ]
+              },
+              {
+                "fieldName": "pmCounter2",
+                "fieldType": "record",
+                "fields": [
+                  {
+                    "fieldName": "counterType",
+                    "fieldType": "string",
+                    "generationAlgorithm": {
+                      "type": "constant",
+                      "configuration": {
+                        "value": "pdf"
+                      }
+                    }
+                  },
+                  {
+                    "fieldName": "counterValue",
+                    "fieldType": "integer",
+                    "generationAlgorithm": {
+                      "type": "constant",
+                      "configuration": {
+                        "value": 5000
+                      }
+                    }
+                  },
+                  {
+                    "fieldName": "isValuePresent",
+                    "fieldType": "boolean",
+                    "generationAlgorithm": {
+                      "type": "constant",
+                      "configuration": {
+                        "value": "true"
+                      }
+                    }
+                  }
+                ]
+              },
+              {
+                "fieldName": "pmCounter3",
+                "fieldType": "record",
+                "fields": [
+                  {
+                    "fieldName": "counterType",
+                    "fieldType": "string",
+                    "generationAlgorithm": {
+                      "type": "constant",
+                      "configuration": {
+                        "value": "pdf"
+                      }
+                    }
+                  },
+                  {
+                    "fieldName": "counterValue",
+                    "fieldType": "array",
+                    "generationAlgorithm": {
+                      "type": "constant",
+                      "configuration": {
+                        "values": [
+                          100,
+                          200,
+                          400
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "fieldName": "isValuePresent",
+                    "fieldType": "boolean",
+                    "generationAlgorithm": {
+                      "type": "constant",
+                      "configuration": {
+                        "value": "true"
+                      }
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "schema": "ManagedObject2",
+        "messageHeaders": {
+          "recordName": "ManagedObject2"
+        },
+        "placeholder": {
+          "numberOfPlaceholder": 0,
+          "ratioOfNullPlaceholder": 0,
+          "constantForOthers": 0
+        },
+        "usedTopicName": "topic",
+        "dataSpace": "dataSpace",
+        "dataSpaceId": 2,
+        "dataCategory": "dataCategory",
+        "dataCategoryId": 2,
+        "messageKey": {
+          "messageKeyType": "link",
+          "messageKeyLinkField": "nodeFDN",
+          "messageKeyConfiguration": {
+            "fieldName": "nodeFDN",
+            "fieldType": "string",
+            "generationAlgorithm": {
+              "type": "template",
+              "configuration": {
+                "templateMap": [
+                  {
+                    "value": 1,
+                    "name": "ManagedElement",
+                    "valuePrefix": "NodeFDNManagedElement",
+                    "valueFormat": "0",
+                    "counterLimit": 1,
+                    "visible": false
+                  },
+                  {
+                    "value": 1,
+                    "name": "ManagedElement",
+                    "valuePrefix": "NodeFDNManagedElement",
+                    "valueFormat": "0",
+                    "counterLimit": 1,
+                    "visible": true
+                  },
+                  {
+                    "value": 1,
+                    "name": "Equipment",
+                    "valuePrefix": "",
+                    "valueFormat": "0",
+                    "counterLimit": 1,
+                    "visible": true
+                  },
+                  {
+                    "value": 1,
+                    "name": "SupportUnit",
+                    "valuePrefix": "",
+                    "valueFormat": "0",
+                    "counterLimit": 1,
+                    "visible": true
+                  },
+                  {
+                    "value": 1,
+                    "name": "MeContext",
+                    "valuePrefix": "Node",
+                    "valueFormat": "00000",
+                    "counterLimit": 30000,
+                    "visible": true
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "fields": [
+          {
+            "fieldName": "ossid",
+            "fieldType": "string",
+            "generationAlgorithm": {
+              "type": "constant",
+              "configuration": {
+                "value": "ENM_Athlone_2"
+              }
+            }
+          },
+          {
+            "fieldName": "nodeFDN",
+            "fieldType": "string",
+            "generationAlgorithm": {
+              "type": "template",
+              "configuration": {
+                "templateMap": [
+                  {
+                    "value": 1,
+                    "name": "ManagedElement",
+                    "valuePrefix": "NodeFDNManagedElement",
+                    "valueFormat": "0",
+                    "counterLimit": 1,
+                    "visible": false
+                  },
+                  {
+                    "value": 1,
+                    "name": "ManagedElement",
+                    "valuePrefix": "NodeFDNManagedElement",
+                    "valueFormat": "0",
+                    "counterLimit": 1,
+                    "visible": true
+                  },
+                  {
+                    "value": 1,
+                    "name": "Equipment",
+                    "valuePrefix": "",
+                    "valueFormat": "0",
+                    "counterLimit": 1,
+                    "visible": true
+                  },
+                  {
+                    "value": 1,
+                    "name": "SupportUnit",
+                    "valuePrefix": "",
+                    "valueFormat": "0",
+                    "counterLimit": 1,
+                    "visible": true
+                  },
+                  {
+                    "value": 1,
+                    "name": "MeContext",
+                    "valuePrefix": "Node",
+                    "valueFormat": "00000",
+                    "counterLimit": 30000,
+                    "visible": true
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "fieldName": "elementType",
+            "fieldType": "string",
+            "generationAlgorithm": {
+              "type": "constant",
+              "configuration": {
+                "value": "constantElementType"
+              }
+            }
+          },
+          {
+            "fieldName": "ropBeginTime",
+            "fieldType": "string",
+            "generationAlgorithm": {
+              "type": "constant",
+              "configuration": {
+                "value": ""
+              }
+            }
+          },
+          {
+            "fieldName": "ropEndTime",
+            "fieldType": "string",
+            "generationAlgorithm": {
+              "type": "constant",
+              "configuration": {
+                "value": ""
+              }
+            }
+          },
+          {
+            "fieldName": "moFdn",
+            "fieldType": "string",
+            "generationAlgorithm": {
+              "type": "template",
+              "configuration": {
+                "templateMap": [
+                  {
+                    "value": 1,
+                    "name": "ManagedElement",
+                    "valuePrefix": "MoFDNManagedElement",
+                    "valueFormat": "0",
+                    "counterLimit": 1,
+                    "visible": false
+                  },
+                  {
+                    "value": 1,
+                    "name": "ManagedElement",
+                    "valuePrefix": "MoFDNManagedElement",
+                    "valueFormat": "0",
+                    "counterLimit": 1,
+                    "visible": true
+                  },
+                  {
+                    "value": 1,
+                    "name": "Equipment",
+                    "valuePrefix": "",
+                    "valueFormat": "0",
+                    "counterLimit": 1,
+                    "visible": true
+                  },
+                  {
+                    "value": 1,
+                    "name": "SupportUnit",
+                    "valuePrefix": "",
+                    "valueFormat": "0",
+                    "counterLimit": 1,
+                    "visible": true
+                  },
+                  {
+                    "value": 1,
+                    "name": "ManagedObject2",
+                    "valuePrefix": "",
+                    "valueFormat": "0",
+                    "counterLimit": 1,
+                    "visible": true
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "fieldName": "aggelement",
+            "fieldType": "integer",
+            "generationAlgorithm": {
+              "type": "constant_change",
+              "configuration": {
+                "startValue": 200,
+                "change": 200,
+                "direction": "ASC"
+              }
+            }
+          },
+          {
+            "fieldName": "pmCounters",
+            "fieldType": "record",
+            "fields": [
+              {
+                "fieldName": "pmCounter1",
+                "fieldType": "record",
+                "fields": [
+                  {
+                    "fieldName": "counterType",
+                    "fieldType": "string",
+                    "generationAlgorithm": {
+                      "type": "constant",
+                      "configuration": {
+                        "value": "pdf"
+                      }
+                    }
+                  },
+                  {
+                    "fieldName": "counterValue",
+                    "fieldType": "integer",
+                    "generationAlgorithm": {
+                      "type": "constant",
+                      "configuration": {
+                        "value": 1000
+                      }
+                    }
+                  },
+                  {
+                    "fieldName": "isValuePresent",
+                    "fieldType": "boolean",
+                    "generationAlgorithm": {
+                      "type": "constant",
+                      "configuration": {
+                        "value": "true"
+                      }
+                    }
+                  }
+                ]
+              },
+              {
+                "fieldName": "pmCounter2",
+                "fieldType": "record",
+                "fields": [
+                  {
+                    "fieldName": "counterType",
+                    "fieldType": "string",
+                    "generationAlgorithm": {
+                      "type": "constant",
+                      "configuration": {
+                        "value": "pdf"
+                      }
+                    }
+                  },
+                  {
+                    "fieldName": "counterValue",
+                    "fieldType": "integer",
+                    "generationAlgorithm": {
+                      "type": "constant_change",
+                      "configuration": {
+                        "startValue": 1000,
+                        "change": 100,
+                        "direction": "ASC"
+                      }
+                    }
+                  },
+                  {
+                    "fieldName": "isValuePresent",
+                    "fieldType": "boolean",
+                    "generationAlgorithm": {
+                      "type": "constant",
+                      "configuration": {
+                        "value": "true"
+                      }
+                    }
+                  }
+                ]
+              },
+              {
+                "fieldName": "pmCounter3",
+                "fieldType": "record",
+                "fields": [
+                  {
+                    "fieldName": "counterType",
+                    "fieldType": "string",
+                    "generationAlgorithm": {
+                      "type": "constant",
+                      "configuration": {
+                        "value": "pdf"
+                      }
+                    }
+                  },
+                  {
+                    "fieldName": "counterValue",
+                    "fieldType": "array",
+                    "generationAlgorithm": {
+                      "type": "constant",
+                      "configuration": {
+                        "values": [
+                          100,
+                          200,
+                          400
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "fieldName": "isValuePresent",
+                    "fieldType": "boolean",
+                    "generationAlgorithm": {
+                      "type": "constant",
+                      "configuration": {
+                        "value": "true"
+                      }
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "schema": "ManagedObject3",
+        "messageHeaders": {
+          "recordName": "ManagedObject3"
+        },
+        "placeholder": {
+          "numberOfPlaceholder": 0,
+          "ratioOfNullPlaceholder": 0,
+          "constantForOthers": 0
+        },
+        "usedTopicName": "topic",
+        "dataSpace": "dataSpace",
+        "dataSpaceId": 3,
+        "dataCategory": "dataCategory",
+        "dataCategoryId": 3,
+        "messageKey": {
+          "messageKeyType": "link",
+          "messageKeyLinkField": "nodeFDN",
+          "messageKeyConfiguration": {
+            "fieldName": "nodeFDN",
+            "fieldType": "string",
+            "generationAlgorithm": {
+              "type": "template",
+              "configuration": {
+                "templateMap": [
+                  {
+                    "value": 1,
+                    "name": "ManagedElement",
+                    "valuePrefix": "NodeFDNManagedElement",
+                    "valueFormat": "0",
+                    "counterLimit": 1,
+                    "visible": false
+                  },
+                  {
+                    "value": 1,
+                    "name": "ManagedElement",
+                    "valuePrefix": "NodeFDNManagedElement",
+                    "valueFormat": "0",
+                    "counterLimit": 1,
+                    "visible": true
+                  },
+                  {
+                    "value": 1,
+                    "name": "Equipment",
+                    "valuePrefix": "",
+                    "valueFormat": "0",
+                    "counterLimit": 1,
+                    "visible": true
+                  },
+                  {
+                    "value": 1,
+                    "name": "SupportUnit",
+                    "valuePrefix": "",
+                    "valueFormat": "0",
+                    "counterLimit": 1,
+                    "visible": true
+                  },
+                  {
+                    "value": 1,
+                    "name": "SupportUnit",
+                    "valuePrefix": "",
+                    "valueFormat": "0",
+                    "counterLimit": 1,
+                    "visible": true
+                  },
+                  {
+                    "value": 1,
+                    "name": "MeContext",
+                    "valuePrefix": "Node",
+                    "valueFormat": "00000",
+                    "counterLimit": 20000,
+                    "visible": true
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "fields": [
+          {
+            "fieldName": "ossid",
+            "fieldType": "string",
+            "generationAlgorithm": {
+              "type": "constant",
+              "configuration": {
+                "value": "ENM_Athlone_3"
+              }
+            }
+          },
+          {
+            "fieldName": "ossid",
+            "fieldType": "string",
+            "generationAlgorithm": {
+              "type": "constant",
+              "configuration": {
+                "value": "ENM_Athlone_1"
+              }
+            }
+          },
+          {
+            "fieldName": "nodeFDN",
+            "fieldType": "string",
+            "generationAlgorithm": {
+              "type": "template",
+              "configuration": {
+                "templateMap": [
+                  {
+                    "value": 1,
+                    "name": "ManagedElement",
+                    "valuePrefix": "NodeFDNManagedElement",
+                    "valueFormat": "0",
+                    "counterLimit": 1,
+                    "visible": false
+                  },
+                  {
+                    "value": 1,
+                    "name": "ManagedElement",
+                    "valuePrefix": "NodeFDNManagedElement",
+                    "valueFormat": "0",
+                    "counterLimit": 1,
+                    "visible": true
+                  },
+                  {
+                    "value": 1,
+                    "name": "Equipment",
+                    "valuePrefix": "",
+                    "valueFormat": "0",
+                    "counterLimit": 1,
+                    "visible": true
+                  },
+                  {
+                    "value": 1,
+                    "name": "SupportUnit",
+                    "valuePrefix": "",
+                    "valueFormat": "0",
+                    "counterLimit": 1,
+                    "visible": true
+                  },
+                  {
+                    "value": 1,
+                    "name": "SupportUnit",
+                    "valuePrefix": "",
+                    "valueFormat": "0",
+                    "counterLimit": 1,
+                    "visible": true
+                  },
+                  {
+                    "value": 1,
+                    "name": "MeContext",
+                    "valuePrefix": "Node",
+                    "valueFormat": "00000",
+                    "counterLimit": 20000,
+                    "visible": true
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "fieldName": "elementType",
+            "fieldType": "string",
+            "generationAlgorithm": {
+              "type": "constant",
+              "configuration": {
+                "value": "constantElementType"
+              }
+            }
+          },
+          {
+            "fieldName": "ropBeginTime",
+            "fieldType": "string",
+            "generationAlgorithm": {
+              "type": "constant",
+              "configuration": {
+                "value": ""
+              }
+            }
+          },
+          {
+            "fieldName": "ropEndTime",
+            "fieldType": "string",
+            "generationAlgorithm": {
+              "type": "constant",
+              "configuration": {
+                "value": ""
+              }
+            }
+          },
+          {
+            "fieldName": "moFdn",
+            "fieldType": "string",
+            "generationAlgorithm": {
+              "type": "template",
+              "configuration": {
+                "templateMap": [
+                  {
+                    "value": 1,
+                    "name": "ManagedElement",
+                    "valuePrefix": "MoFDNManagedElement",
+                    "valueFormat": "0",
+                    "counterLimit": 1,
+                    "visible": false
+                  },
+                  {
+                    "value": 1,
+                    "name": "ManagedElement",
+                    "valuePrefix": "MoFDNManagedElement",
+                    "valueFormat": "0",
+                    "counterLimit": 1,
+                    "visible": true
+                  },
+                  {
+                    "value": 1,
+                    "name": "Equipment",
+                    "valuePrefix": "",
+                    "valueFormat": "0",
+                    "counterLimit": 1,
+                    "visible": true
+                  },
+                  {
+                    "value": 1,
+                    "name": "SupportUnit",
+                    "valuePrefix": "",
+                    "valueFormat": "0",
+                    "counterLimit": 1,
+                    "visible": true
+                  },
+                  {
+                    "value": 1,
+                    "name": "ManagedObject3",
+                    "valuePrefix": "",
+                    "valueFormat": "0",
+                    "counterLimit": 1,
+                    "visible": true
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "fieldName": "pmCounters",
+            "fieldType": "record",
+            "fields": [
+              {
+                "fieldName": "pmCounter1",
+                "fieldType": "record",
+                "fields": [
+                  {
+                    "fieldName": "counterType",
+                    "fieldType": "string",
+                    "generationAlgorithm": {
+                      "type": "constant",
+                      "configuration": {
+                        "value": "pdf"
+                      }
+                    }
+                  },
+                  {
+                    "fieldName": "counterValue",
+                    "fieldType": "integer",
+                    "generationAlgorithm": {
+                      "type": "constant",
+                      "configuration": {
+                        "value": 5000
+                      }
+                    }
+                  },
+                  {
+                    "fieldName": "isValuePresent",
+                    "fieldType": "boolean",
+                    "generationAlgorithm": {
+                      "type": "constant",
+                      "configuration": {
+                        "value": "true"
+                      }
+                    }
+                  }
+                ]
+              },
+              {
+                "fieldName": "pmCounter2",
+                "fieldType": "record",
+                "fields": [
+                  {
+                    "fieldName": "counterType",
+                    "fieldType": "string",
+                    "generationAlgorithm": {
+                      "type": "constant",
+                      "configuration": {
+                        "value": "pdf"
+                      }
+                    }
+                  },
+                  {
+                    "fieldName": "counterValue",
+                    "fieldType": "array",
+                    "generationAlgorithm": {
+                      "type": "constant",
+                      "configuration": {
+                        "values": [
+                          100,
+                          200,
+                          400
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "fieldName": "isValuePresent",
+                    "fieldType": "boolean",
+                    "generationAlgorithm": {
+                      "type": "constant",
+                      "configuration": {
+                        "value": "true"
+                      }
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "schemas": [
+      " { \"type\":\"record\", \"name\":\"ManagedObject1\", \"namespace\":\"pmCounters\", \"fields\":[  {  \"name\":\"ossid\",  \"type\":\"string\"  },  {  \"name\":\"nodeFDN\",  \"type\":\"string\"  },  {  \"name\":\"elementType\",  \"type\":\"string\"  },  {  \"name\":\"ropBeginTime\",  \"type\":\"string\"  },  {  \"name\":\"ropEndTime\",  \"type\":\"string\"  },  {  \"name\":\"moFdn\",  \"type\":\"string\"  }, {  \"name\":\"pmCounters\", \"type\": { \"name\":  \"pmCounters\", \"type\": \"record\", \"fields\":  [ {  \"name\":\"pmCounter1\", \"type\": { \"name\":  \"pmCounter1\", \"type\": \"record\", \"fields\":  [ { \"name\":\"counterType\",  \"type\": \"string\", \"default\": \"pdf\" },{ \"name\":\"counterValue\",  \"type\": \"int\" }, { \"name\":\"isValuePresent\",  \"type\":\"boolean\", \"default\": true } ] } }, {  \"name\":\"pmCounter2\", \"type\": { \"name\":  \"pmCounter2\", \"type\": \"record\", \"fields\":  [ { \"name\":\"counterType\",  \"type\": \"string\", \"default\": \"pdf\" },{ \"name\":\"counterValue\",  \"type\": \"int\" }, { \"name\":\"isValuePresent\",  \"type\":\"boolean\", \"default\": true } ] } },{  \"name\":\"pmCounter3\", \"type\": { \"name\":  \"pmCounter3\", \"type\": \"record\", \"fields\":  [ { \"name\":\"counterType\",  \"type\": \"string\", \"default\": \"pdf\" },{ \"name\":\"counterValue\",  \"type\": { \"type\":\"array\", \"items\":\"int\" }  }, { \"name\":\"isValuePresent\",  \"type\":\"boolean\", \"default\": true } ] } } ] } }  ] }",
+      " { \"type\":\"record\", \"name\":\"ManagedObject2\", \"namespace\":\"pmCounters\", \"fields\":[  {  \"name\":\"ossid\",  \"type\":\"string\"  },  {  \"name\":\"nodeFDN\",  \"type\":\"string\"  },  {  \"name\":\"elementType\",  \"type\":\"string\"  },  {  \"name\":\"ropBeginTime\",  \"type\":\"string\"  },  {  \"name\":\"ropEndTime\",  \"type\":\"string\"  },  {  \"name\":\"moFdn\",  \"type\":\"string\"  },  {  \"name\": \"aggelement\", \"type\":\"int\" }, {  \"name\":\"pmCounters\", \"type\": { \"name\":  \"pmCounters\", \"type\": \"record\", \"fields\":  [ {  \"name\":\"pmCounter1\", \"type\": { \"name\":  \"pmCounter1\", \"type\": \"record\", \"fields\":  [ { \"name\":\"counterType\",  \"type\": \"string\", \"default\": \"pdf\" },{ \"name\":\"counterValue\",  \"type\": \"int\" }, { \"name\":\"isValuePresent\",  \"type\":\"boolean\", \"default\": true } ] } }, {  \"name\":\"pmCounter2\", \"type\": { \"name\":  \"pmCounter2\", \"type\": \"record\", \"fields\":  [ { \"name\":\"counterType\",  \"type\": \"string\", \"default\": \"pdf\" },{ \"name\":\"counterValue\",  \"type\": \"int\" }, { \"name\":\"isValuePresent\",  \"type\":\"boolean\", \"default\": true } ] } },{  \"name\":\"pmCounter3\", \"type\": { \"name\":  \"pmCounter3\", \"type\": \"record\", \"fields\":  [ { \"name\":\"counterType\",  \"type\": \"string\", \"default\": \"pdf\" },{ \"name\":\"counterValue\",  \"type\": { \"type\":\"array\", \"items\":\"int\" }  }, { \"name\":\"isValuePresent\",  \"type\":\"boolean\", \"default\": true } ] } } ] } } ] }",
+      " { \"type\":\"record\", \"name\":\"ManagedObject3\", \"namespace\":\"pmCounters\", \"fields\":[  {  \"name\":\"ossid\",  \"type\":\"string\"  },  {  \"name\":\"nodeFDN\",  \"type\":\"string\"  },  {  \"name\":\"elementType\",  \"type\":\"string\"  },  {  \"name\":\"ropBeginTime\",  \"type\":\"string\"  },  {  \"name\":\"ropEndTime\",  \"type\":\"string\"  },  {  \"name\":\"moFdn\",  \"type\":\"string\"  },  {  \"name\":\"pmCounters\", \"type\": { \"name\":  \"pmCounters\", \"type\": \"record\", \"fields\":  [ {  \"name\":\"pmCounter1\", \"type\": { \"name\":  \"pmCounter1\", \"type\": \"record\", \"fields\":  [ { \"name\":\"counterType\",  \"type\": \"string\", \"default\": \"pdf\" },{ \"name\":\"counterValue\",  \"type\": \"int\" }, { \"name\":\"isValuePresent\",  \"type\":\"boolean\", \"default\": true } ] } },{  \"name\":\"pmCounter2\", \"type\": { \"name\":  \"pmCounter2\", \"type\": \"record\", \"fields\":  [ { \"name\":\"counterType\",  \"type\": \"string\", \"default\": \"pdf\" },{ \"name\":\"counterValue\",  \"type\": { \"type\":\"array\", \"items\":\"int\" }  }, { \"name\":\"isValuePresent\",  \"type\":\"boolean\", \"default\": true } ] } } ] } } ] }"
+    ]
+  }
+}

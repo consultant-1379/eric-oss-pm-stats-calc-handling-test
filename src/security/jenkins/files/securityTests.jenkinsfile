@@ -1,0 +1,53 @@
+#!/usr/bin/env groovy
+package pipeline
+
+pipeline {
+    agent {
+        label "common_agents"
+    }
+    options {
+        timestamps ()
+        buildDiscarder(logRotator(numToKeepStr: '20', artifactNumToKeepStr: '20'))
+    }
+    stages {
+        stage('Prepare') {
+            steps {
+                sh "chmod +x -R ${env.WORKSPACE}"
+                sh "rm -rf nmapPMH*"
+            }
+        }
+        stage('Deploy NMAP') {
+            steps {
+                withCredentials([file(credentialsId: env.KUBE_CREDENTIALS, variable: 'KUBECONFIG'),
+                                usernamePassword(credentialsId: 'bragi_functional_user', passwordVariable: 'FUNCTIONAL_USER_PASSWORD', usernameVariable: 'FUNCTIONAL_USER_USERNAME')]) {
+                    sh "./src/security/jenkins/scripts/nmap_deploy.sh ${env.NAMESPACE}"
+                }
+            }
+        }
+        stage('Run NMAP') {
+            steps {
+
+                withCredentials([file(credentialsId: env.KUBE_CREDENTIALS, variable: 'KUBECONFIG')]) {
+                    sh "./src/security/jenkins/scripts/nmap_run.sh ${env.NAMESPACE}"
+                }
+            }
+        }
+        stage('Copy Report') {
+            steps {
+                 script {
+                    withCredentials([file(credentialsId: env.KUBE_CREDENTIALS, variable: 'KUBECONFIG')]) {
+                        sh "./src/security/jenkins/scripts/copy_report.sh . ${env.NAMESPACE}"
+                    }
+                }
+            }
+        }
+    }
+    post {
+        always {
+            withCredentials([file(credentialsId: env.KUBE_CREDENTIALS, variable: 'KUBECONFIG')]) {
+                sh "./src/security/jenkins/scripts/clean_up.sh ${env.NAMESPACE}"
+                archiveArtifacts 'nmapPMH.xml, nmapPMH.nmap, nmapPMH.gnmap'
+            }
+        }
+    }
+}

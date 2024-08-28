@@ -1,0 +1,19 @@
+{{- if .Values.networkPolicy.enabled }}
+kind: NetworkPolicy
+apiVersion: networking.k8s.io/v1
+metadata:
+  name: network-policy-query-service-allow
+spec:
+  podSelector:
+    matchLabels:
+      app.kubernetes.io/name: eric-oss-pm-stats-query-service
+  policyTypes:
+    - Ingress
+  ingress:
+    - from:
+      - podSelector:
+          matchLabels:
+            app.kubernetes.io/name: eric-oss-pm-stats-calc-handling-test
+      ports:
+        - port: 8080
+{{- end }}

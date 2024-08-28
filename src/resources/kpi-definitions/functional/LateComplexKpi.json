@@ -1,0 +1,24 @@
+{
+  "scheduled_complex": {
+    "kpi_output_tables": [
+      {
+        "aggregation_period": 60,
+        "alias": "mo_complex_2",
+        "aggregation_elements": ["kpi_mo_simple_dll_15.ossid"],
+        "data_reliability_offset": -15,
+        "exportable": true,
+        "reexport_late_data": true,
+        "kpi_definitions": [
+          {
+            "name": "sum_dlb_complex_1",
+            "expression": "SUM(kpi_mo_simple_dll_15.mo_sum_15_simple_dll) FROM kpi_db://kpi_mo_simple_dll_15",
+            "object_type": "INTEGER",
+            "aggregation_type": "SUM",
+            "data_lookback_limit": 20,
+            "execution_group": "group1"
+          }
+        ]
+      }
+    ]
+  }
+}

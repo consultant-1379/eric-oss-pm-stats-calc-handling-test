@@ -1,0 +1,210 @@
+{
+  "on_demand": {
+      "parameters": [{
+              "name": "param.filter",
+              "type": "STRING"
+          }, {
+              "name": "part_of_parsing",
+              "type": "STRING"
+          }, {
+              "name": "subnet",
+              "type": "STRING"
+          }, {
+              "name": "treshold_value",
+              "type": "INTEGER"
+          }, {
+              "name": "start_date_for_filter",
+              "type": "STRING"
+          }
+      ],
+      "tabular_parameters": [{
+              "name": "mo_data",
+              "columns": [{
+                      "name": "nodeFDN",
+                      "type": "STRING"
+                  }, {
+                      "name": "moFdn",
+                      "type": "STRING"
+                  }, {
+                      "name": "mo_divide",
+                      "type": "INTEGER"
+                  }
+              ]
+          }, {
+              "name": "mo_data_for_array",
+              "columns": [{
+                      "name": "nodeFDN",
+                      "type": "STRING"
+                  }, {
+                      "name": "mo_multiply",
+                      "type": "INTEGER"
+                  }
+              ]
+          }
+      ],
+      "kpi_output_tables": [{
+              "aggregation_period": 15,
+              "alias": "mo_on_demand_1",
+              "aggregation_elements": [
+                  "kpi_mo_simple_1_15.nodeFDN",
+                  "kpi_mo_simple_1_15.moFdn"
+              ],
+              "kpi_definitions": [{
+                      "name": "on_demand_mo_counter_percentage",
+                      "expression": "100 * kpi_mo_simple_1_15.mo_sum_15_simple / kpi_mo_simple_1_15.pm_counters_sum_15_simple FROM kpi_db://kpi_mo_simple_1_15",
+                      "object_type": "FLOAT",
+                      "aggregation_type": "FIRST"
+                  }
+              ]
+          }, {
+              "aggregation_period": 60,
+              "alias": "mo_on_demand_param",
+              "aggregation_elements": [
+                  "kpi_mo_simple_1_15.nodeFDN",
+                  "kpi_mo_simple_1_15.moFdn"
+              ],
+              "exportable": true,
+              "kpi_definitions": [{
+                      "name": "on_demand_with_params",
+                      "expression": "CASE WHEN SUM(kpi_mo_simple_1_15.pm_counters_sum_15_simple) > '${treshold_value}' THEN true ELSE false END FROM kpi_db://kpi_mo_simple_1_15",
+                      "object_type": "BOOLEAN",
+                      "aggregation_type": "FIRST",
+                      "filters": [
+                          "kpi_db://kpi_mo_simple_1_15.aggregation_begin_time < '${start_date_for_filter}'"
+                      ]
+                  }
+              ]
+          }, {
+              "aggregation_period": 1440,
+              "alias": "mo_on_demand_result_check",
+              "aggregation_elements": [
+                  "kpi_mo_simple_2_60.ossid"
+              ],
+              "exportable": true,
+              "kpi_definitions": [{
+                      "name": "sum_on_demand_check",
+                      "expression": "kpi_mo_simple_2_60.mo_sum_60_simple / 1000 FROM kpi_db://kpi_mo_simple_2_60",
+                      "object_type": "FLOAT",
+                      "aggregation_type": "SUM"
+                  }
+              ]
+          }, {
+              "aggregation_period": 60,
+              "alias": "mo_on_demand_2_post_agg",
+              "aggregation_elements": [
+                  "kpi_mo_simple_2_60.ossid"
+              ],
+              "exportable": true,
+              "kpi_definitions": [{
+                      "name": "sum_60_on_demand",
+                      "expression": "SUM(kpi_mo_simple_2_60.mo_sum_60_simple) FROM kpi_db://kpi_mo_simple_2_60",
+                      "object_type": "INTEGER",
+                      "aggregation_type": "SUM"
+                  }, {
+                      "name": "max_60_on_demand",
+                      "expression": "MAX(kpi_mo_simple_2_60.mo_sum_60_simple) FROM kpi_db://kpi_mo_simple_2_60",
+                      "object_type": "INTEGER",
+                      "aggregation_type": "MAX"
+                  }, {
+                      "name": "post_agg_60_on_demand",
+                      "expression": "FIRST(mo_on_demand_2_post_agg.sum_60_on_demand) / FIRST(mo_on_demand_2_post_agg.max_60_on_demand) FROM kpi_post_agg://mo_on_demand_2_post_agg",
+                      "object_type": "FLOAT",
+                      "aggregation_type": "FIRST",
+                      "aggregation_elements": [
+                          "mo_on_demand_2_post_agg.ossid"
+                      ]
+                  }
+              ]
+          }, {
+              "aggregation_period": 60,
+              "alias": "fdn_od_aggr_element",
+              "aggregation_elements": [
+                  "FDN_PARSE(kpi_fdn_complex_aggr_element_60.fdn_parse_co,\"ManagedElement\") AS fdn_parse_od"
+              ],
+              "kpi_definitions": [{
+                      "name": "od_ae",
+                      "expression": "FIRST(kpi_fdn_complex_aggr_element_60.complex_ae, true) FROM kpi_db://kpi_fdn_complex_aggr_element_60",
+                      "object_type": "STRING",
+                      "aggregation_type": "FIRST",
+                      "exportable": true
+                  }
+              ]
+          }, {
+              "aggregation_period": 60,
+              "alias": "fdn_od_expr",
+              "aggregation_elements": [
+                  "kpi_fdn_complex_expr_60.nodeFDN"
+              ],
+              "kpi_definitions": [{
+                      "name": "od_expr",
+                      "expression": "FIRST(FDN_PARSE(kpi_fdn_complex_expr_60.complex_expression, 'ManagedElement')) FROM kpi_db://kpi_fdn_complex_expr_60",
+                      "object_type": "STRING",
+                      "aggregation_type": "FIRST",
+                      "exportable": true
+                  }
+              ]
+          }, {
+              "aggregation_period": 60,
+              "alias": "fdn_od_filter",
+              "exportable": true,
+              "aggregation_elements": [
+                  "kpi_fdn_complex_expr_60.nodeFDN"
+              ],
+              "kpi_definitions": [{
+                      "name": "od_filter",
+                      "expression": "FIRST(kpi_fdn_complex_expr_60.complex_expression, true) FROM kpi_db://kpi_fdn_complex_expr_60",
+                      "object_type": "STRING",
+                      "aggregation_type": "FIRST",
+                      "exportable": true,
+                      "filters": [
+                          "kpi_db://kpi_fdn_complex_expr_60.FDN_PARSE(nodeFDN,'${part_of_parsing}') = '${subnet}'"
+                      ]
+                  }
+              ]
+          }, {
+              "aggregation_period": 1440,
+              "alias": "ondemand_tabular",
+              "aggregation_elements": [
+                  "kpi_mo_simple_4_1440.nodeFDN",
+                  "kpi_mo_simple_4_1440.moFdn"
+              ],
+              "kpi_definitions": [{
+                      "name": "tabular_expression",
+                      "expression": "kpi_mo_simple_4_1440.simple_for_tabular / NULLIF(mo_data.mo_divide, 0) FROM kpi_db://kpi_mo_simple_4_1440 INNER JOIN tabular_parameters://mo_data ON kpi_mo_simple_4_1440.nodeFDN = mo_data.nodeFDN AND kpi_mo_simple_4_1440.moFdn = mo_data.moFdn",
+                      "object_type": "FLOAT",
+                      "aggregation_type": "FIRST",
+                      "exportable": true
+                  }
+              ]
+          }, {
+              "aggregation_period": 60,
+              "alias": "ondemand_tabular_array",
+              "aggregation_elements": [
+                  "kpi_mo_simple_array_60.nodeFDN"
+              ],
+              "kpi_definitions": [{
+                      "name": "tabular_array",
+                      "expression": "TRANSFORM(kpi_mo_simple_array_60.simple_array_sum, x -> x * mo_data_for_array.mo_multiply) FROM kpi_db://kpi_mo_simple_array_60 INNER JOIN tabular_parameters://mo_data_for_array ON kpi_mo_simple_array_60.nodeFDN = mo_data_for_array.nodeFDN",
+                      "object_type": "INTEGER[5]",
+                      "aggregation_type": "FIRST"
+                  }
+              ]
+          }, {
+              "aggregation_period": 60,
+              "alias": "mo_on_demand_4",
+              "aggregation_elements": [
+                  "kpi_mo_complex_4_60.nodeFDN",
+                  "kpi_mo_complex_4_60.moFdn"
+              ],
+              "kpi_definitions": [{
+                      "name": "on_demand_percentile_index",
+                      "expression": "PERCENTILE_INDEX_80(kpi_mo_complex_4_60.complex_array) FROM kpi_db://kpi_mo_complex_4_60",
+                      "object_type": "INTEGER",
+                      "aggregation_type": "PERCENTILE_INDEX_80",
+                      "exportable": true
+                  }
+              ]
+          }
+      ]
+  }
+}
